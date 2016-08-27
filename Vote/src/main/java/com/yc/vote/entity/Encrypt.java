@@ -12,6 +12,7 @@ public class Encrypt {
 	/**
 	 * 测试
 	 */
+	private int aaqa;
 	public static void main(String[] args) {
 		/*// md5加密测试
 		String md5_1 = md5("a");
