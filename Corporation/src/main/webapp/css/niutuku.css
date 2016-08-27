@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+*{margin:0;padding:0;}
+body{font-size:12px;line-height:18px;color:#333333;font-family:Verdana,Geneva,sans-serif;}
+img{border:0;}
+ul, li{list-style:none;}
+
+
+#notice{
+	font-size:13px;
+	height:30px;
+	line-height:30px;
+	color:#7AAA1B;
+	overflow:hidden;
+	zoom:1;
+	padding-left:26px;
+	background:url(../images/notice.gif) no-repeat left 7px; 
+	margin:60px auto; 
+	width:300px;}
+#notice .scroll-container li a {
+	color:#7AAA1B; 
+	text-decoration:none;}
