@@ -7,7 +7,7 @@ public class Users {
 	private String username;
 	private String password;
 	private int age;
-	private int aaa;
+//	private int aaa;
 	private String sex;
 	private String email;
 	private String home;
