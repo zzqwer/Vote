@@ -2,7 +2,7 @@ package com.yc.corporation.entity;
 
 public class Users {
 	private int usid;
-	//qwertyuiop[]
+	//qwertyuiop[]234567
 	private String username;
 	private String password;
 	private int age;
