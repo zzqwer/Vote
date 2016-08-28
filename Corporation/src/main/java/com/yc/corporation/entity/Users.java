@@ -6,6 +6,12 @@ public class Users {
 	private String username;
 	private String password;
 	private int age;
+	private String sex;
+	private String email;
+	private String home;
+	private String userclass;
+	private String phone;
+	private String pic;
 	public Users(int usid, String username, String password, int age, String sex, String email, String home,
 			String userclass, String phone) {
 		super();
@@ -19,12 +25,7 @@ public class Users {
 		this.userclass = userclass;
 		this.phone = phone;
 	}
-	private String sex;
-	private String email;
-	private String home;
-	private String userclass;
-	private String phone;
-	private String pic;
+
 	public String getPic() {
 		return pic;
 	}
