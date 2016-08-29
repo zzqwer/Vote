@@ -2,24 +2,18 @@ package com.yc.corporation.entity;
 
 public class Users {
 	private int usid;
-	//qwertyuiop[]234567222
-	//asdfghjsdfghjkfghjrdfghjcfghdfgsd
-	//etyuj
-	//oooooooo
-	//poiu
 	private String username;
 	private String password;
 	private int age;
-	
 	private String sex;
 	private String email;
 	private String home;
 	private String userclass;
 	private String phone;
 	private String pic;
+
 	public Users(int usid, String username, String password, int age, String sex, String email, String home,
 			String userclass, String phone) {
-		super();
 		this.usid = usid;
 		this.username = username;
 		this.password = password;
@@ -37,10 +31,9 @@ public class Users {
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
-	
+
 	public Users(int usid, String username, String password, int age, String sex, String email, String home,
 			String phone, String pic, String userclass) {
-		super();
 		this.usid = usid;
 		this.username = username;
 		this.password = password;
@@ -52,7 +45,7 @@ public class Users {
 		this.pic = pic;
 		this.userclass = userclass;
 	}
-	
+
 
 	public int getAge() {
 		return age;
@@ -94,12 +87,12 @@ public class Users {
 		return usid;
 	}
 	public Users() {
-	
+
 	}
 
 	@Override
 	public String toString() {
-		return "Users [usid=" + usid + ", username=" + username + ", password=" + password + ", age=" + age + ", sex="
+		return "\n\tUsers [usid=" + usid + ", username=" + username + ", password=" + password + ", age=" + age + ", sex="
 				+ sex + ", email=" + email + ", home=" + home + ", userclass=" + userclass + ", phone=" + phone
 				+ ", pic=" + pic + "]";
 	}
