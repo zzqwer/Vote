@@ -1,5 +1,5 @@
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,12 +16,19 @@ import com.yc.corporation.serivce.UserService;
 public class UserServiceImplTest {
  @Autowired
  private UserService userService;
+ 
+ 
 	@Test
 	public void test() {
 		Users user=userService.login(new Users("zz","a"));
 		System.out.println(user);
 		assertNotNull(user);
+	}
+	
+	@Test
+	public void testinfo() {
+		System.out.println(	userService.findAlls()
+);
 		
 	}
-
 }

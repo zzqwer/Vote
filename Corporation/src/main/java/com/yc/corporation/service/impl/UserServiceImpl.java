@@ -1,5 +1,7 @@
 package com.yc.corporation.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,12 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return false;
+	}
+
+	@Override
+	public List<Users> findAlls() {
+		
+		return userMapper.findAll();
 	}
 	
 
