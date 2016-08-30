@@ -14,7 +14,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Users login(Users user) {
-		
 		return userMapper.findUserByNP(user);
 	}
 

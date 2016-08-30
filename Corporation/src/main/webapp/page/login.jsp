@@ -6,18 +6,16 @@
 <base href="/Corporation/">
 <meta charset="utf-8">
 <title>协会联盟--首页</title>
-<link href="css/login.css" rel="stylesheet" type="text/css">
-
-<link href="css/SpryAccordion.css" rel="stylesheet" type="text/css">
-<script src="js/SpryAccordion.js" type="text/javascript"></script>
-<link href="css/SpryTabbedPanels.css" rel="stylesheet" type="text/css">
-<script src="js/SpryTabbedPanels.js" type="text/javascript"></script>
-<script src="js/jquery-1.3.2.min.js"></script>
+<link   type="text/css" href="css/login.css" rel="stylesheet" >
+<link   type="text/css"href="css/SpryAccordion.css" rel="stylesheet" >
+<link   type="text/css" href="css/SpryTabbedPanels.css" rel="stylesheet">
+<script type="text/javascript" src="js/SpryAccordion.js" ></script>
+<script type="text/javascript" src="js/SpryTabbedPanels.js" ></script>
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.kxbdmarquee.js"></script>
-
 <script type="text/javascript" src="js/jquery.roundabout.js"></script>
 <script type="text/javascript" src="js/jquery.roundabout-shapes.js"></script>
-<script src="js/jq-main.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jq-main.js" ></script>
 <script type="text/javascript">
   function showzc(){
 	  
@@ -25,26 +23,22 @@
   }
 
 </script>
-
 </head>
-
 <body>
-
-	<div id="notice" >
-            	<ul style="float:left;" class="scroll-container">
-              	<li><a href="#" >1.阿里巴巴首页导航菜单设计制作</a></li>
-                <li><a href="#" >2.marquee实现图片向上滚动并带停止功能</a></li>
-                <li><a href="#" >3.MSN男人栏目幻灯片鼠标划过显示小图列表</a></li>
-                <li><a href="#" >4.jquery实现鼠标划过小图变大图(可实现多张)</a></li>
-                <li><a href="#">5.jquery.cycle循环带数字按钮动画设计</a></li>
-                <li><a href="#">6.themeforest模板带控制按钮滑动文字设计</a></li>
-                <li><a href="#">7.苹果mac栏目动画设计制作</a></li>
-                <li><a href="#" >8.jQuery实现很漂亮的背景切换动画设计</a></li>
-      		</ul>
-</div>
+	<div id="notice">
+		<ul style="float: left;" class="scroll-container">
+			<li><a href="#">1.阿里巴巴首页导航菜单设计制作</a></li>
+			<li><a href="#">2.marquee实现图片向上滚动并带停止功能</a></li>
+			<li><a href="#">3.MSN男人栏目幻灯片鼠标划过显示小图列表</a></li>
+			<li><a href="#">4.jquery实现鼠标划过小图变大图(可实现多张)</a></li>
+			<li><a href="#">5.jquery.cycle循环带数字按钮动画设计</a></li>
+			<li><a href="#">6.themeforest模板带控制按钮滑动文字设计</a></li>
+			<li><a href="#">7.苹果mac栏目动画设计制作</a></li>
+			<li><a href="#">8.jQuery实现很漂亮的背景切换动画设计</a></li>
+		</ul>
+	</div>
 	<div class="top">
-		<img class="logopic" src="images/logopic.png" width="100%"
-			height="100%" />
+		<img class="logopic" src="images/logopic.png" width="100%" height="100%" />
 	</div>
 	<div class="menu">
 		<ul id="MenuBar1" class="Menu">
@@ -62,21 +56,25 @@
 	<div class="menubottom">
    	  <div class="login">
 				<h2>用户登录</h2>
-				<form method="post" action="user/login">
-					<p>
-						&nbsp;&nbsp;用户名:&nbsp;&nbsp;&nbsp;&nbsp;<input class="loginform"
-							type="text" name="username">
+				<!-- 登录之前显示 -->
+				<form method="post" action="user/login" id="loginfrom" >
+					<p>&nbsp;&nbsp;用户名:&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="loginform"type="text" name="username">
 					</p>
-					<p>
-						&nbsp;&nbsp;密&nbsp;&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input
-							class="loginform" type="password" name="password">
+					<p>&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="loginform" type="password" name="password">
 					</p>
 					<button id="btnOK" type="submit">登录</button>
-					 <input id="btnRE" type="reset" value="重置">
+					<input id="btnRE" type="reset" value="重置">
 					<p id="hre">
 						<a href="javascript:showzc()"> 免费注册</a><a href="#"> 忘记密码</a>
 					</p>
 				</form>
+				<!-- 登录之后显示 -->
+				<div type="hidden" id="logined">
+					<a href="#">${userName}</a>
+				</div>
+				<div class="error">${msg}</div>
 			</div>
       <div class="picrotate">
                 <ul class="roundabout" id="myroundabout">

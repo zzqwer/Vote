@@ -21,18 +21,19 @@ public class Userhandler {
 
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String logins(Users user,ModelMap map){
-	
 		return "login";	
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(Users user,ModelMap map){
-		System.out.println("user login..."+user);
 		user=userService.login(user);
+		System.out.println("数据库根据输入的用户名和密码查到的信息:"+user);
+		//登录结果页面跳转
 		if(user==null){
-			System.out.println("1234567");
-			return "NewFile";
+			map.put("msg","<script>alert('您的输入有误,请重新输入!!!');</script>");
+			System.out.println("map的内容"+map);
 		}
+	//	map.put("userName",user.getUsername());
 		return "login";
 	}	
 	

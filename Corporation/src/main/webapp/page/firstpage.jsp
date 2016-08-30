@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 <head>
@@ -51,16 +53,12 @@
    	  <div class="login">
 				<h2>用户登录</h2>
 				<form method="post" action="user/login">
-					<p>
-						&nbsp;&nbsp;用户名:&nbsp;&nbsp;&nbsp;&nbsp;<input class="loginform"
-							type="text">
+					<p>&nbsp;&nbsp;用户名:&nbsp;&nbsp;&nbsp;&nbsp;<input class="loginform" type="text"></p>
+					<p>&nbsp;&nbsp;密&nbsp;&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;
+						<inputclass="loginform" type="password">
 					</p>
-					<p>
-						&nbsp;&nbsp;密&nbsp;&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input
-							class="loginform" type="password">
-					</p>
-					<input id="btnOK" type="button" value="确定"> <input
-						id="btnRE" type="reset" value="重置">
+					<input id="btnOK" type="button" value="确定"> 
+					<input id="btnRE" type="reset" value="重置">
 					<p id="hre">
 						<a href="#"> 免费注册</a><a href="#"> 忘记密码</a>
 					</p>
