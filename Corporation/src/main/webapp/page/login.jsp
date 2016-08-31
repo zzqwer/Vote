@@ -6,14 +6,12 @@
 <base href="/Corporation/">
 <meta charset="utf-8">
 <title>协会联盟--首页</title>
-<<<<<<< HEAD
 <link   type="text/css" href="css/login.css" rel="stylesheet" >
 <link   type="text/css"href="css/SpryAccordion.css" rel="stylesheet" >
 <link   type="text/css" href="css/SpryTabbedPanels.css" rel="stylesheet">
 <script type="text/javascript" src="js/SpryAccordion.js" ></script>
 <script type="text/javascript" src="js/SpryTabbedPanels.js" ></script>
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-=======
 <script type="text/javascript" src="js/infomation.js"></script>
 
 

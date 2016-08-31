@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.corporation.mapper.InfomationMapper">
+<!-- 查找活动预告信息 -->
+	<select id="findannounced" resultType="Infomation">
+select * from infomation where infotype='activeannounced' 
+	</select>
+<!-- 根据id查找活动预告内容 -->
+<select id="findactivebyid"  parameterType="int" resultType="Infomation">
+ select * from infomation where infotype='activeannounced' and infoid=#{infoid}
+   
+</select>
+</mapper>
