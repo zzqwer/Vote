@@ -25,13 +25,9 @@
 <script src="js/SpryTabbedPanels.js" type="text/javascript"></script>
 
 <script src="js/jquery-1.3.2.min.js"></script>
->>>>>>> branch 'master' of ssh://git@github.com/zzqwer/Vote
 <script type="text/javascript" src="js/jquery.kxbdmarquee.js"></script>
-<<<<<<< HEAD
-=======
 
 
->>>>>>> branch 'master' of ssh://git@github.com/zzqwer/Vote
 <script type="text/javascript" src="js/jquery.roundabout.js"></script>
 <script type="text/javascript" src="js/jquery.roundabout-shapes.js"></script>
 <script type="text/javascript" src="js/jq-main.js" ></script>
