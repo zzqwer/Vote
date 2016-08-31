@@ -11,7 +11,11 @@
 
 </head>
 <body>
-
+<script type="text/javascript">
+function getactive(){
+	$("#clubrightshow").html('${ifm.title}'+'<a href="page/a.jsp" id="baoming">我要报名</a>')
+}
+</script>
 <div class="top"> 	
       <img class="logopic" src="images/logopic.png" width="100%" height="100%"/>
 </div>
@@ -36,7 +40,7 @@
             <li><span><img src="images/introduceimage.png" class="left_logo"/>协会部门</span></li>
             <li><span><img src="images/introduceimage.png" class="left_logo"/>协会荣誉</span></li>
             <li><span><img src="images/introduceimage.png" class="left_logo"/>协会文档</span></li>
-            <li><span><img src="images/introduceimage.png" class="left_logo"/>活动报名</span></li>
+            <li><span id="actives" onclick="getactive()"><img src="images/introduceimage.png" class="left_logo"/>活动报名</span></li>
         </ul>
     </div>
     <div class="right">

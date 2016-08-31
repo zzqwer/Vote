@@ -9,7 +9,14 @@ public class Infomation {
 	private String infodate;
 	private String content;
 	private String infotype;
+	private String club;
 	
+	public String getClub() {
+		return club;
+	}
+	public void setClub(String club) {
+		this.club = club;
+	}
 	public Integer getInfoid() {
 		return infoid;
 	}
@@ -43,18 +50,21 @@ public class Infomation {
 	
 	public Infomation() {
 	}
-	
-	public Infomation(Integer infoid, String title, String infodate, String content, String infotype) {
+	public Infomation(Integer infoid, String title, String infodate, String content, String infotype, String club) {
+		super();
 		this.infoid = infoid;
 		this.title = title;
 		this.infodate = infodate;
 		this.content = content;
 		this.infotype = infotype;
+		this.club = club;
 	}
 	@Override
 	public String toString() {
 		return "Infomation [infoid=" + infoid + ", title=" + title + ", infodate=" + infodate + ", content=" + content
-				+ ", infotype=" + infotype + "]";
+				+ ", infotype=" + infotype + ", club=" + club + "]";
 	}
+	
+	
 
 }

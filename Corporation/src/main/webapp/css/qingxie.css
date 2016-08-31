@@ -32,6 +32,12 @@
 	-webkit-border-bottom-left-radius: 10px;
 }
 
+#baoming{
+	float:right;
+	margin-right:20px;
+}
+
+
 .menu ul li {
 	margin-top: 10px;
 	float: left;

@@ -36,7 +36,9 @@ public class Infomationhandler {
 		Infomation ifm=is.findactivebyid(infoid);
 		System.out.println("内容为"+ifm);
 		map.put("ifm", ifm);
-		return "getactivecontent";
+		return ifm.getClub();
 	}
+	
+
 
 }

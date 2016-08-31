@@ -9,34 +9,16 @@
 <link   type="text/css" href="css/login.css" rel="stylesheet" >
 <link   type="text/css"href="css/SpryAccordion.css" rel="stylesheet" >
 <link   type="text/css" href="css/SpryTabbedPanels.css" rel="stylesheet">
+<script type="text/javascript" src="js/jq-main.js" ></script>
 <script type="text/javascript" src="js/SpryAccordion.js" ></script>
 <script type="text/javascript" src="js/SpryTabbedPanels.js" ></script>
-<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="js/infomation.js"></script>
-
-
-<link href="css/login.css" rel="stylesheet" type="text/css">
-
-<link href="css/SpryAccordion.css" rel="stylesheet" type="text/css">
-<script src="js/SpryAccordion.js" type="text/javascript"></script>
-<link href="css/SpryTabbedPanels.css" rel="stylesheet" type="text/css">
-<script src="js/SpryTabbedPanels.js" type="text/javascript"></script>
-
-<script src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/jquery.kxbdmarquee.js"></script>
 
-
+<script type="text/javascript" src="js/infomation.js"></script>
 <script type="text/javascript" src="js/jquery.roundabout.js"></script>
 <script type="text/javascript" src="js/jquery.roundabout-shapes.js"></script>
-<script type="text/javascript" src="js/jq-main.js" ></script>
-<script type="text/javascript">
-  function showzc(){
-	  
-	  
-  }
 
-</script>
-<script src="js/jq-main.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -358,6 +340,7 @@
 <!--新闻回滚-->
 <script type="text/javascript">
 					(function() {
+						alert("qwerty");
 						$("#nearact").kxbdMarquee({
 							direction : "up",
 							isEqual : false
