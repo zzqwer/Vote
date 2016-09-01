@@ -137,7 +137,6 @@
 
 				</ul>
 			</div>
-
 			<div class="neartop">
 				<b>活动预告</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
@@ -257,27 +256,27 @@
 			<div class="chattop">
 				<b>会长信箱</b>
 			</div>
+			<form action="infomation/email" method="Post">
 			<div class="mail">
 				<div class="mailleft">
-					<select name="" class="option">
-						<option>选择社团</option>
-						<option>青年志愿者协会</option>
-						<option>文艺爱好者协会</option>
+					<select name="shetuan" class="option">
+						<option value="wowow">选择社团</option>
+						<option value="623831277@qq.com">青年志愿者协会</option>
+						<option value="wowow2">文艺爱好者协会</option>
 						<option>书画协会</option>
 						<option>体育爱好者协会</option>
 						<option>职业发展与创业就业协会</option>
 						<option>计算机协会</option>
 						<option>英语协会</option>
 					</select>
-					<textarea class="textarea"></textarea>
+					<textarea class="textarea" name="email"></textarea>
 				</div>
 				<div class="mailright">
-					<form>
-						<input type="button" value="发送" class="mailbtn" />
-					</form>
+					
+						<input type="submit" value="发送" class="mailbtn" />
 				</div>
-
 			</div>
+			</form>
 		</div>
 	</div>
 	<div class="footer">
@@ -292,12 +291,6 @@
 			<p>协办及技术平台支持：中青在线、中青华云、国家志愿者公益服务支撑平台</p>
 		</div>
 	</div>
-
-
-
-
-
-
 	<script type="text/javascript">
 		var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
 	</script>

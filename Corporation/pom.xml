@@ -19,9 +19,20 @@
 		<oracle.version>12.1.0.1</oracle.version>
 		<dbcp2.version>2.1.1</dbcp2.version>
 		<aspectj.version>1.8.9</aspectj.version>
+		<mail.version>1.5.5</mail.version>
+
 	</properties>
 
 	<dependencies>
+
+		<!-- 邮件发送处理包 -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>${mail.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
