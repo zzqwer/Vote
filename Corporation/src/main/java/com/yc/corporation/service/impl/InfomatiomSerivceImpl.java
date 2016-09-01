@@ -24,4 +24,34 @@ public class InfomatiomSerivceImpl implements InfomatiomSerivce{
 		return infomationMapper.findactivebyid(infoid);
 	}
 
+	@Override
+	public List<Infomation>  findwebnotice() {
+
+		return infomationMapper.findwebnotice();
+	}
+
+	@Override
+	public List<Infomation> finddongtai() {
+		// TODO Auto-generated method stub
+		return infomationMapper.finddongtai();
+	}
+
+	@Override
+	public List<Infomation> findglory() {
+		// TODO Auto-generated method stub
+		return infomationMapper.findglory();
+	}
+
+	@Override
+	public List<Infomation> finddiscuss() {
+		// TODO Auto-generated method stub
+		return infomationMapper.finddiscuss();
+	}
+
+	@Override
+	public List<Infomation> findboutique() {
+		// TODO Auto-generated method stub
+		return infomationMapper.findboutique();
+	}
+
 }
