@@ -30,10 +30,10 @@ public class Infomation {
 		this.title = title;
 	}
 	public String getInfodate() {
-		return infodate;
+		return infodate.substring(0, 10);
 	}
 	public void setInfodate(String infodate) {
-		this.infodate = infodate;
+		this.infodate = infodate.substring(0, 10);
 	}
 	public String getContent() {
 		return content;

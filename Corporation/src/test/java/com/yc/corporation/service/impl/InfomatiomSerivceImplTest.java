@@ -21,4 +21,9 @@ public class InfomatiomSerivceImplTest {
 	public void testActiveannouncedbyid() {
 		System.out.println(infomationSerivce.findactivebyid(11));
 	}
+	
+	@Test
+	public void testfindwebnotice() {
+		System.out.println(infomationSerivce.findboutique());
+	}
 }

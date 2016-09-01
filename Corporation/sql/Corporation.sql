@@ -13,7 +13,7 @@
     chairman varchar2(30),
     cname varchar2(100), --社团名
     cintroduce varchar2(2000), --社团简介
-    honor varchar2(1000),--社团荣誉
+    honor varchar2(1000),--精品活动
     email  varchar2(50)
      
   )
@@ -68,6 +68,31 @@ insert into infomation values(info_infoid.nextval,'英语协会晨读活动',to_
 insert into infomation values(info_infoid.nextval,'计算机协会招新',to_date('2016-8-24','yyyy-MM-dd'),'计信青协将于后天举行百里毅行','activeannounced','qingxie');
 insert into infomation values(info_infoid.nextval,'文艺爱好者协会招新',to_date('2016-8-26','yyyy-MM-dd'),'计信青协将于后天举行百里毅行','activeannounced','qingxie');
 insert into infomation values(info_infoid.nextval,'文艺艾哈着协会招新',to_date('2016-8-26','yyyy-MM-dd'),'计信青协将于后天举行百里毅行','12345678','qingxie');
+
+insert into infomation values(info_infoid.nextval,'网站公告2',to_date('2016-8-28','yyyy-MM-dd'),'网站公告2内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公告3',to_date('2016-8-28','yyyy-MM-dd'),'网站公告3内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公告4',to_date('2016-8-28','yyyy-MM-dd'),'网站公告4内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公告5',to_date('2016-8-28','yyyy-MM-dd'),'网站公告5内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公6',to_date('2016-8-28','yyyy-MM-dd'),'网站公告6内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公告7',to_date('2016-8-28','yyyy-MM-dd'),'网站公告7内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公告8',to_date('2016-8-28','yyyy-MM-dd'),'网站公告8内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公告9',to_date('2016-8-28','yyyy-MM-dd'),'网站公告9内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公告10',to_date('2016-8-28','yyyy-MM-dd'),'网站公告10内容','webnotice','qingxie');
+insert into infomation values(info_infoid.nextval,'网站公告11',to_date('2016-8-28','yyyy-MM-dd'),'网站公告11内容','webnotice','qingxie');
+
+
+
+insert into infomation values(info_infoid.nextval,'精品活动1',to_date('2016-8-29','yyyy-MM-dd'),'精品活动1内容','Boutique','qingxie');
+insert into infomation values(info_infoid.nextval,'精品活动2',to_date('2016-8-30','yyyy-MM-dd'),'精品活动2内容','Boutique','qingxie');
+insert into infomation values(info_infoid.nextval,'精品活动3',to_date('2016-8-30','yyyy-MM-dd'),'精品活动3内容','Boutique','qingxie');
+insert into infomation values(info_infoid.nextval,'精品活动4',to_date('2016-8-22','yyyy-MM-dd'),'精品活动4内容','Boutique','qingxie');
+insert into infomation values(info_infoid.nextval,'精品活动5',to_date('2016-8-24','yyyy-MM-dd'),'精品活动5内容','Boutique','qingxie');
+insert into infomation values(info_infoid.nextval,'精品活动6',to_date('2016-8-25','yyyy-MM-dd'),'精品活动6内容','Boutique','qingxie');
+insert into infomation values(info_infoid.nextval,'精品活动7',to_date('2016-8-21','yyyy-MM-dd'),'精品活动7内容','Boutique','qingxie');
+insert into infomation values(info_infoid.nextval,'精品活动8',to_date('2016-8-15','yyyy-MM-dd'),'精品活动8内容','Boutique','qingxie');
+insert into infomation values(info_infoid.nextval,'精品活动9',to_date('2016-8-31','yyyy-MM-dd'),'精品活动9内容','Boutique','qingxie');
+
+
 
   --客服表
   create table customservice(

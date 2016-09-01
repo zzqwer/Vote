@@ -28,10 +28,12 @@ public class Userhandler {
 	public String login(Users user,ModelMap map){
 		user=userService.login(user);
 		System.out.println("数据库根据输入的用户名和密码查到的信息:"+user);
+		System.out.println("map的内容"+map);
+
 		//登录结果页面跳转
 		if(user==null){
-			map.put("msg","<script>alert('您的输入有误,请重新输入!!!');</script>");
-			System.out.println("map的内容"+map);
+			map.put("msg","<script>alert('您输入的账号或密码错误,请重新输入!!!');</script>");
+			return "login";
 		}
 	//	map.put("userName",user.getUsername());
 		return "login";
