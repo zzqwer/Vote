@@ -3,6 +3,7 @@
 <!DOCTYPE html >
 <html>
 <head>
+<base href="/Corporation/">
 	<meta charset="utf-8">
 	<title>学生社团联盟--后台</title>
 	<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />

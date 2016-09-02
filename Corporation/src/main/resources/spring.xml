@@ -65,8 +65,7 @@
 	</bean>
 
 	<!-- 响应处理，视图处理器配制 -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/page/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
