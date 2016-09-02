@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <base href="/Corporation/">
-<title>青年志愿者协会</title>
+<title>计算机协会</title>
 <link href="css/qingxie.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/highslide-with-gallery.js"></script>
 <link rel="stylesheet" type="text/css" href="css/highslide.css" />
@@ -34,15 +34,15 @@
 	<div class="content">
 	<div class="left">
         <ul class="association">
-            <li><span  onClick="show('d1')"><img src="images/qingxielogo.png" class="left_logo" />协会介绍</span></li>
-            <li><span  onClick="show('d2')"><img src="images/qingxielogo.png" class="left_logo"/>名&nbsp;人&nbsp;堂</a></li>
-            <li><span  onClick="show('d3')"><img src="images/qingxielogo.png" class="left_logo"/>协会相册</span></li>
-            <li><span  onClick="show('d4')"><img src="images/qingxielogo.png" class="left_logo"/>协会部门</span></li>
-            <li><span  onClick="show('d5')"><img src="images/qingxielogo.png" class="left_logo"/>协会活动</span></li>
-            <li><span  onClick="show('d6')"><img src="images/qingxielogo.png" class="left_logo"/>协会文档</span></li>
-            <li><span  onClick="show('d7')"><img src="images/qingxielogo.png" class="left_logo"/>活动报名</span></li>
-            <li><span  onClick="show('d8')"><img src="images/qingxielogo.png" class="left_logo"/>活动赞助</span></li>
-            <li><span  onClick="show('d9')"><img src="images/qingxielogo.png" class="left_logo"/>会员缴费</span></li>
+            <li><span  onClick="show('d1')"><img src="images/jisuanji.png" class="left_logo" />协会介绍</span></li>
+            <li><span  onClick="show('d2')"><img src="images/jisuanji.png" class="left_logo"/>名&nbsp;人&nbsp;堂</a></li>
+            <li><span  onClick="show('d3')"><img src="images/jisuanji.png" class="left_logo"/>协会相册</span></li>
+            <li><span  onClick="show('d4')"><img src="images/jisuanji.png" class="left_logo"/>协会部门</span></li>
+            <li><span  onClick="show('d5')"><img src="images/jisuanji.png" class="left_logo"/>协会活动</span></li>
+            <li><span  onClick="show('d6')"><img src="images/jisuanji.png" class="left_logo"/>协会文档</span></li>
+            <li><span  onClick="show('d7')"><img src="images/jisuanji.png" class="left_logo"/>活动报名</span></li>
+            <li><span  onClick="show('d8')"><img src="images/jisuanji.png" class="left_logo"/>活动赞助</span></li>
+            <li><span  onClick="show('d9')"><img src="images/jisuanji.png" class="left_logo"/>会员缴费</span></li>
         </ul>
     </div>
     <div class="right">

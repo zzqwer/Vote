@@ -9,11 +9,11 @@
 		list-style:none;}
 	/*所有的a标签去除下划线*/
 	a{
+		color:#000;
 		text-decoration:none;}
 	body{
 		width:1000px;
 		font-size:14px;
-		color:#000;
 		font-family:"微软雅黑";
 		/*background: -webkit-gradient(linear, left top, left bottom, from(#67BEFE), to(#fff));}
 		*/
@@ -25,18 +25,12 @@
 .menu {
 	width: 100%;
 	height: 50px;
-	background:url(file:///E|/%E4%B8%89%E6%9C%9F%E9%A1%B9%E7%9B%AE/images/menubg.jpg) repeat-x;
-	-webkit-border-top-right-radius: 10px;
-	-webkit-border-bottom-right-radius: 10px;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-bottom-left-radius: 10px;
+	background:url(../images/menubg.jpg) repeat-x;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
-
-#baoming{
-	float:right;
-	margin-right:20px;
-}
-
 
 .menu ul li {
 	margin-top: 10px;
@@ -45,8 +39,10 @@
 	font-size: 20px;
 }
 ul li a:hover{
-	color:#F00;
+	color:#69F;
 }
+a:hover{
+	color:#39F;}
 
 /*------------------------底部----------------------------------*/		
 	.footer{
@@ -74,70 +70,143 @@ ul li a:hover{
 	color:#666;
 }
 
-/*--------------------------头部和底部  -----------------------------------------*/
+/*--------------------------头部中部和底部  -----------------------------------------*/
 
-
+	.content{
+		width:100%;
+		height:auto;
+		background:url(../images/back_pu.jpg);
+		float:left;
+		background-size:cover;
+		color:#000;}
+	
 
 
 	.left{
 		width:25%;
-		height:410px;		
+		height:100%;		
 		float:left;
-		position: relative;
-		background:url(../images/leftbg.png);
+		border-right:1px solid #CCC;
 		}
 		
 	.right{
-		width:749px;
-		height:410px;		
+		width:748px;
+		height:100%;		
 		float:left;
 		position: relative;
-		background:url(../images/leftbg.png);
 		border-left:1px solid #CCC;
 		}
-		
+	
+	#d2{
+		display:none;}
+	#d3{
+		display:none;}
+	#d4{
+		display:none;}
+	#d5{
+		display:none;}
+	#d6{
+		display:none;}
+	#d7{
+		display:none;}
+	#d8{
+		display:none;}
+	#d9{
+		display:none;}
+
 	.clubrightshow{
 		width:710px;
 		height:100%;
 		float:left;
+		font-size:16px;
 		margin-left:20px;
 		overflow:auto;
 		padding-right:20px;}
+/*--------------------------------------协会活动--------------------------------------------*/		
+	.clubrightshowleft{
+		width:85%;
+		height:100%;
+		float:left;
+		color:#000;}
+	.clubrightshowleft ul li{
+		color:#000;
+		border-bottom:1px dashed #000;
+		padding-top:5px;}
+	.clubrightshowright{
+		width:15%;
+		height:100%;
+		float:left;}
+	.clubrightshowright ul li{
+		color:#000;
+		border-bottom:1px dashed #000;
+		padding-top:5px;}
+/*-----------------------------------左侧菜单-----------------------------------------------------*/
 	.left .association{
 		list-style: none;
-		width: 170px;
+		width: 250px;
 		margin-left:0;
 		position: relative;
 		margin-top:10px;
-		-webkit-background-size: 50% 100%;}
+		background-size: 50% 100%;}
 	.left_logo{
 		height:20px;
-		width:40px;}
+		width:20px;
+		margin-right:10px;
+		margin-left:35px}
 	ul.association li {
 		padding-top:7px;
 		margin-top:3px;}
 	ul.association li span {
-		font-size:15px;
+		font-size:18px;
 		-webkit-transition: all 0.3s ease-out;
-		background:url(../images/leftbg.png);
+		/*background:url(../images/leftbg.png);*/
 		color: #000;
 		font-family:"黑体";
-		font-size:18px;
-		padding:10px 10px;
-		-webkit-border-top-right-radius: 10px;
-		-webkit-border-bottom-right-radius: 10px;
-		width: 150px;
+		padding:5px 10px;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		width: 170px;
 		display: block;
 		text-decoration: none;
-		-webkit-box-shadow: 2px 2px 4px #888;}
+		box-shadow: 2px 2px 4px #888;}
 	 ul.association li span:hover {
 		color: #67a5cd;
-		padding: 10px 15px 10px 20px;
+		padding: 5px 15px 5px 10px;
 		cursor:pointer;
 		}
         
+/*----------------------------------名人堂------------------------------------------------------*/
+
+
+.star{	
+		width:100%;
+		height:100%;
+		float:left;
+		overflow:auto;
+	}
+	
+	.starmin{
+		width:45%;
+		height:24%;
+		float:left;
+		margin-top:20px;
+		margin-left:20px;}
+		
+	.starleft{
+		width:42%;
+		height:100%;
+		float:left;}
+		
+	.starimg{
+		width:100%;
+		height:100%}
+		
+	.starright{
+		width:58%;
+		height:100%;
+		float:left;}
         
-       	/*-----------搜索框---------------------*/
+/*--------------------------------------------------------搜索---------------------------------------------------------------*/
 	#seach{
 		float:right;
 		padding-top:10px;
@@ -186,3 +255,64 @@ ul li a:hover{
 	input::-webkit-input-placeholder {
 		color: #999;
 	}
+	/*--------------------------------------------------部门-------------------------------------------------------*/
+	.department{
+		float:left;
+		width:100%;
+		height:auto;
+		}
+	.departmenttop{
+		margin-top:10px;
+		margin-bottom:10px;
+	}
+	.departmentbottom{
+		width:100%;
+		height:50px;
+		border-bottom:2px solid #999;/*部门下部线条*/
+}
+	.departmentbottommin{
+		width:40px;
+		height:40px;}
+	.departmentbottom a img{
+		width:100%;
+		height:100%;}
+	.departmentbottom ul li{
+		float:left;}
+		
+/*------------------------------------------------协会文档---------------------------------------------------------------*/
+.excel{
+	width:16px;
+	height:16px;}
+
+.rightfloat{
+		float:right;}
+	.downloadimg{
+		width:30px;
+		height:16px;
+		padding-left:20px;}
+	.downloadimg:hover{
+		cursor:pointer;}
+/*------------------------------------------------活动报名---------------------------------------------------------------*/
+.actregister{
+	width:450px;
+	float:left;
+	margin-left:100px;
+	}
+.actregister form{
+	padding-top:10px;}
+.actregister form input{
+	margin-top:10px;
+	padding-top:3px;}
+.actregister form select{
+	margin-top:10px;
+	padding-top:3px;}
+.actregister form textarea{
+	margin-top:10px;}
+.actregister .departmentbottom{
+	border:none;}
+/*------------------------------------------------活动赞助--------------------------------------------------------------*/
+#d8min{
+	border-bottom:0px;
+	border-top:1px solid #999;
+	margin-top:10px;
+}
