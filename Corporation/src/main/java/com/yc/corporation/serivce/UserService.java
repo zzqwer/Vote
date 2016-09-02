@@ -6,7 +6,7 @@ import com.yc.corporation.entity.Users;
 
 public interface UserService {
 
-    Users login(Users user);
+    Users login(String username,String password);
     
     boolean register(Users user);
     

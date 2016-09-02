@@ -37,7 +37,7 @@
  home varchar2(20),
  phone varchar2(100)
   )
-  
+  select * from users
   --个人信息表
   create table personal(
   pid int constraint personal_pid references Cuser(usid),

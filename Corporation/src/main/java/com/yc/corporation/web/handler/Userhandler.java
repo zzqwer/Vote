@@ -21,12 +21,16 @@ public class Userhandler {
 	private UserService userService;
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public void login(Users user, PrintWriter out){
-		user=userService.login(user);
+	public void login(Users user, PrintWriter out,HttpServletRequest request){
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
+		user=userService.login(username, password);
+		System.out.println(user);
         Gson gson=new Gson();
         out.println(gson.toJson(user));
         out.flush();
         out.close();
+       
 	}	
 	
 	@RequestMapping(value="/register",method=RequestMethod.GET)
