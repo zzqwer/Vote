@@ -20,6 +20,10 @@
 	<script type="text/javascript" src="../../ueditor/ueditor.config.js"></script>
 	<script type="text/javascript" src="../../ueditor/ueditor.all.min.js"></script>
 	<script type="text/javascript" src="../../ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript">
+	
+	
+	</script>
 </head>
 <body class="easyui-layout">  
     <div data-options="region:'north',title:'North Title',split:true" style="height:100px;">头部logo</div>   

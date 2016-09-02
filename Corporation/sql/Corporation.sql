@@ -106,3 +106,16 @@ create table  leaveword(
  message varchar2(1000),
  ldate date
 )
+
+--管理员表
+drop table admin;
+select * from admin;
+create table admin(
+	aid int primary key,
+	aname varchar2(20), 
+	apwd varchar2(20),
+	aemail varchar2(100),  --邮箱账号
+	aphone int,         --手机号/支付宝账号
+	qq  int,             --qq账号
+	root int           --权限    1:普通管理员   2:超级管理员
+)
