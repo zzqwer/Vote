@@ -3,10 +3,18 @@ package com.yc.corporation.web.handler;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 import com.yc.corporation.entity.Infomation;
@@ -17,6 +25,27 @@ import com.yc.corporation.serivce.InfomatiomSerivce;
 public class Infomationhandler {
 	@Autowired
 	private InfomatiomSerivce is;
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	@RequestMapping(value="/email",method=RequestMethod.POST)
+	public String GetEmail(HttpServletRequest request){
+	System.out.println("邮件内容"+request.getParameter("email"));	
+	System.out.println("发送至"+request.getParameter("shetuan"));	
+	try {
+		MimeMessage mm=mailSender.createMimeMessage();
+		MimeMessageHelper mmh=new MimeMessageHelper(mm,true);
+		mmh.setTo(request.getParameter("shetuan"));
+		mmh.setFrom("zz5942011@163.com");
+		mmh.setSubject("测试测试");//设置主题
+		mmh.setText(request.getParameter("email"));//设置内容
+		mailSender.send(mm);//发送邮件
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return "login";
+	}
 	
 	@RequestMapping("/activeannounced")
 	public void getListAll(PrintWriter out){
