@@ -21,6 +21,23 @@
 
 </head>
 <body>
+<script type="text/javascript">
+ function login(){
+	 $.ajax({
+	      type: "POST",
+	      url: "user/login",
+	      async : true,  //同步请求sss
+	     /*  data: "name=" + var1 + "&time=" + var2,
+	      dataType: "json", */
+	      success: function() {
+	          $("#loginfrom").html(11111);
+	      },
+	      error: function() {
+	          alert("Error!");
+	      }
+	  });  
+ }
+</script>
 	<div id="notice">
 		<ul style="float: left;" class="scroll-container">
 			<li><a href="#">1.阿里巴巴首页导航菜单设计制作</a></li>
@@ -51,10 +68,10 @@
 		</ul>
 	</div>
 	<div class="menubottom">
-		<div class="login">
+		<div class="login" id="login">
 			<h2>用户登录</h2>
 			<!-- 登录之前显示 -->
-			<form method="post" action="user/login" id="loginfrom">
+			<form method="post"  id="loginfrom">
 				<p>
 					&nbsp;&nbsp;用户名:&nbsp;&nbsp;&nbsp;&nbsp; <input class="loginform"
 						type="text" name="username">
@@ -63,7 +80,7 @@
 					&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp; <input
 						class="loginform" type="password" name="password">
 				</p>
-				<button id="btnOK" type="submit">登录</button>
+				<button id="btnOK" type="submit" onclick="login()">登录</button>
 				<input id="btnRE" type="reset" value="重置">
 				<p id="hre">
 					<a href="javascript:showzc()"> 免费注册</a><a href="#"> 忘记密码</a>
@@ -260,14 +277,14 @@
 			<div class="mail">
 				<div class="mailleft">
 					<select name="shetuan" class="option">
-						<option value="wowow">选择社团</option>
-						<option value="623831277@qq.com">青年志愿者协会</option>
-						<option value="wowow2">文艺爱好者协会</option>
-						<option>书画协会</option>
-						<option>体育爱好者协会</option>
-						<option>职业发展与创业就业协会</option>
-						<option>计算机协会</option>
-						<option>英语协会</option>
+						<option value="tips">选择社团</option>
+						<option value="18216021360@163.com">青年志愿者协会</option>
+						<option value="18216021360@163.com">文艺爱好者协会</option>
+						<option value="18216021360@163.com">书画协会</option>
+						<option value="18216021360@163.com">体育爱好者协会</option>
+						<option value="18216021360@163.com">职业发展与创业就业协会</option>
+						<option value="18216021360@163.com">计算机协会</option>
+						<option value="18216021360@163.com">英语协会</option>
 					</select>
 					<textarea class="textarea" name="email"></textarea>
 				</div>
@@ -298,7 +315,6 @@
 	<!--新闻回滚-->
 	<script type="text/javascript">
 		(function() {
-			alert(11);
 			$("#nearact").kxbdMarquee({
 				direction : "up",
 				isEqual : false
