@@ -3,12 +3,10 @@ package com.yc.corporation.web.handler;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -30,18 +28,18 @@ public class Infomationhandler {
 	
 	@RequestMapping(value="/email",method=RequestMethod.POST)
 	public String GetEmail(HttpServletRequest request){
+	String to=	request.getParameter("shetuan");
 	System.out.println("邮件内容"+request.getParameter("email"));	
-	System.out.println("发送至"+request.getParameter("shetuan"));	
+	System.out.println("发送至"+to);
 	try {
 		MimeMessage mm=mailSender.createMimeMessage();
 		MimeMessageHelper mmh=new MimeMessageHelper(mm,true);
-		mmh.setTo(request.getParameter("shetuan"));
+		mmh.setTo(to);
 		mmh.setFrom("zz5942011@163.com");
 		mmh.setSubject("测试测试");//设置主题
 		mmh.setText(request.getParameter("email"));//设置内容
 		mailSender.send(mm);//发送邮件
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return "login";
