@@ -6,7 +6,7 @@
   insert into department values(2,2)
   insert into activity values(1,2)
 
-
+select * from corporation;
   --社团表
   create table corporation(
     cid int primary key,

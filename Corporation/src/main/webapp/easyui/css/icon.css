@@ -91,3 +91,15 @@
 .icon-large-chart{
 	background:url('../icons/large_chart.png') no-repeat center center;
 }
+.icon-home{
+	background:url('../icons/home.png') no-repeat center center;
+}
+.icon-user_group{
+	background:url('../icons/user_group.png') no-repeat center center;
+}
+.icon-folder{
+	background:url('../icons/folder.png') no-repeat center center;
+}
+.icon-globe{
+	background:url('../icons/globe.png') no-repeat center center;
+}

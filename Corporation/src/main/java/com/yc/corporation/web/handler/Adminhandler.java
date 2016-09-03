@@ -27,7 +27,7 @@ public class Adminhandler {
 		System.out.println(admin);
 		if(admin ==null){//错误
 			map.put("errorMsg", "<script>alert('您的输入有误,请重新输入!!!');</script>");
-			return "back/login";
+			return "forward:/back/login.jsp";
 		}
 		return "forward:/back/manager/main.jsp";
 	}	
