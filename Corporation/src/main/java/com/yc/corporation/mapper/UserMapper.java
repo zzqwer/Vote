@@ -5,7 +5,7 @@ import java.util.List;
 import com.yc.corporation.entity.Users;
 
 public interface UserMapper {
-    Users findUserByNP(String username,String password);
+    Users findUserByNP(Users user);
      int  insertUsers(Users user);
      List<Users> findAll();
     

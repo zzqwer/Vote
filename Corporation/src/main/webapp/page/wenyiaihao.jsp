@@ -1452,8 +1452,9 @@
         </div>
       </div>
    <!---------------------------------------------------活动赞助---------------------------------------------------------------->
+   	   <form>
    	   <div class="clubrightshow" id="d8">
-                <form>
+                
                     <input type="text" placeholder="请输入公司名称或本人姓名" style="width:283px; height:25px; margin-top:10px; margin-left:150px;"/><span></span><br>
                     <input type="text" placeholder="请输入公司邮箱账号或者个人邮箱" style="width:283px;  height:25px; margin-top:10px; margin-left:150px;"/><br>
                     <input type="text" placeholder="请输入公司联系方式或个人手机号" style="width:283px;  height:25px; margin-top:10px; margin-left:150px;"/><br>
@@ -1480,7 +1481,7 @@
                    
 <span id="change"></span><br>
                     <textarea placeholder="请附带上一句话或一段话" style="width:60%;height:100px;margin-left:150px;"></textarea>
-        </form>
+        
          <input type="submit" value="提交" style="width:100px; height:30px;margin-left:150px;"/><!--提交样式-->
          <input type="reset" value="重置" style="width:100px; height:30px;"/><!--重置样式-->
                      <div class="departmentbottom" id="d8min">
@@ -1498,6 +1499,7 @@
                         </ul>
                     </div>
 			</div>
+			</form>
    <!---------------------------------------------------活动赞助---------------------------------------------------------------->   
       <div class="clubrightshow" id="d9">
       		   	<div class="actregister">

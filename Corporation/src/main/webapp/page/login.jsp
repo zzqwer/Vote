@@ -1,5 +1,7 @@
+<%@page import="org.apache.catalina.connector.Request"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html >
 <html>
 <head>
@@ -21,28 +23,36 @@
 
 </head>
 <body>
-	<script type="text/javascript">
+
+<script type="text/javascript">
+
  function login(){
-     var username=$('#username').val();
+	 var username=$('#username').val();
      var password=$('#password').val();
-	 $.ajax({
-	      type: "POST",
-	      url: "user/login",
-	      async : true,  
-	      data:{
-	    	username:username,
-	    	password:password
-	      },
-	      dataType:'json',  
-	      success: function(data) {
-	          $("#loginfrom").html(data);
-	      },
-	      error: function() {
-	          alert("账号或密码错误!");
-	      }
-	  });   
- 
- }
+     if(username==""){
+    	 alert("账号不能为空");  
+     }
+     if(password==""&&username!=""){
+    		 alert("请输入密码");
+     }
+     $.post("user/login",{username:username,password:password},function(data){
+    	 if(data){
+    		 
+    		 location.href="page/login.jsp"
+    	 }else{
+    		 alert("账号或密码错误");
+    	 }
+     },"json");
+}
+
+</script>
+<script type="text/javascript">
+function exit(){
+	 $.get("user/exit",function(data){
+		 alert(11);
+		 window.location.href="page/login.jsp"
+	 },"json")
+}
 </script>
 	<div id="notice">
 		<ul style="float: left;" class="scroll-container">
@@ -73,11 +83,14 @@
 			<li><a href="#">联系我们</a></li>
 		</ul>
 	</div>
+	
 	<div class="menubottom">
 		<div class="login" id="login">
-			<!-- 登录之前显示 -->
-			<form method="post" id="loginfrom" >
-			<h2>用户登录</h2>
+		<c:if test="${user.username != null }">你好,${user.username }<a href=javascript:exit()>退出</a></c:if>
+				<c:if test="${user.username == null }">
+			<form method="post" id="loginfrom" action="">
+				
+				<h2>登录</h2>
 				<p>
 					&nbsp;&nbsp;用户名:&nbsp;&nbsp;&nbsp;&nbsp; <input class="loginform"
 						type="text" name="username" id="username">
@@ -86,18 +99,15 @@
 					&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp; <input
 						class="loginform" type="password" name="password" id="password">
 				</p>
-				<button id="btnOK" onclick="login()">登录</button>
+				<button id="btnOK" type="button" onclick="login()">登录</button>
 				<input id="btnRE" type="reset" value="重置">
 				<p id="hre">
 					<a href="javascript:showzc()"> 免费注册</a><a href="#"> 忘记密码</a>
 				</p>
+				
 			</form>
-			<!-- 登录之后显示 -->
-			<div type="hidden" id="logined">
-				<a href="#">${userName}</a>
+			</c:if>
 			</div>
-			<div class="error">${msg}</div>
-		</div>
 		<div class="picrotate">
 			<ul class="roundabout" id="myroundabout">
 				<li><img src="images/slide1.jpg" height="280%"></li>
@@ -279,7 +289,7 @@
 			<div class="chattop">
 				<b>会长信箱</b>
 			</div>
-			<form action="infomation/email" method="Post">
+			<form action="user/email" method="Post">
 				<div class="mail">
 					<div class="mailleft">
 						<select name="shetuan" class="option">
@@ -323,7 +333,7 @@
 		(function() {
 			$("#nearact").kxbdMarquee({
 				direction : "up",
-				isEqual : false
+				isEqual : false,
 			});
 		})();
 	</script>
