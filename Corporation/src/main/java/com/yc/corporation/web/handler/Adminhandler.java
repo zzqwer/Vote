@@ -21,12 +21,14 @@ public class Adminhandler {
 	@Autowired
 	private AdminService adminService;
 
-	@RequestMapping(value="/login",method=RequestMethod.POST)
+	@RequestMapping(value="/login")
 	public String login(Admins admin,ModelMap map){
 		admin=adminService.login(admin);
+		System.out.println(admin);
 		if(admin ==null){//错误
-			map.put("errorMsg", "alert('用户名或密码错误...')");
+			map.put("errorMsg", "<script>alert('您的输入有误,请重新输入!!!');</script>");
+			return "back/login";
 		}
-		return "redirect:back/main.jsp";
+		return "forward:/back/manager/main.jsp";
 	}	
 }

@@ -3,24 +3,24 @@
 <!DOCTYPE html >
 <html>
 <head>
-<base href="/Corporation/">
+	<base href="/Corporation/">
 	<meta charset="utf-8">
 	<title>学生社团联盟--后台</title>
-	<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
-	<link rel="stylesheet" type="text/css" href="../../easyui/css/easyui.css">
-	<link rel="stylesheet" type="text/css" href="../../easyui/css/icon.css">
-	<link rel="stylesheet" type="text/css" href="../../easyui/css/demo.css">
-	<script type="text/javascript" src="../../easyui/js/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="../../easyui/js/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="../../easyui/js/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="../../easyui/js/index.js"></script>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="easyui/css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="easyui/css/icon.css">
+	<link rel="stylesheet" type="text/css" href="easyui/css/demo.css">
+	<script type="text/javascript" src="easyui/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="easyui/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="easyui/js/index.js"></script>
 
-	<script type="text/javascript" src="../../js/showpic.js"></script>
-	<script type="text/javascript" src="../../js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="js/showpic.js"></script>
+	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 	
-	<script type="text/javascript" src="../../ueditor/ueditor.config.js"></script>
-	<script type="text/javascript" src="../../ueditor/ueditor.all.min.js"></script>
-	<script type="text/javascript" src="../../ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
 	<script type="text/javascript">
 	
 	
@@ -56,7 +56,7 @@
     </div>
     <!-- 底部版权部分 -->
     <div data-options="region:'south',title:'版权 所有',split:true" style="height:150px;">
-		 <iframe src="footer.html" style="width:100%;height:100%;"></iframe>
+		 <iframe src="back/manager/footer.html" style="width:100%;height:100%;"></iframe>
 	</div>   
 </body>  
 
