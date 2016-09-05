@@ -37,7 +37,7 @@ public class Userhandler {
 	try {
 		MimeMessage mm=mailSender.createMimeMessage();
 		MimeMessageHelper mmh=new MimeMessageHelper(mm,true);
-		mmh.setTo(to);
+		mmh.setTo(to);//发送者
 		mmh.setFrom("zz5942011@163.com");
 		mmh.setSubject("测试测试");//设置主题
 		mmh.setText(request.getParameter("email"));//设置内容

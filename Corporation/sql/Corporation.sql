@@ -110,7 +110,6 @@ create table  leaveword(
 --管理员表
 drop table admin;
 drop sequence admin_aid ;
-select * from admin;
 create sequence admin_aid start with 1 increment by 1;
 create table admin(
 	aid int primary key,

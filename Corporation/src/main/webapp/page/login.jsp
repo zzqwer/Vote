@@ -37,7 +37,6 @@
      }
      $.post("user/login",{username:username,password:password},function(data){
     	 if(data){
-    		 
     		 location.href="page/login.jsp"
     	 }else{
     		 alert("账号或密码错误");
@@ -70,6 +69,7 @@ function exit(){
 		<img class="logopic" src="images/logopic.png" width="100%"
 			height="100%" />
 	</div>
+	
 	<div class="menu">
 		<ul id="MenuBar1" class="Menu">
 			<li><a href="#">社团首页</a></li>
@@ -80,7 +80,7 @@ function exit(){
 			<li><a href="#">文档专区</a></li>
 			<li><a href="#">媒体报道</a></li>
 			<li><a href="#">赞助合作</a></li>
-			<li><a href="#">联系我们</a></li>
+			<li><a target="blank" href="tencent://message/?uin=3428085562&Site=potisoft&Menu=yes">联系我们</a></li>
 		</ul>
 	</div>
 	

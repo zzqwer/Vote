@@ -37,14 +37,14 @@
     <div iconCls="icon-large-clipart"  data-options="region:'west',title:'管理内容',split:true" style="width:200px;">
     	<div id="aa" class="easyui-accordion" style="width:100%;height:100%;">
 		<div title="社团" iconCls="icon-search" style="overflow:auto;padding:10px;">
-			<button class="easyui-linkbutton" onclick="javascript:alert('青年志愿者协会')">青年志愿者协会</button>
-			<button class="easyui-linkbutton" onclick="javascript:alert('青年志愿者协会')">青年志愿者协会</button>
-			<button class="easyui-linkbutton" onclick="javascript:alert('青年志愿者协会')">文艺爱好者协会</button>
-			<button class="easyui-linkbutton" onclick="javascript:alert('书画协会')">书画协会</button>
-			<button class="easyui-linkbutton" onclick="javascript:alert('体育爱好者协会')">体育爱好者协会</button>
-			<button class="easyui-linkbutton" onclick="javascript:alert('职业发展与创业就业协会')">职业发展与创业就业协会</button>
-			<button class="easyui-linkbutton" onclick="javascript:alert('计算机协会')">计算机协会</button>
-			<button class="easyui-linkbutton" onclick="javascript:alert('英语协会')">英语协会</button>
+			<button class="easyui-linkbutton" onclick="javascript:view()">青年志愿者协会</button><br>
+			<button class="easyui-linkbutton" onclick="javascript:alert('青年志愿者协会')">青年志愿者协会</button><br>
+			<button class="easyui-linkbutton" onclick="javascript:alert('青年志愿者协会')">文艺爱好者协会</button><br>
+			<button class="easyui-linkbutton" onclick="javascript:alert('书画协会')">书画协会</button><br>
+			<button class="easyui-linkbutton" onclick="javascript:alert('体育爱好者协会')">体育爱好者协会</button><br>
+			<button class="easyui-linkbutton" onclick="javascript:alert('职业发展与创业就业协会')">职业发展与创业就业协会</button><br>
+			<button class="easyui-linkbutton" onclick="javascript:alert('计算机协会')">计算机协会</button><br>
+			<button class="easyui-linkbutton" onclick="javascript:alert('英语协会')">英语协会</button><br>
 		</div>
 		<div title="管理员管理" iconCls="icon-user_group" style="padding:10px;">
 			<button class="easyui-linkbutton" onclick="javascript:alert('查看所有管理员')">查看所有管理员</button>
