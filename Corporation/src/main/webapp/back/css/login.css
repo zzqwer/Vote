@@ -68,7 +68,7 @@ body{
 	box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset;
 }
 .input-group .form-control:focus{  /*点击选中的样式*/
-	outline:2px #0099FF dotted;
+	outline:2px #0099FF solid;
 	opacity:0.8;
 }
 .mybtn:nth-child(2){

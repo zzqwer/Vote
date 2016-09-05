@@ -6,7 +6,7 @@
   insert into department values(2,2)
   insert into activity values(1,2)
 
-
+select * from corporation;
   --社团表
   create table corporation(
     cid int primary key,
@@ -94,8 +94,6 @@ insert into infomation values(info_infoid.nextval,'精品活动7',to_date('2016-
 insert into infomation values(info_infoid.nextval,'精品活动8',to_date('2016-8-15','yyyy-MM-dd'),'精品活动8内容','Boutique','qingxie');
 insert into infomation values(info_infoid.nextval,'精品活动9',to_date('2016-8-31','yyyy-MM-dd'),'精品活动9内容','Boutique','qingxie');
 
-
-
   --客服表
   create table customservice(
   csid int primary key,
@@ -108,3 +106,21 @@ create table  leaveword(
  message varchar2(1000),
  ldate date
 )
+
+--管理员表
+drop table admin;
+drop sequence admin_aid ;
+select * from admin;
+create sequence admin_aid start with 1 increment by 1;
+create table admin(
+	aid int primary key,
+	aname varchar2(20), 
+	apwd varchar2(20),
+	aemail varchar2(100),  --邮箱账号
+	aphone varchar2(11),         --手机号/支付宝账号
+	qq  varchar2(20),             --qq账号
+	root int           --权限    1:普通管理员   2:超级管理员
+)
+insert into admin values(admin_aid.nextval,'计信青协','jxqx','1634556914@qq.com','18274716931','1634556914',2);
+insert into admin values(admin_aid.nextval,'tsh','aa','1634556914@qq.com','18274716931','1634556914',2);
+select * from admin;
