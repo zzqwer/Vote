@@ -8,52 +8,72 @@
 	ul li{
 		list-style:none;}
 	/*所有的a标签去除下划线*/
-	a{
-		color:#000;
+	a{	color:#000;
 		text-decoration:none;}
 	body{
 		width:1000px;
+		color:#FF9;
 		font-size:14px;
 		font-family:"微软雅黑";
-		/*background: -webkit-gradient(linear, left top, left bottom, from(#67BEFE), to(#fff));}
+		/*background: -webkit-gradient(lineare91428bg1, left top, left bottom, from(#67BEFE), to(#fff));}
 		*/
-		background:url(../images/e91428bg1.jpg) no-repeat;
-		background-size:cover;}
+		background:url(../images/922769_13086175718akM.jpg);
+		background-size:cover;
+		/*background-size:cover;*/}
 	.top{
 		width:100%;
-		height:150px;}
-.menu {
+		height:172px;}
+	.menu {
 	width: 100%;
-	height: 50px;
-	background:url(../images/menubg.jpg) repeat-x;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-}
-
+	height:70px;
+	border-radius: 10px;
+	}
+	.menu ul{
+		padding-top:5px}
 .menu ul li {
 	margin-top: 10px;
 	float: left;
-	padding-left: 27px;
-	font-size: 20px;
+	padding-left:5px;
+	font-size: 22px;
+	width:105px;
+	text-align:center;
 }
-ul li a:hover{
-	color:#69F;
-}
-a:hover{
-	color:#39F;}
 
+
+ul li a:hover{
+	color:#0F0;
+}
+
+.menuclass{
+		transition: all 0.3s ease-out;
+		color:#000;
+		font-family:"黑体";
+		padding:5px 0;
+		width:100px;
+		border-radius: 5px;
+		display: block;
+		text-decoration: none;
+		box-shadow: 2px 2px 2px 2px #888;
+	}
+	
+	 .menuclass:hover {
+		color:#FC0;
+		padding: 10px 0px 10px 0px;
+		cursor:pointer;
+		}
 /*------------------------底部----------------------------------*/		
 	.footer{
     width:100%;
     height:100px;
 	float:left;
 	font-family:"微软雅黑";
+	border-radius: 10px;
 }
 .footer .footer1{
     height:50px;
     background-color:#999;
+	border-top-right-radius:10px;
+	border-top-left-radius:10px;
 }
 .footer1 p{
     padding-top:15px;
@@ -62,31 +82,40 @@ a:hover{
 	font-size:14px;
 }
 .footer2{
-	height:30px;
+	height:50px;
 	background-color:#F0F0F0;
 	padding-top:10px;
 	text-align:center;
 	font-size:12px;
 	color:#666;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius:10px;
 }
 
 /*--------------------------头部中部和底部  -----------------------------------------*/
 
 	.content{
+		margin-top:5px;
 		width:100%;
 		height:auto;
-		background:url(../images/back_pu.jpg);
 		float:left;
 		background-size:cover;
-		color:#000;}
+		border-radius: 10px;
+		border:1px solid #FC3;
+/*		border:2px solid #F90;
+*/		
+	background-size:cover;
+
+}
 	
 
 
 	.left{
-		width:25%;
+		width:249px;;
 		height:100%;		
 		float:left;
-		border-right:1px solid #CCC;
+		border-right:1px solid #F90;
+	
 		}
 		
 	.right{
@@ -94,7 +123,9 @@ a:hover{
 		height:100%;		
 		float:left;
 		position: relative;
-		border-left:1px solid #CCC;
+		border-left:1px solid #F90;
+		background-size:cover;
+		/*background:url(file:///C|/Users/MICCKE/Desktop/p%E5%9B%BE%E7%B4%A0%E6%9D%90/63bOOOPICab_1024.jpg)*/
 		}
 	
 	#d2{
@@ -113,15 +144,18 @@ a:hover{
 		display:none;}
 	#d9{
 		display:none;}
-
+	#d10{
+		display:none;}
 	.clubrightshow{
-		width:710px;
+		width:650px;
 		height:100%;
 		float:left;
 		font-size:16px;
-		margin-left:20px;
-		overflow:auto;
-		padding-right:20px;}
+		margin-left:40px;
+		margin-right:40px;
+		color:#000;
+		padding-right:20px;
+		background-size:cover;}
 /*--------------------------------------协会活动--------------------------------------------*/		
 	.clubrightshowleft{
 		width:85%;
@@ -135,32 +169,29 @@ a:hover{
 	.clubrightshowright{
 		width:15%;
 		height:100%;
-		float:left;}
+		float:left;
+	}
 	.clubrightshowright ul li{
 		color:#000;
 		border-bottom:1px dashed #000;
 		padding-top:5px;}
 /*-----------------------------------左侧菜单-----------------------------------------------------*/
 	.left .association{
-		list-style: none;
 		width: 250px;
-		margin-left:0;
-		position: relative;
-		margin-top:10px;
-		background-size: 50% 100%;}
+		margin-top:10px;}
 	.left_logo{
 		height:20px;
 		width:20px;
 		margin-right:10px;
-		margin-left:35px}
+		margin-left:35px;}
 	ul.association li {
 		padding-top:7px;
-		margin-top:3px;}
+		margin-top:3px;
+		}
 	ul.association li span {
 		font-size:18px;
-		-webkit-transition: all 0.3s ease-out;
-		/*background:url(../images/leftbg.png);*/
-		color: #000;
+		transition: all 0.3s ease-out;
+		color:#000;
 		font-family:"黑体";
 		padding:5px 10px;
 		border-top-right-radius: 5px;
@@ -168,13 +199,13 @@ a:hover{
 		width: 170px;
 		display: block;
 		text-decoration: none;
-		box-shadow: 2px 2px 4px #888;}
+		box-shadow: 2px 2px 2px 2px #888;}
 	 ul.association li span:hover {
-		color: #67a5cd;
+		color: #F00;
+		font-weight:bold;
 		padding: 5px 15px 5px 10px;
 		cursor:pointer;
 		}
-        
 /*----------------------------------名人堂------------------------------------------------------*/
 
 
@@ -182,7 +213,6 @@ a:hover{
 		width:100%;
 		height:100%;
 		float:left;
-		overflow:auto;
 	}
 	
 	.starmin{
@@ -316,3 +346,37 @@ a:hover{
 	border-top:1px solid #999;
 	margin-top:10px;
 }
+/*------------------------------------------------会员缴费--------------------------------------------------------------*/
+#d9 .actregister{
+	margin-left:200px;
+	margin-top:100px;}
+/*------------------------------------------------留言区--------------------------------------------------------------*/
+.d10word{
+	width:100%;
+	height:auto;
+	float:left;
+	padding-top:20px;
+	padding-bottom:10px;
+	border-bottom:2px solid #CCC}
+.d10left{
+	width:13%;
+	height:auto;
+	float:left;}
+.d10right{
+	width:87%;
+	height:auto;
+	float:left;}
+.d10img{
+	width:80px;
+	height:80px;
+	border-radius:50%}
+.sex{
+	width:30px;
+	height:20px;}
+.d10sex{
+	font-size:14px;}
+.d10name{
+	color:#F00;}
+.d10date{
+	color:#60C;
+	font-size:12px;}
