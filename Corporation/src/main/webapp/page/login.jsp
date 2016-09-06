@@ -72,15 +72,15 @@ function exit(){
 	
 	<div class="menu">
 		<ul id="MenuBar1" class="Menu">
-			<li><a href="#">社团首页</a></li>
-			<li><a href="#">社团概况</a></li>
-			<li><a href="#">社团架构</a></li>
-			<li><a href="#">协会详情</a></li>
-			<li><a href="#">近期活动</a></li>
-			<li><a href="#">文档专区</a></li>
-			<li><a href="#">媒体报道</a></li>
-			<li><a href="#">赞助合作</a></li>
-			<li><a target="blank" href="tencent://message/?uin=3428085562&Site=potisoft&Menu=yes">联系我们</a></li>
+		<li><a href="#" class="menuclass">协会首页</a></li>
+    <li><a href="page/clubmain.html" class="menuclass">协会概况</a></li>
+    <li><a href="#" class="menuclass">协会架构</a></li>
+    <li><a href="#" class="menuclass">近期活动</a></li>
+    <li><a href="#" class="menuclass">文档专区</a></li>
+    <li><a href="#" class="menuclass">媒体报道</a></li>
+    <li><a href="#" class="menuclass">协会名人</a></li>
+    <li><a href="#" class="menuclass">赞助合作</a></li>
+			<li><a target="blank" href="tencent://message/?uin=623831277&Site=potisoft&Menu=yes"  class="menuclass">联系我们</a></li>
 		</ul>
 	</div>
 	
@@ -110,26 +110,26 @@ function exit(){
 			</div>
 		<div class="picrotate">
 			<ul class="roundabout" id="myroundabout">
-				<li><img src="images/slide1.jpg" height="280%"></li>
-				<li><img src="images/slide2.jpg" height="280%"></li>
-				<li><img src="images/slide3.jpg" height="280%"></li>
-				<li><img src="images/slide4.jpg" height="280%"></li>
-				<li><img src="images/slide5.jpg" height="280%"></li>
-				<li><img src="images/slide6.jpg" height="280%"></li>
-				<li><img src="images/slide7.jpg" height="280%"></li>
-				<li><img src="images/slide8.jpg" height="280%"></li>
-				<li><img src="images/slide9.jpg" height="280%"></li>
-				<li><img src="images/slide10.jpg" height="280%"></li>
-				<li><img src="images/slide1.jpg" height="280%"></li>
-				<li><img src="images/slide2.jpg" height="280%"></li>
-				<li><img src="images/slide3.jpg" height="280%"></li>
-				<li><img src="images/slide4.jpg" height="280%"></li>
-				<li><img src="images/slide5.jpg" height="280%"></li>
-				<li><img src="images/slide6.jpg" height="280%"></li>
-				<li><img src="images/slide7.jpg" height="280%"></li>
-				<li><img src="images/slide8.jpg" height="280%"></li>
-				<li><img src="images/slide9.jpg" height="280%"></li>
-				<li><img src="images/slide10.jpg" height="280%"></li>
+			 <li><a href="#"><img src="images/slide1.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide2.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide3.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide4.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide5.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide6.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide7.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide8.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide9.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide10.jpg" height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide1.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide2.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide3.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide4.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide5.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide6.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide7.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide8.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide9.jpg"height="280%"></a></li>
+                        <li><a href="#"><img src="images/slide10.jpg" height="280%"></a></li>
 			</ul>
 		</div>
 	</div>
