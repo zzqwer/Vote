@@ -37,7 +37,7 @@ select * from corporation;
  home varchar2(20),
  phone varchar2(100)
   )
-  
+  select * from users
   --个人信息表
   create table personal(
   pid int constraint personal_pid references Cuser(usid),
@@ -56,8 +56,10 @@ create table infomation(
    club varchar2(20) --发布该信息的社团
 )
 commit
-
+select * from infomation where infotype='activeannounced'
 drop table infomation
+insert into infomation values(info_infoid.nextval,'书画协会页面测试',to_date('2016-8-28','yyyy-MM-dd'),'测试','activeannounced','shuhua');
+
 create sequence info_infoid start with 1 increment by 1
 insert into infomation values(info_infoid.nextval,'青协百里毅行',to_date('2016-8-28','yyyy-MM-dd'),'计信青协将于后天举行百里毅行','activeannounced','qingxie');
 insert into infomation values(info_infoid.nextval,'职协生存挑战赛',to_date('2016-8-26','yyyy-MM-dd'),'计信青协将于后天举行百里毅行','activeannounced','qingxie');
@@ -108,7 +110,6 @@ create table  leaveword(
 --管理员表
 drop table admin;
 drop sequence admin_aid ;
-select * from admin;
 create sequence admin_aid start with 1 increment by 1;
 create table admin(
 	aid int primary key,

@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.corporation.mapper.UserMapper">
 	<select id="findUserByNP" parameterType="Users" resultType="Users">
-	 select * from users where  username=#{username} and password=#{password}
+	 select * from users where  username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
 	</select>
 	<select id="findAll"  resultType="Users" >
 	select * from users

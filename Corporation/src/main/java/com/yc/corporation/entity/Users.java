@@ -12,6 +12,12 @@ public class Users {
 	private String phone;
 	private String pic;
 
+	
+	public Users(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
 	public Users(int usid, String username, String password, int age, String sex, String email, String home,
 			String userclass, String phone) {
 		this.usid = usid;
@@ -97,10 +103,7 @@ public class Users {
 				+ ", pic=" + pic + "]";
 	}
 
-	public Users( String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
+	
 	public void setUsid(int usid) {
 		this.usid = usid;
 	}

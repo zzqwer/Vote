@@ -1,5 +1,7 @@
+<%@page import="org.apache.catalina.connector.Request"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html >
 <html>
 <head>
@@ -21,22 +23,35 @@
 
 </head>
 <body>
+
 <script type="text/javascript">
+
  function login(){
-	 $.ajax({
-	      type: "POST",
-	      url: "user/login",
-	      async : true,  //同步请求sss
-	     /*  data: "name=" + var1 + "&time=" + var2,
-	      dataType: "json", */
-	      success: function() {
-	          $("#loginfrom").html(11111);
-	      },
-	      error: function() {
-	          alert("Error!");
-	      }
-	  });  
- }
+	 var username=$('#username').val();
+     var password=$('#password').val();
+     if(username==""){
+    	 alert("账号不能为空");  
+     }
+     if(password==""&&username!=""){
+    		 alert("请输入密码");
+     }
+     $.post("user/login",{username:username,password:password},function(data){
+    	 if(data){
+    		 location.href="page/login.jsp"
+    	 }else{
+    		 alert("账号或密码错误");
+    	 }
+     },"json");
+}
+
+</script>
+<script type="text/javascript">
+function exit(){
+	 $.get("user/exit",function(data){
+		 alert(11);
+		 window.location.href="page/login.jsp"
+	 },"json")
+}
 </script>
 	<div id="notice">
 		<ul style="float: left;" class="scroll-container">
@@ -54,6 +69,7 @@
 		<img class="logopic" src="images/logopic.png" width="100%"
 			height="100%" />
 	</div>
+	
 	<div class="menu">
 		<ul id="MenuBar1" class="Menu">
 			<li><a href="#">社团首页</a></li>
@@ -64,34 +80,34 @@
 			<li><a href="#">文档专区</a></li>
 			<li><a href="#">媒体报道</a></li>
 			<li><a href="#">赞助合作</a></li>
-			<li><a href="#">联系我们</a></li>
+			<li><a target="blank" href="tencent://message/?uin=3428085562&Site=potisoft&Menu=yes">联系我们</a></li>
 		</ul>
 	</div>
+	
 	<div class="menubottom">
 		<div class="login" id="login">
-			<h2>用户登录</h2>
-			<!-- 登录之前显示 -->
-			<form method="post"  id="loginfrom">
+		<c:if test="${user.username != null }">你好,${user.username }<a href=javascript:exit()>退出</a></c:if>
+				<c:if test="${user.username == null }">
+			<form method="post" id="loginfrom" action="">
+				
+				<h2>登录</h2>
 				<p>
 					&nbsp;&nbsp;用户名:&nbsp;&nbsp;&nbsp;&nbsp; <input class="loginform"
-						type="text" name="username">
+						type="text" name="username" id="username">
 				</p>
 				<p>
 					&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp; <input
-						class="loginform" type="password" name="password">
+						class="loginform" type="password" name="password" id="password">
 				</p>
-				<button id="btnOK" type="submit" onclick="login()">登录</button>
+				<button id="btnOK" type="button" onclick="login()">登录</button>
 				<input id="btnRE" type="reset" value="重置">
 				<p id="hre">
 					<a href="javascript:showzc()"> 免费注册</a><a href="#"> 忘记密码</a>
 				</p>
+				
 			</form>
-			<!-- 登录之后显示 -->
-			<div type="hidden" id="logined">
-				<a href="#">${userName}</a>
+			</c:if>
 			</div>
-			<div class="error">${msg}</div>
-		</div>
 		<div class="picrotate">
 			<ul class="roundabout" id="myroundabout">
 				<li><img src="images/slide1.jpg" height="280%"></li>
@@ -189,22 +205,22 @@
 				<div class="TabbedPanelsContentGroup">
 					<div class="TabbedPanelsContent">
 						<ul id="dongtai">
-						
+
 						</ul>
 					</div>
 					<div class="TabbedPanelsContent">
 						<ul id="glory">
-							
+
 						</ul>
 					</div>
 					<div class="TabbedPanelsContent">
 						<ul id="discuss">
-							
+
 						</ul>
 					</div>
 					<div class="TabbedPanelsContent">
 						<ul id="boutique">
-					
+
 						</ul>
 					</div>
 				</div>
@@ -273,26 +289,26 @@
 			<div class="chattop">
 				<b>会长信箱</b>
 			</div>
-			<form action="infomation/email" method="Post">
-			<div class="mail">
-				<div class="mailleft">
-					<select name="shetuan" class="option">
-						<option value="tips">选择社团</option>
-						<option value="18216021360@163.com">青年志愿者协会</option>
-						<option value="18216021360@163.com">文艺爱好者协会</option>
-						<option value="18216021360@163.com">书画协会</option>
-						<option value="18216021360@163.com">体育爱好者协会</option>
-						<option value="18216021360@163.com">职业发展与创业就业协会</option>
-						<option value="18216021360@163.com">计算机协会</option>
-						<option value="18216021360@163.com">英语协会</option>
-					</select>
-					<textarea class="textarea" name="email"></textarea>
-				</div>
-				<div class="mailright">
-					
+			<form action="user/email" method="Post">
+				<div class="mail">
+					<div class="mailleft">
+						<select name="shetuan" class="option">
+							<option value="tips">选择社团</option>
+							<option value="18216021360@163.com">青年志愿者协会</option>
+							<option value="18216021360@163.com">文艺爱好者协会</option>
+							<option value="18216021360@163.com">书画协会</option>
+							<option value="18216021360@163.com">体育爱好者协会</option>
+							<option value="18216021360@163.com">职业发展与创业就业协会</option>
+							<option value="18216021360@163.com">计算机协会</option>
+							<option value="18216021360@163.com">英语协会</option>
+						</select>
+						<textarea class="textarea" name="email"></textarea>
+					</div>
+					<div class="mailright">
+
 						<input type="submit" value="发送" class="mailbtn" />
+					</div>
 				</div>
-			</div>
 			</form>
 		</div>
 	</div>
@@ -317,7 +333,7 @@
 		(function() {
 			$("#nearact").kxbdMarquee({
 				direction : "up",
-				isEqual : false
+				isEqual : false,
 			});
 		})();
 	</script>

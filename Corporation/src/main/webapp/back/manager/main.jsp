@@ -39,7 +39,7 @@
     <div iconCls="icon-large-clipart"  data-options="region:'west',title:'操作菜单',split:true" style="width:200px;">
     	<div id="aa" class="easyui-accordion" style="width:100%;height:100%;">
 		<div title="社团管理" iconCls="icon-search" style="overflow:auto;padding:10px;" selected="false"  ><!-- selected="true"  -->
-			<button class="easyui-linkbutton" onclick="javascript:alert('点击查看所有社团')">所有社团</button>
+			<button class="easyui-linkbutton" onclick="javascript:view()">所有社团</button>
 		</div>
 		<div title="成员管理" iconCls="icon-user_group" style="padding:10px;">
 			<button class="easyui-linkbutton" onclick="javascript:alert('后台管理员管理')">后台管理员管理</button>
