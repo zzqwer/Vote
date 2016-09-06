@@ -85,12 +85,13 @@
 					</div>
 				</div>
 			</div>  
-        </div>  
-    </div>
-    <!-- 底部版权部分 -->
+         
+         <!-- 底部版权部分 -->
     <div iconCls="icon-globe" data-options="region:'south',title:'版权 所有',split:true" style="height:150px;display:none;" >
 		 <iframe src="back/manager/footer.html" style="width:100%;height:100%;" id="back_footer"></iframe>
 	</div>   
+    </div>
+   </div> 
 </body>  
 
 </html>

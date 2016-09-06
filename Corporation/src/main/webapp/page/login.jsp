@@ -48,7 +48,6 @@
 <script type="text/javascript">
 function exit(){
 	 $.get("user/exit",function(data){
-		 alert(11);
 		 window.location.href="page/login.jsp"
 	 },"json")
 }
@@ -294,8 +293,8 @@ function exit(){
 					<div class="mailleft">
 						<select name="shetuan" class="option">
 							<option value="tips">选择社团</option>
-							<option value="18216021360@163.com">青年志愿者协会</option>
-							<option value="18216021360@163.com">文艺爱好者协会</option>
+							<option value="zz5942011@163.com">青年志愿者协会</option>
+							<option value="623831277@qq.com">文艺爱好者协会</option>
 							<option value="18216021360@163.com">书画协会</option>
 							<option value="18216021360@163.com">体育爱好者协会</option>
 							<option value="18216021360@163.com">职业发展与创业就业协会</option>
