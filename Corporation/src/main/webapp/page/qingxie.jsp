@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <!doctype html>
+<!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
 <base href="/Corporation/">
+<meta charset="utf-8">
 <title>青年志愿者协会</title>
 <link href="css/qingxie.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/highslide-with-gallery.js"></script>
@@ -16,19 +16,19 @@
 <body>
 
 <div class="top"> 	
-      <img class="logopic" src="images/logopic.png" width="100%" height="100%"/>
+ <img class="logopic" src='images/toplogo.png' width="100%" height="100%"/>
 </div>
 <div class="menu">
   <ul id="MenuBar">
-    <li><a href="#">协会首页</a></li>
-    <li><a href="#">协会概况</a></li>
-    <li><a href="#">协会架构</a></li>
-    <li><a href="#">近期活动</a></li>
-    <li><a href="#">文档专区</a></li>
-    <li><a href="#">媒体报道</a></li>
-    <li><a href="#">协会名人</a></li>
-    <li><a href="#">赞助合作</a></li>
-    <li><a href="#">联系我们</a></li>
+    <li><a href="#" class="menuclass">协会首页</a></li>
+    <li><a href="#" class="menuclass">协会概况</a></li>
+    <li><a href="#" class="menuclass">协会架构</a></li>
+    <li><a href="#" class="menuclass">近期活动</a></li>
+    <li><a href="#" class="menuclass">文档专区</a></li>
+    <li><a href="#" class="menuclass">媒体报道</a></li>
+    <li><a href="#" class="menuclass">协会名人</a></li>
+    <li><a href="#" class="menuclass">赞助合作</a></li>
+    <li><a href="#" class="menuclass">联系我们</a></li>
   </ul>
 </div>
 	<div class="content">
@@ -43,15 +43,16 @@
             <li><span  onClick="show('d7')"><img src="images/qingxielogo.png" class="left_logo"/>活动报名</span></li>
             <li><span  onClick="show('d8')"><img src="images/qingxielogo.png" class="left_logo"/>活动赞助</span></li>
             <li><span  onClick="show('d9')"><img src="images/qingxielogo.png" class="left_logo"/>会员缴费</span></li>
+            <li><span  onClick="show('d10')"><img src="images/qingxielogo.png" class="left_logo"/>留&nbsp;言&nbsp;区</span></li>
         </ul>
     </div>
     <div class="right">
     <!--------------------------------------------------协会介绍--------------------------------------------------------------->
    	  <div class="clubrightshow" id="d1">
-      	<h2 style="text-align:center; margin-top:20px; margin-bottom:20px;padding-right:30px;">协会简介</h2><span style="margin-right:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;协会全称为湖南工学院计算机与信息科学学院青年志愿者协会，是由一群志愿从事社会公益与社会保障事业的同学组成的团体，是一个通过组织和指导全院青年志愿服务活动、为经济特别困难以及其他需要帮助的社会成员提供服务，在湖南工学院团委学生会和计算机与信息科学学院团总支学生会的带领下，我们协会积极指导和组织青年志愿者工作和活动，投身社会实践努力完成学校各部门分配的工作任务，为社会发展提供志愿服务。协会自从2005年创办以来一直秉承着“奉献、友爱、互助、进步”这一宗旨，始终奉行“志愿、奉献、务实、互助、持久”的原则，发扬“助人为乐、吃苦耐劳”的精神，积极开展有益于同学、学校、社会的公益活动，在日常学习生活中志愿者以帮助他人为乐趣，在大量的社会实践活动中志愿者以“不怕吃苦”为口号，一心只为营造良好的社会环境而不懈努力。"+
-<br>+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;协会要求领导者具有强烈的创新意识、良好的协调和沟通能力、良好的工作作风。协会理事成员的选拔标准是从思想素养高、执行能力、热情度等方面来考虑。协会为了优化团队结构，且能更好的组织和管理志愿者服务工作，协会建设了一支专兼结合、功能互补、政治坚定的队伍，成立了办公室、策划部、组织部、宣传部、外联部、网络编辑部这六个部门，切实做到分工合作，秉承“团结就是力量”这句口号，紧紧团结在一起，形成一股强大的凝聚力，为铸就团队明日的辉煌而努力奋斗。"+
-<br>+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在院部老师的指导下，核心成员的带领下，协会开展活动既有组织性又有特色性，比如“志愿服务，完善自我”活动月、“义务支教”等精品特色项目，在学院乃至市级受到很高的称赞，同时协会举办的“火炬计划——义务支教”获得衡阳市2009年度“志愿服务优秀项目奖”。通过多年的发展与建设，本协会已经成为计算机与信息科学学院内一个团结、进步、有一定影响力的优秀团体，并树立了本协会的作风：爱心、务实、灵活、创新、高效；服务以爱心取胜；实践以务实取胜；方法以灵活取胜；理念以创新取胜，行动以高效取胜。"+
-<br>+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们协会是一个永远积极向上的集体，是一个永具激情活力的团体。我们的活动始终将大学生的德育素质贯彻于公益活动、文化活动、科技活动、实践活动中，做到了尽己所能，不计报酬，帮助他人，服务社会，实现自我价值，拓展自身素质，培养高尚品德，丰富自己的大学生活，获得快乐与友谊。在以后的发展中，我们团队将积极总结，吸取经验，扬长避短，不断创新，以全新的姿势迎接新的挑战，争取成为一个更具专业水平的团队。</span>
+      	<h2 style="text-align:center; margin-top:20px; margin-bottom:20px;padding-right:30px;">协会简介</h2><span style="margin-right:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;协会全称为湖南工学院计算机与信息科学学院青年志愿者协会，是由一群志愿从事社会公益与社会保障事业的同学组成的团体，是一个通过组织和指导全院青年志愿服务活动、为经济特别困难以及其他需要帮助的社会成员提供服务，在湖南工学院团委学生会和计算机与信息科学学院团总支学生会的带领下，我们协会积极指导和组织青年志愿者工作和活动，投身社会实践努力完成学校各部门分配的工作任务，为社会发展提供志愿服务。协会自从2005年创办以来一直秉承着“奉献、友爱、互助、进步”这一宗旨，始终奉行“志愿、奉献、务实、互助、持久”的原则，发扬“助人为乐、吃苦耐劳”的精神，积极开展有益于同学、学校、社会的公益活动，在日常学习生活中志愿者以帮助他人为乐趣，在大量的社会实践活动中志愿者以“不怕吃苦”为口号，一心只为营造良好的社会环境而不懈努力。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;协会要求领导者具有强烈的创新意识、良好的协调和沟通能力、良好的工作作风。协会理事成员的选拔标准是从思想素养高、执行能力、热情度等方面来考虑。协会为了优化团队结构，且能更好的组织和管理志愿者服务工作，协会建设了一支专兼结合、功能互补、政治坚定的队伍，成立了办公室、策划部、组织部、宣传部、外联部、网络编辑部这六个部门，切实做到分工合作，秉承“团结就是力量”这句口号，紧紧团结在一起，形成一股强大的凝聚力，为铸就团队明日的辉煌而努力奋斗。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在院部老师的指导下，核心成员的带领下，协会开展活动既有组织性又有特色性，比如“志愿服务，完善自我”活动月、“义务支教”等精品特色项目，在学院乃至市级受到很高的称赞，同时协会举办的“火炬计划——义务支教”获得衡阳市2009年度“志愿服务优秀项目奖”。通过多年的发展与建设，本协会已经成为计算机与信息科学学院内一个团结、进步、有一定影响力的优秀团体，并树立了本协会的作风：爱心、务实、灵活、创新、高效；服务以爱心取胜；实践以务实取胜；方法以灵活取胜；理念以创新取胜，行动以高效取胜。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们协会是一个永远积极向上的集体，是一个永具激情活力的团体。我们的活动始终将大学生的德育素质贯彻于公益活动、文化活动、科技活动、实践活动中，做到了尽己所能，不计报酬，帮助他人，服务社会，实现自我价值，拓展自身素质，培养高尚品德，丰富自己的大学生活，获得快乐与友谊。在以后的发展中，我们团队将积极总结，吸取经验，扬长避短，不断创新，以全新的姿势迎接新的挑战，争取成为一个更具专业水平的团队。</span>
       </div>
       
     <!--------------------------------------------------名人堂----------------------------------------------------------------->
@@ -1452,7 +1453,7 @@
         </div>
       </div>
    <!---------------------------------------------------活动赞助---------------------------------------------------------------->
-   	   <div class="clubrightshow" id="d8">
+   	  <div class="clubrightshow" id="d8">
                 <form>
                     <input type="text" placeholder="请输入公司名称或本人姓名" style="width:283px; height:25px; margin-top:10px; margin-left:150px;"/><span></span><br>
                     <input type="text" placeholder="请输入公司邮箱账号或者个人邮箱" style="width:283px;  height:25px; margin-top:10px; margin-left:150px;"/><br>
@@ -1498,7 +1499,7 @@
                         </ul>
                     </div>
 			</div>
-   <!---------------------------------------------------活动赞助---------------------------------------------------------------->   
+   <!---------------------------------------------------会员缴费---------------------------------------------------------------->   
       <div class="clubrightshow" id="d9">
       		   	<div class="actregister">
         <form>
@@ -1576,11 +1577,198 @@
             </form>
         </div>
       </div>
+   <!---------------------------------------------------留言区----------------------------------------------------------------> 
+    <div class="clubrightshow" id="d10">
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/girl.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div><br><br>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/boy.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木asda()jhHH</li>
+                <li class="d10sex"><span><img src="images/girl.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/boy.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/girl.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师.</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/boy.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/girl.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/boy.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/girl.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/boy.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/girl.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/boy.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/girl.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+    <div class="d10word">
+    	<div class="d10left">
+    		<img src="images/8.jpg" class="d10img"/>
+    	</div>
+        <div class="d10right">
+    		<ul>
+            	<li class="d10name">长木</li>
+                <li class="d10sex"><span><img src="images/boy.png" class="sex">青年志愿者协会    会员</span></li>
+                <li class="d10date">16年9月2日会  05:07</li>
+                <li class="d10doc">福建江夏学院 福建师范大学 福建商业高等专科学校 闽江师范高等专科学校 福建农林大学 华侨大学 福州大学 福建工程学院 闽江学院 福建医科大学 莆田学院 福建中医药大学 福州大学阳光学院 仰恩大学 集美大学...</li>
+            </ul>
+    	</div>
+       </div>
+
+    </div>  
+    
     </div>
   </div>
 <div class="footer">
         <div class="footer1">
-            <p>帝国联盟 &copy; STLM.NET, 2016. <img src="images/QQ20160823212400.png" alt="STLM"/> 支持原创 翻版必究</p>
+            <p>帝国联盟 &copy; STLM.NET, 2016. <img src="images/QQ图片20160823212400.png" alt="STLM"/> 支持原创 翻版必究</p>
         </div>
         <div class="footer2">
           <p>主办单位：湖南工学院、湖南工学院青年志愿者协会 </p>

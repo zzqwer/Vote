@@ -1,70 +1,71 @@
 @charset "utf-8";
 /* CSS Document */
-* {
-	padding: 0;
-	margin: 0 auto;
-}
-/*所有li标签都应该去除点*/
-ul li {
-	list-style: none;
-}
-/*所有的a标签去除下划线*/
-a {
-	text-decoration: none;
-}
 
-body {
-	width: 1000px;
-	font-size: 12px;
-	font-family: "微软雅黑";
-	background: url(../images/bodybg.jpg)
-}
 
-.top {
+*{		padding:0;
+		margin:0 auto;}
+	/*所有li标签都应该去除点*/
+	ul li{
+		list-style:none;}
+	/*所有的a标签去除下划线*/
+	a{	color:#000;
+		text-decoration:none;}
+	body{
+		width:1000px;
+		color:#000;
+		font-size:14px;
+		font-family:"微软雅黑";
+		/*background: -webkit-gradient(lineare91428bg1, left top, left bottom, from(#67BEFE), to(#fff));}
+		*/
+		background:url(../images/922769_13086175718akM.jpg);
+		background-size:cover;
+		/*background-size:cover;*/}
+	.top{
+		width:100%;
+		height:172px;}
+	.menu {
 	width: 100%;
-	height: 150px;
-}
-
-#btnOK {
-	margin-top: 5px;
-	font-size: 14px;
-	height: 25px;
-	width: 60px;
-	margin-left: 15px;
-}
-
-#btnRE {
-	margin-top: 5px;
-	font-size: 14px;
-	height: 25px;
-	width: 60px;
-}
-
-#hre {
-	margin-top: 10px;
-}
-
-.menu {
-	width: 100%;
-	height: 50px;
-	background: url(../images/menubg.jpg) repeat-x;
-}
-
+	height:70px;
+	}
+	.menu ul{
+		padding-top:5px}
 .menu ul li {
 	margin-top: 10px;
 	float: left;
-	padding-left: 27px;
-	font-size: 20px;
+	padding-left:5px;
+	font-size: 22px;
+	width:105px;
+	text-align:center;
 }
 
+
+.menuclass{
+		transition: all 0.3s ease-out;
+		color:#000;
+		font-family:"黑体";
+		padding:5px 0;
+		width:100px;
+		border-radius: 5px;
+		display: block;
+		text-decoration: none;
+		box-shadow: 2px 2px 2px 2px #888;
+	}
+	
+	 .menuclass:hover {
+		color:#FC0;
+		padding: 10px 0px 10px 0px;
+		cursor:pointer;
+		}
+
 ul li a:hover {
-	color: #F00;
+	color:#F00;
 }
 
 .content {
 	width: 100%;
 	height: 640px;
-	background-color: #fff;
+	border-radius:10px;
+	
 }
 
 .welcome {
@@ -77,10 +78,27 @@ ul li a:hover {
 	width: 20%;
 	height: 150px;
 	float: left;
-	border-left: 1px solid #FFF;
-	border-bottom: 1px solid #000;
-	border-right: 2px solid #999;
 	text-align:center;
+}
+#search_box {
+	margin-bottom:40px;   
+width: 20%;   
+height: 31px;
+float:left; 
+background:url(../images/bg_search_box.gif); 
+}   
+#search_box #s {   
+float: left;   
+padding: 0;   
+margin: 6px 0 0 6px;   
+border: 0;   
+width: 159px;   
+background: none;   
+font-size:;   
+}   
+#search_box #go {   
+float: right;   
+margin: 3px 4px 0 0;   
 }
 .error{
 	color: #f00;
@@ -92,18 +110,27 @@ ul li a:hover {
 	height: 20px;
 	font-size: 12px;
 	margin-top: 5px;
+	margin-bottom:5px;
 }
 
+#btnOK{
+	width:50px;
+	margin-bottom:10px}
+	
+#resetbottom a{
+	color:#33F;
+	font-weight:bold;}
+#resetbottom a:hover{
+	color:#F00;}
 .menubottom {
 	width: 100%;
-	height: 150px;
+	height: 250px;
 	float: left;
-	background: url(../images/loginbg.jpg);
 }
 
 .picrotate {
 	width: 79%;
-	height: 150px;
+	height: 250px;
 	float: left;
 }
 
@@ -131,7 +158,6 @@ ul li a:hover {
 	padding-top: 10px;
 	padding-bottom: 5px;
 	background: #999;
-	font-family: "叶根友非主流手";
 	font-weight: bold;
 	font-size: 18px;
 }
@@ -147,17 +173,13 @@ ul li a:hover {
 	background: #FFF;
 }
 
-.prevue ul li a:hover {
-	background: #F90;
-}
-
 .neartop {
 	width: 100%;
 	height: 25px;
 	float: left;
 	padding-top: 8px;
 	padding-left: 5px;
-	background: url(../images/chattop.jpg) repeat;
+	background: url(../images/chattop.png) repeat;
 }
 
 #moreact {
@@ -174,7 +196,6 @@ ul li a:hover {
 }
 
 .neartop {
-	font-family: "微软雅黑";
 	font-size: 16px;
 }
 
@@ -195,7 +216,7 @@ ul li a:hover {
 	height: 27px;
 	font-size: 16px;
 	padding-top: 6px;
-	background: url(../images/chattop.jpg)
+	background: url(../images/chattop.png)
 }
 
 .newsshow {
@@ -230,7 +251,7 @@ ul li a:hover {
 	font-size: 16px;
 	float: left;
 	padding-top: 6px;
-	background: url(../images/chattop.jpg)
+	background: url(../images/chattop.png)
 }
 
 .chat {
@@ -238,7 +259,6 @@ ul li a:hover {
 	height: 100px;
 	float: left;
 	font-size: 16px;
-	font-family: "叶根友非主流手";
 	font-weight: bold;
 }
 
@@ -292,32 +312,34 @@ ul li a:hover {
 	margin-left: 10px;
 }
 
-.footer {
-	width: 100%;
-	height: 140px;
-	float: left;
-	font-family: "微软雅黑";
+.footer{
+    width:100%;
+    height:100px;
+	float:left;
+	font-family:"微软雅黑";
+	border-radius: 10px;
 }
-
-.footer .footer1 {
-	height: 50px;
-	background-color: #999;
+.footer .footer1{
+    height:50px;
+    background-color:#999;
+	border-top-right-radius:10px;
+	border-top-left-radius:10px;
 }
-
-.footer1 p {
-	padding-top: 15px;
-	color: #fff;
-	text-align: center;
-	font-size: 14px;
+.footer1 p{
+    padding-top:15px;
+    color:#fff;
+    text-align:center;
+	font-size:14px;
 }
-
-.footer2 {
-	height: 90px;
-	background-color: #F0F0F0;
-	padding-top: 10px;
-	text-align: center;
-	font-size: 12px;
-	color: #666;
+.footer2{
+	height:50px;
+	background-color:#F0F0F0;
+	padding-top:10px;
+	text-align:center;
+	font-size:12px;
+	color:#666;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius:10px;
 }
 
 .scroll-container li a {
@@ -338,19 +360,19 @@ ul li a:hover {
 }
 
 #notice .scroll-container li a {
-	color: #7AAA1B;
+	color:#00F;
 	text-decoration: none;
 }
 
 .roundabout-holder {
-	width: 550px;
-	height: 50px;
+	width: 570px;
+	height: 80px;
 	margin: 0 auto;
 }
 
 .roundabout-moveable-item {
-	width: 250px;
-	height: 50px;
+	width: 300px;
+	height: 80px;
 	cursor: pointer;
 	border: 3px solid #ccc;
 	border: 3px solid rgba(0, 0, 0, 0.08);
@@ -366,3 +388,19 @@ ul li a:hover {
 .roundabout-in-focus {
 	border: 3px solid rgba(0, 0, 0, 0.2);
 }
+
+<!--------------------------------------------------------------------------------------------------------------------------------------->
+
+
+.re {
+	margin-left: 570px;
+	margin-top: 40px;
+	width: 280px;
+	height: 600px;
+	display:none;
+}
+
+#register {
+	padding-top: 30px;
+}
+

@@ -30,22 +30,24 @@ public class Userhandler {
 	private JavaMailSender mailSender;
 	
 	@RequestMapping(value="/email",method=RequestMethod.POST)
-	public String GetEmail(HttpServletRequest request){
-	String to=	request.getParameter("shetuan");
-	System.out.println("邮件内容"+request.getParameter("email"));	
-	System.out.println("发送至"+to);
+	public void GetEmail(HttpServletRequest request,String emailcontent,String xiehui,PrintWriter out){
+	System.out.println("邮件内容"+emailcontent);	
+	System.out.println("发送至"+xiehui);
 	try {
 		MimeMessage mm=mailSender.createMimeMessage();
 		MimeMessageHelper mmh=new MimeMessageHelper(mm,true);
-		mmh.setTo(to);//发送者
+		mmh.setTo(xiehui);//发送者
 		mmh.setFrom("zz5942011@163.com");
 		mmh.setSubject("测试测试");//设置主题
-		mmh.setText(request.getParameter("email"));//设置内容
+		mmh.setText(emailcontent);//设置内容
 		mailSender.send(mm);//发送邮件
+		out.print(1);
+		out.flush();
+		out.close();
+		
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	return "login";
 	}
 	
 	@ModelAttribute
@@ -73,12 +75,7 @@ public class Userhandler {
 		out.flush();
 		out.close();
 	}	
-	
-	@RequestMapping(value="/register",method=RequestMethod.GET)
-	public String showRegister(Users user){
-		return "register";
-	}
-	
+
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public String Register(Users user,HttpServletRequest request){
 		userService.register(user);
