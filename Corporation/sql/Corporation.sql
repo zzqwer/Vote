@@ -9,14 +9,20 @@
 select * from corporation;
   --社团表
   create table corporation(
-    cid int primary key,
-    chairman varchar2(30),
+    cid int primary key,    --社团id
     cname varchar2(100), --社团名
-    cintroduce varchar2(2000), --社团简介
-    honor varchar2(1000),--精品活动
-    email  varchar2(50)
-     
-  )
+    logo varchar2(2000),   --社团logo
+    teacher varchar2(200),  --指导老师
+    head varchar2(100),		--社团负责人/会长/头儿
+    tel varchar2(20),      --官方联系电话
+    email varchar2(200),  --官方联系邮箱
+    cintroduce clob --社团简介 
+  );
+create sequence corporation_cid start with 1 increment by 1;
+insert into corporation values(corporation_cid.nextval,'青年志愿者协会',null,'彭伟','谷禄帅','18216021360','1209614483@qq.com','');
+insert into corporation values(corporation_cid.nextval,'书画协会',null,'彭伟','谷禄帅','18216021360','1209614483@qq.com','');
+insert into corporation values(corporation_cid.nextval,'文艺爱好者协会',null,'彭伟','谷禄帅','18216021360','1209614483@qq.com','');
+insert into corporation values(corporation_cid.nextval,'计算机协会',null,'彭伟','谷禄帅','18216021360','1209614483@qq.com','');
   --部门表
   create table department(
   did  int primary key,
