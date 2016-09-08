@@ -388,5 +388,19 @@ margin: 3px 4px 0 0;
 .roundabout-in-focus {
 	border: 3px solid rgba(0, 0, 0, 0.2);
 }
+
 <!--------------------------------------------------------------------------------------------------------------------------------------->
+
+
+.re {
+	margin-left: 570px;
+	margin-top: 40px;
+	width: 280px;
+	height: 600px;
+	display:none;
+}
+
+#register {
+	padding-top: 30px;
+}
 

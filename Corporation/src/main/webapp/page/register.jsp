@@ -21,8 +21,8 @@
 </style>
 </head>
 
-<body>
-	<div class="re">
+<body> 
+	<div class="re"  style="overflow:hidden">
 		<form id="register"  method="post" action="user/register"  enctype=”multipart/form-data>
 			<h3>用户注册</h3>
 			用户名：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="username" /><br>
@@ -144,13 +144,8 @@
 				name="email" /><br>
 			<br> 联系方式：<input type="text" name="phone" /><br>
 			<br> 
-	<label>上传头像:</label><input type="file" multiple="multiple" id="pic" name="pic" onchange="previewMultipleImage(this,'news_pic_show')"><br/><br/>
 		</form>
-	</div>
-<div style="float:right;width:360px;margin-right:20px">
-	<fieldset id="news_pic_show">
-		<legend>图片预览</legend>
-	</fieldset>
+
 <input type="submit" value="注册" /><br><br>
 </div>
 </body>
