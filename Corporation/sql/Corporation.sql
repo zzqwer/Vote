@@ -17,6 +17,8 @@ select * from corporation;
     email  varchar2(50)
      
   )
+  drop table corporation;
+  
   --部门表
   create table department(
   did  int primary key,
@@ -24,6 +26,8 @@ select * from corporation;
   dname varchar2(50),--部门名
   dintroduce varchar2(2000)--部门简介  
   )
+  drop table department;
+  
   --用户表
   create table Cuser(
     usid int primary key,
@@ -37,6 +41,8 @@ select * from corporation;
  home varchar2(20),
  phone varchar2(100)
   )
+  drop table Cuser;
+  
   select * from users
   --个人信息表
   create table personal(
@@ -45,7 +51,7 @@ select * from corporation;
   pclass varchar2(70),--班级
   phone number(20) --联系方式
   )
-
+drop table personal;
 --信息表
 create table infomation(
    infoid int primary key,
@@ -100,12 +106,16 @@ insert into infomation values(info_infoid.nextval,'精品活动9',to_date('2016-
   csname varchar2(50),
   cssex varchar2(20) 
   )
+  drop table customservice;
+
+  
 --留言表
 create table  leaveword(
  lid int primary key,
  message varchar2(1000),
  ldate date
 )
+drop table leaveword;
 
 --管理员表
 drop table admin;

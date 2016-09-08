@@ -42,6 +42,7 @@ public class Userhandler {
 		mmh.setSubject("测试测试");//设置主题
 		mmh.setText(request.getParameter("email"));//设置内容
 		mailSender.send(mm);//发送邮件
+		
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
