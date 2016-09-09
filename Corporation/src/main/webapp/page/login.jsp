@@ -19,27 +19,11 @@
 <script type="text/javascript" src="js/infomation.js"></script>
 <script type="text/javascript" src="js/jquery.roundabout.js"></script>
 <script type="text/javascript" src="js/jquery.roundabout-shapes.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
+
 
 </head>
-<script type="text/javascript">
-function sendemail(){
-	 var xiehui=$('#xiehui').val();
-	 var emailcontent=$('#emailcontent').val();
-	 alert(emailcontent);
-	      $.post("user/email",{xiehui:xiehui,emailcontent:emailcontent},function(data){
-	    	if(data==1){
-	    		alert("邮件发送成功");
-	    		$('#xiehui').val("");
-	    		$('#emailcontent').val("");
-	    	}else{
-	    		alert("邮件发送失败");
-	    	} 
-	     }); 
-	 
-}
-</script>
 <body>
+
 	<script type="text/javascript">
 		function login() {
 			var username = $('#username').val();
@@ -70,7 +54,6 @@ function sendemail(){
 			}, "json")
 		}
 	</script>
-
 	<div id="notice">
 		<ul style="float: left;" class="scroll-container">
 			<li><a href="#">1.阿里巴巴首页导航菜单设计制作</a></li>
@@ -228,7 +211,6 @@ function sendemail(){
 					</ul>
 				</div>
 			</div>
-
 			<div class="news">
 				<div class="newstop">
 					<b>网站公告</b><a id="morenews" href="#">更多>></a>
@@ -237,31 +219,10 @@ function sendemail(){
 					<div class="newsshowleft">
 						<ul id="webnotice">
 						</ul>
-
-			<div class="chattop">
-				<b>会长信箱</b>
-			</div>
-			<form action="" method="post">
-				<div class="mail">
-					<div class="mailleft">
-						<select name="shetuan" class="option" id="xiehui">
-							<option value="tips">选择社团</option>
-							<option value="zz5942011@163.com">青年志愿者协会</option>
-							<option value="623831277@qq.com">文艺爱好者协会</option>
-							<option value="1209614483@qq.com">书画协会</option>
-							<option value="18216021360@163.com">体育爱好者协会</option>
-							<option value="18216021360@163.com">职业发展与创业就业协会</option>
-							<option value="18216021360@163.com">计算机协会</option>
-							<option value="18216021360@163.com">英语协会</option>
-						</select>
-						<textarea class="textarea" name="email" id="emailcontent"></textarea>
 					</div>
-
 					<div class="newsshowright">
 						<ul id="noticedate">
 						</ul>
-					<div class="mailright">
-						<button type="button" class="mailbtn" onclick="sendemail()">发送</button>
 					</div>
 				</div>
 				<div id="TabbedPanels1" class="TabbedPanels">
@@ -274,153 +235,6 @@ function sendemail(){
 					<div class="TabbedPanelsContentGroup">
 						<div class="TabbedPanelsContent">
 							<ul id="dongtai">
-			</form>
-		</div>
-	</div>
-	<div class="footer">
-		<div class="footer1">
-			<p>
-				帝国联盟 &copy; STLM.NET, 2016. <img src="images/QQ20160823212400.png"
-					alt="STLM" /> 支持原创 翻版必究
-			</p>
-		</div>
-		<div class="footer2">
-			<p>主办单位：湖南工学院、湖南工学院青年志愿者协会</p>
-			<p>协办及技术平台支持：中青在线、中青华云、国家志愿者公益服务支撑平台</p>
-		</div>
-	</div>
-	
-
-		<form id="register"  method="post" action="user/register"  enctype=”multipart/form-data>
-			<div class="re" id="re">
-			<h3>用户注册</h3>
-			用户名：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="username" /><br>
-			<br> 密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-				type="password" name="password" /><br>
-			<br>
-			<tr>
-				<td>性别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td><label for="radio-1">男</label><input type="radio"
-					id="radio-1" name="sex" value="男" /> <label for="radio-2">女</label><input
-					type="radio" id="radio-2" name="sex" value="女" /><br>
-				<br></td>
-			</tr>
-			年龄：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
-				name="age" /><br>
-			<br>
-
-			<tr>
-				<td>籍贯：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td><select name="home">
-						<option>选择城市</option>
-						<option>北京市</option>
-						<option>天津市</option>
-						<option>河北省</option>
-						<option>山西省</option>
-						<option>内蒙古自治区</option>
-						<option>辽宁省</option>
-						<option>吉林省</option>
-						<option>黑龙江省</option>
-						<option>上海市</option>
-						<option>江苏省</option>
-						<option>浙江省</option>
-						<option>安徽省</option>
-						<option>福建省</option>
-						<option>江西省</option>
-						<option>山东省</option>
-						<option>湖南省</option>
-						<option>湖北省</option>
-						<option>河南省</option>
-						<option>广东省</option>
-						<option>广西壮族自治区</option>
-						<option>海南省</option>
-						<option>重庆市</option>
-						<option>四川省</option>
-						<option>贵州省</option>
-						<option>云南省</option>
-						<option>西藏自治区</option>
-						<option>陕西省</option>
-						<option>甘肃省</option>
-						<option>青海省</option>
-						<option>宁夏回族自治区</option>
-						<option>新疆维吾尔自治区</option>
-						<option>香港特别行政区</option>
-						<option>澳门特别行政区</option>
-						<option>台湾省</option>
-						<option>其他</option>
-				</select><br>
-				<br></td>
-			</tr>
-			<tr>
-				<td>班级：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td><select name="userclass">
-						<option>选择班级</option>
-						<option>计科1301班</option>
-						<option>计科1302班</option>
-						<option>计科1303班</option>
-						<option>网络1301班</option>
-						<option>网络1302班</option>
-						<option>网络1303班</option>
-						<option>信本1301班</option>
-						<option>信本1302班</option>
-						<option>软件1301班</option>
-						<option>软件1302班</option>
-						<option>软件1303班</option>
-						<option>物联网1301班</option>
-						<option>计科1401班</option>
-						<option>计科1402班</option>
-						<option>计科1403班</option>
-						<option>网络1401班</option>
-						<option>网络1402班</option>
-						<option>网络1403班</option>
-						<option>信本1401班</option>
-						<option>信本1402班</option>
-						<option>软件1401班</option>
-						<option>软件1402班</option>
-						<option>软件1403班</option>
-						<option>物联网1401班</option>
-						<option>计科1501班</option>
-						<option>计科1502班</option>
-						<option>计科1503班</option>
-						<option>网络1501班</option>
-						<option>网络1502班</option>
-						<option>网络1503班</option>
-						<option>信本1501班</option>
-						<option>信本1502班</option>
-						<option>软件1501班</option>
-						<option>软件1502班</option>
-						<option>软件1503班</option>
-						<option>物联网1501班</option>
-						<option>物联网1502班</option>
-						<option>计科1601班</option>
-						<option>计科1602班</option>
-						<option>计科1603班</option>
-						<option>网络1601班</option>
-						<option>网络1602班</option>
-						<option>网络1603班</option>
-						<option>信本1601班</option>
-						<option>信本1602班</option>
-						<option>软件1601班</option>
-						<option>软件1602班</option>
-						<option>软件1603班</option>
-						<option>物联网1601班</option>
-						<option>物联网1602班</option>
-
-				</select><br>
-				<br></td>
-			</tr>
-			邮箱：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email"
-				name="email" /><br>
-			<br> 联系方式：<input type="text" name="phone" /><br>
-			<br> 
-			<input type="submit" value="注册" /><br><br>
-</div>
-		</form>
-
-
-	<script type="text/javascript">
-		var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
-	</script>
 
 							</ul>
 						</div>
