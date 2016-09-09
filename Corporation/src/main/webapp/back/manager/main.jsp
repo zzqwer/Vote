@@ -32,15 +32,15 @@
     <div data-options="region:'east',iconCls:'icon-large-clipart' ,title:'工具',split:true" style="width:75px;">
     	<!--主要功能: 打印   当前时间  导出为word excel格式文件 字体选择  消息 刷新  退出 重新登录  回到首页 截屏 -->
     	<div class="east_tool"><img alt="字体" title="选择字体" src="back/images/A.png"></div>
-    	<div class="east_tool"><img alt="时间" title="当前时间" src="back/images/time.png"></div>
-    	<div class="east_tool"><img alt="导出" title="导出WSP" src="back/images/To2.png"></div>
     	<div class="east_tool"><img alt="字体大小" title="字体大小" src="back/images/B.png"></div>
+    	<div class="east_tool"><img alt="截屏" title="截屏工具" src="back/images/cut.png"></div>
+    	<div class="east_tool"><img alt="时间" title="当前时间" src="back/images/time.png"></div>
+    	<div class="east_tool"><img alt="播放背景音乐" title="播放背景音乐" src="back/images/music.png"></div>
+    	<div class="east_tool"><img alt="导出" title="导出WSP" src="back/images/To2.png"></div>
     	<div class="east_tool"><img alt="消息" title="消息" src="back/images/news.png"></div>
     	<div class="east_tool"><img alt="刷新" title="刷新" src="back/images/flash.png"></div>
-    	<div class="east_tool"><img alt="退出登录" title="退出登录" src="back/images/stop.png"></div>
     	<div class="east_tool"><img alt="返回首页" title="返回首页" src="back/images/home.png"></div>
-    	<div class="east_tool"><img alt="截屏" title="截屏工具" src="back/images/cut.png"></div>
-    	<div class="east_tool"><img alt="播放背景音乐" title="播放背景音乐" src="back/images/music.png"></div>
+    	<div class="east_tool"><img alt="退出登录" title="退出登录" src="back/images/close.png"></div>
     </div>  
     
     <!-- 左边菜单栏 -->
@@ -83,7 +83,7 @@
 	     	<div data-options="region:'center'" style="width:100%;height:100%;">
 				<div id="tt" class="easyui-tabs" style="width:100%;height:100%;">
 					<div title="首页" closable="true">
-						<img alt="首页" src="images/123.jpg" style="width:100%;height:100%">
+						<img alt="首页" src="images/year.jpg" style="width:100%;height:100%">
 					</div>
 				</div>
 			</div>  
