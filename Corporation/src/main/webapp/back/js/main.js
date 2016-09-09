@@ -12,4 +12,16 @@ function show(text){
 			});
 		}
 	}
+	if(text=="管理员管理"){
+		alert("管理员管理");
+		if(tabs.tabs('exists',"管理员管理")){
+			tabs.tabs('select',"管理员管理");
+		}else{
+			tabs.tabs('add',{
+				title:"管理员管理",
+				href:"back/manager/admin.html",                        
+				closable:true
+			});
+		}
+	}
 }

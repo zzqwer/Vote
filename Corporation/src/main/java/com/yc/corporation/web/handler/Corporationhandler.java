@@ -32,14 +32,11 @@ public class Corporationhandler {
 	}
 	@RequestMapping(value="/findAll",method=RequestMethod.POST)
 	public void findAll(HttpServletRequest request,PrintWriter out,ModelMap map){
-		System.out.println("Corporationhandler进来了...");
 		List<Corporation> corporations= corporationService.findAll();
-		System.out.println(corporations);
 		Gson gs = new Gson();
 		String cops = gs.toJson(corporations);
 		out.println(cops);
 		out.flush();
 		out.close();
-	//	return "login";
 	}
 }

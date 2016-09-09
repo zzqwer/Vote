@@ -7,6 +7,9 @@
 .icon-edit{
 	background:url('../icons/pencil.png') no-repeat center center;
 }
+.icon-pencil{
+	background:url('../icons/pencil.png') no-repeat center center;
+}
 .icon-clear{
 	background:url('../icons/clear.png') no-repeat center center;
 }
@@ -102,4 +105,10 @@
 }
 .icon-globe{
 	background:url('../icons/globe.png') no-repeat center center;
+}
+.icon-network{
+	background:url('../icons/network.png') no-repeat center center;
+}
+.icon-finger{
+	background:url('../icons/finger.png') no-repeat center center;
 }

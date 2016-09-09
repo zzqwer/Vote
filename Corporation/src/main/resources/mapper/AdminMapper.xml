@@ -6,4 +6,8 @@
 		select * from admin where aname=#{aname} and apwd=#{apwd}
 	</select>
 
+	<!-- 后台查询所有管理员界面显示 -->
+	<select id="findAll" parameterType="Admins" resultType="Admins">
+		select * from admin 
+	</select>
 </mapper>

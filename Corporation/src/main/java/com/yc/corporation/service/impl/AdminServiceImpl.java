@@ -1,5 +1,7 @@
 package com.yc.corporation.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,13 @@ public class AdminServiceImpl implements AdminService {
 	private AdminMapper adminMapper;
 	@Override
 	public Admins login(Admins admin) {
-		System.out.println("AdminServiceImpl :"+admin);
+	//	System.out.println("AdminServiceImpl :"+admin);
 		return adminMapper.findAdminByNP(admin);
+	}
+	@Override
+	public List<Admins> findAll() {
+		System.out.println("AdminServiceImpl进来了...");
+		return adminMapper.findAll();
 	}
 
 }
