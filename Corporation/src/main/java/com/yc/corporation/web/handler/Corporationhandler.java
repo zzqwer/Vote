@@ -46,12 +46,9 @@ public class Corporationhandler {
 		rows=request.getParameter("rows");
 		System.out.println(page);
 		System.out.println(rows);
-		int totalq=corporationService.findAll().size();
 		List<Corporation> corporations= corporationService.findcorbypage(Integer.valueOf(page), Integer.valueOf(rows));
 		Gson gs = new Gson();
 		String cops = gs.toJson(corporations);
-		String total=gs.toJson(totalq);
-		out.println(total);		
 		out.println(cops);
 		out.flush();
 		out.close();
