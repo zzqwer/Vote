@@ -5,9 +5,10 @@
 	var obj;
 	var editRow=undefined;//记录正在被编辑的行
 	var currentOp;
+	var url;
 	var flag;
 	obj=$('#corporation_data').datagrid({
-		url:'corporation/findAll',//远程服务器请求站点
+		url:'corporation/findcorbypage',//远程服务器请求站点
 		method:'POST',   //请求方式
 		fitColumns:true,//自动适应columns的大小与grid的高度。防止水平滚动
 		loadMsg:"数据加载中...",//当从远程服务器加载数据的时候，显示的提示消息
@@ -18,7 +19,7 @@
 		pageList:[2,5,10,15,20,30],//初始分页大小选择列表 
 		sortName:'cid',//定义哪个列可以排序
 		remoteSort:false,//是否远程定义列，默认为true，这个一定要写
-		striped:true,//显示条纹所有行
+//		striped:true,//显示条纹所有行
 		columns:[[
 			//加的一行checkbox
 		    {field:'cids',width:100,align:'center',checkbox:true},
@@ -26,12 +27,133 @@
 		    {field:'cname',title:'社团名称',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'logo',title:'社团图标',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'teacher',title:'指导老师',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
-		    {field:'head',title:'会长/社长',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
+		    {field:'head',title:'会长',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'tel',title:'联系方式',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'email',title:'社团邮箱',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'cintroduce',title:'社团简介',width:100,align:'center',editor:{type:"text",options:{requires:true}}
 		    }
-		 ]]
+		 ]], toolbar:[{
+		    	text:"添加",
+		    	iconCls:'icon-add',
+		    	handler:function(){
+		    		flag="添加";
+		    		url="corporation/insertcor";
+		    		if(editRow!=undefined){//˵���������ڱ��༭
+		    			obj.datagrid("rejectChanges");//�ع����е����
+		    			obj.datagrid("endEdit",editRow);//�ر����ڱ��༭����
+		    			editRow=undefined;
+		    		}else{
+		    			obj.datagrid('insertRow',{index:0,row:{}});
+		    			obj.datagrid("beginEdit",0);
+		    			editRow=0;//��¼��ǰ���༭�е�����
+		    		}
+		    	}
+       },{
+	    	text:"修改",
+	    	iconCls:"icon-edit",
+	    	handler:function(){
+	    		flag="修改";
+	    		url="corporation/updatecor"
+	    		var rows=obj.datagrid("getChecked")[0];
+	    		if(rows!=undefined){
+	    			if(editRow!=undefined){//说明有行正在被编辑
+		    			obj.datagrid("rejectChanges");//回滚所有的数据
+		    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+		    			editRow=undefined;
+		    		}else{
+		    			//获取用户选中的行的索引
+		    			var index=obj.datagrid("getRowIndex",rows);
+		    			console.info(rows);
+		    			obj.datagrid('updateRow',{index:index,row:rows});
+		    			obj.datagrid("beginEdit",index);
+		    			editRow=index;//记录当前被编辑行的索引
+		    		}
+	    		}else{
+	    			$.messager.show({title:'温馨提示',msg:'请选中您要修改的数据',timeout:2000,showType:'slide'});
+	    		}
+	    	}
+	    },{
+	    	text:"删除",
+	    	iconCls:"icon-remove",
+	    	handler:function(){
+	    		//获取选中的行
+	    		var rows=obj.datagrid("getChecked");
+	    		
+	    		if(rows!=undefined){
+	    			$.messager.confirm('信息确认','你确定要删除选定的数据吗',function(rs){
+	    				if(rs){
+	    					var cids="";
+	    					for(var i=0;i<rows.length-1;i++){
+	    						cids+=rows[i].cid+",";
+	    					}
+	    					cids+=rows[i].cid;
+	    					
+	    					//发送请求到数据库删除
+	    					$.post("corporation/deletecor",{uid:cids},function(data){
+	    						if(data>0){
+	    							$.messager.show({title:'成功提示',msg:'社团删除成功',timeout:2000,showType:'slide'});
+	    							rows=null;
+	    							obj.datagrid("reload");//刷新表格
+	    						}else{
+	    							$.messger.alert('失败提示','社团删除失败','error');
+	    						}
+	    					});
+	    				}else{
+	    					return;
+	    				}
+	    			});
+	    		}else{
+	    			$.messager.show({title:'温馨提示',msg:'请选中您要删除的数据',timeout:2000,showType:'slide'});
+	    		}
+	    	}
+	    },{
+	    	text:"保存",
+	    	iconCls:"icon-save",
+	    	handler:function(){
+	    		//先关闭编辑
+	    		obj.datagrid("endEdit",editRow);
+	    		
+	    		//要获取正在被编辑的数据
+	    		var rows=obj.datagrid("getChanges")[0];
+	    		
+	    		if(rows==undefined){//说明没有被保存的数据
+	    			obj.datagrid("rejectChanges");//回滚所有的数据
+	    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+	    			editRow=undefined;
+	    		}else if(rows.tname==""){
+	    			editRow=undefined;
+	    			obj.datagrid("rejectChanges");//回滚所有的数据
+	    		}else{
+	    			//保存到数据库
+	    			$.post(url,rows,function(data){
+	    				if(data>0){
+	    					$.messager.show({
+	    						title:'成功提示',
+	    						msg:'社团信息'+flag+'成功...',
+	    						timeout:2000,
+	    						showType:'slide'
+	    					});
+	    				
+	    					rows=null;
+	    					obj.datagrid("reload");//刷新表格
+	    					editRow=undefined;
+	    					obj.datagrid("rejectChanges");//回滚所有的数据
+	    					obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+	    				}else{
+	    					$.messager.alert('失败提示','社团信息添加失败','error');
+	    				}
+	    			});
+	    		}
+	    	}
+	    },{
+	    	text:"撤销",
+	    	iconCls:"icon-redo",
+	    	handler:function(){
+	    		obj.datagrid("rejectChanges");//回滚所有的数据
+    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+    			editRow=undefined;
+	    	}
+	    }]
 	}); 
 
 </script>

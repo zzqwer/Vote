@@ -27,15 +27,14 @@
 			<h3>用户注册</h3>
 			用户名：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="username" /><br>
 			<br> 密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-				type="password" name="password" /><br>
-			<br>
+				type="password" name="password" /><br/>
+			<br/>
 			<tr>
-				<td>性别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td><label for="radio-1">男</label><input type="radio"
-					id="radio-1" name="sex" value="男" /> <label for="radio-2">女</label><input
-					type="radio" id="radio-2" name="sex" value="女" /><br>
-				<br></td>
-			</tr>
+			<td>性别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td><label for="radio-1">男</label><input type="radio"
+				id="radio-1" name="sex" value="男" /> <label for="radio-2">女</label><input
+				type="radio" id="radio-2" name="sex" value="女" /><br> <br></td>
+		</tr>
 			年龄：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
 				name="age" /><br>
 			<br>
@@ -143,10 +142,11 @@
 			邮箱：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email"
 				name="email" /><br>
 			<br> 联系方式：<input type="text" name="phone" /><br>
-			<br> 
+			<br>
+			 用户头像：<input name="pic" type="file"/>
+			<input type="submit" value="注册" /><br><br>
 		</form>
 
-<input type="submit" value="注册" /><br><br>
 </div>
 </body>
 </html>

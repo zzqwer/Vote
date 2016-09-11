@@ -36,20 +36,20 @@ insert into corporation values(corporation_cid.nextval,'计算机协会',null,'�
   drop table department;
   
   --用户表
-  create table Cuser(
+  create table users(
     usid int primary key,
     username varchar2(50),
-    uspassword varchar2(50),
-    cid int constraint Cuser_cid references corporation(cid),
-     email varchar2(100),
+    password varchar2(50),
+  email varchar2(100),
  sex varchar2(20),
  age int,
  userclass varchar2(100),
  home varchar2(20),
- phone varchar2(100)
+ phone varchar2(100),
+ pic varchar2(30)
   )
-  drop table Cuser;
-  
+  drop table users;
+ 
   select * from users
   --个人信息表
   create table personal(

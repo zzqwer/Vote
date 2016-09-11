@@ -32,14 +32,53 @@ public class Corporationhandler {
 	}
 	@RequestMapping(value="/findAll",method=RequestMethod.POST)
 	public void findAll(HttpServletRequest request,PrintWriter out,ModelMap map){
-		System.out.println("Corporationhandler进来了...");
 		List<Corporation> corporations= corporationService.findAll();
-		System.out.println(corporations);
 		Gson gs = new Gson();
 		String cops = gs.toJson(corporations);
 		out.println(cops);
 		out.flush();
 		out.close();
-	//	return "login";
 	}
+	
+	@RequestMapping(value="/findcorbypage",method=RequestMethod.POST)
+	public void findcorbypage(String page, String rows,HttpServletRequest request,PrintWriter out){
+		page=request.getParameter("page");
+		rows=request.getParameter("rows");
+		System.out.println(page);
+		System.out.println(rows);
+		int totalq=corporationService.findAll().size();
+		List<Corporation> corporations= corporationService.findcorbypage(Integer.valueOf(page), Integer.valueOf(rows));
+		Gson gs = new Gson();
+		String cops = gs.toJson(corporations);
+		String total=gs.toJson(totalq);
+		out.println(total);		
+		out.println(cops);
+		out.flush();
+		out.close();
+		
+	}
+
+	@RequestMapping(value="/insertcor",method=RequestMethod.POST)
+	public void insertcor(Corporation cor,PrintWriter out){
+		out.println(corporationService.insertcor(cor));
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="/deletecor",method=RequestMethod.POST)
+	public void deletecor(String uid,PrintWriter out){
+		String[] cid=uid.split(",");
+		out.println(corporationService.deletecor(cid));
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="/updatecor",method=RequestMethod.POST)
+	public void updatecor(Corporation cor,PrintWriter out){
+		out.println(corporationService.updatecor(cor));
+		out.flush();
+		out.close();
+	}
+	
+	
 }

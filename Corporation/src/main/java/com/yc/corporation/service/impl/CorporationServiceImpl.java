@@ -20,4 +20,27 @@ public class CorporationServiceImpl implements CorporationService {
 		return corporationMapper.findAll();
 	}
 
+	@Override
+	public int insertcor(Corporation cor) {
+	
+		return corporationMapper.insertcor(cor);
+	}
+
+	@Override
+	public int deletecor(String... cid) {
+		
+		return corporationMapper.deletecor(cid);
+	}
+
+	@Override
+	public int updatecor(Corporation cor) {
+		
+		return corporationMapper.updatecor(cor);
+	}
+
+	@Override
+	public List<Corporation> findcorbypage(int page, int rows) {
+		return corporationMapper.findcorbypage(page, rows);
+	}
+
 }

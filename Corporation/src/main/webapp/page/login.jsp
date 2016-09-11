@@ -23,37 +23,21 @@
 
 </head>
 <body>
-
-	<script type="text/javascript">
-		function login() {
-			var username = $('#username').val();
-			var password = $('#password').val();
-			if (username == "") {
-				alert("账号不能为空");
-			}
-			if (password == "" && username != "") {
-				alert("请输入密码");
-			}
-			$.post("user/login", {
-				username : username,
-				password : password
-			}, function(data) {
-				if (data) {
-					location.href = "page/login.jsp"
-				} else {
-					alert("账号或密码错误");
-				}
-			}, "json");
-		}
-	</script>
-	<script type="text/javascript">
-		function exit() {
-			$.get("user/exit", function(data) {
-				alert(11);
-				window.location.href = "page/login.jsp"
-			}, "json")
-		}
-	</script>
+<script type="text/javascript">
+function sendemail(){
+	 var xiehui=$('#xiehui').val();
+	 var emailcontent=$('#emailcontent').val();
+	      $.post("user/email",{xiehui:xiehui,emailcontent:emailcontent},function(data){
+	    	if(data==1){
+	    		alert("邮件发送成功");
+	    		$('#xiehui').val("");
+	    		$('#emailcontent').val("");
+	    	}else{
+	    		alert("邮件发送失败");
+	    	} 
+	     }); 
+}
+</script>
 	<div id="notice">
 		<ul style="float: left;" class="scroll-container">
 			<li><a href="#">1.阿里巴巴首页导航菜单设计制作</a></li>
@@ -75,8 +59,6 @@
 			height="100%" />
 	</div>
 
-
-
 	<div class="menu">
 		<ul id="MenuBar1" class="Menu">
 			<li><a href="#" class="menuclass">协会首页</a></li>
@@ -92,9 +74,6 @@
 				class="menuclass">联系我们</a></li>
 		</ul>
 	</div>
-
-
-
 
 	<div class="menubottom">
 
@@ -135,10 +114,8 @@
 				</form>
 			</div>
 
-
 			<div class="login" id="login">
-				<c:if test="${user.username != null }">你好,${user.username }<a
-						href=javascript:exit()>退出</a>
+				<c:if test="${user.username != null }">你好,${user.username }<a href=javascript:exit()>退出</a>
 				</c:if>
 				<c:if test="${user.username == null }">
 					<form method="post" id="loginfrom" action="">
@@ -197,7 +174,6 @@
 						<li><div class="fastshowdiv">
 								<a href="#">湖工官网</a>
 							</div></li>
-
 					</ul>
 				</div>
 				<div class="neartop">
@@ -327,27 +303,26 @@
 				<div class="chattop">
 					<b>会长信箱</b>
 				</div>
-				<form action="user/email" method="Post">
-					<div class="mail">
-						<div class="mailleft">
-							<select name="shetuan" class="option">
-								<option value="tips">选择社团</option>
-								<option value="3061782748@qq.com">青年志愿者协会</option>
-								<option value="18216021360@163.com">文艺爱好者协会</option>
-								<option value="18216021360@163.com">书画协会</option>
-								<option value="18216021360@163.com">体育爱好者协会</option>
-								<option value="18216021360@163.com">职业发展与创业就业协会</option>
-								<option value="18216021360@163.com">计算机协会</option>
-								<option value="18216021360@163.com">英语协会</option>
-							</select>
-							<textarea class="textarea" name="email"></textarea>
-						</div>
-						<div class="mailright">
-
-							<input type="submit" value="发送" class="mailbtn" />
-						</div>
+				<form action="" method="post">
+				<div class="mail">
+					<div class="mailleft">
+						<select name="shetuan" class="option" id="xiehui">
+							<option value="tips">选择社团</option>
+							<option value="zz5942011@163.com">青年志愿者协会</option>
+							<option value="623831277@qq.com">文艺爱好者协会</option>
+							<option value="1209614483@qq.com">书画协会</option>
+							<option value="18216021360@163.com">体育爱好者协会</option>
+							<option value="18216021360@163.com">职业发展与创业就业协会</option>
+							<option value="18216021360@163.com">计算机协会</option>
+							<option value="18216021360@163.com">英语协会</option>
+						</select>
+						<textarea class="textarea" name="email" id="emailcontent"></textarea>
 					</div>
-				</form>
+					<div class="mailright">
+						<button type="button" class="mailbtn" onclick="sendemail()">发送</button>
+					</div>
+				</div>
+			</form>
 			</div>
 		</div>
 		<div class="footer">

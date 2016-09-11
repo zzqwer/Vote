@@ -5,4 +5,29 @@
 	<select id="findAll" resultType="Corporation">
 		select * from corporation
 	</select>
+
+	<select id="findcorbypage" resultType="Corporation">
+		select * from (select a.*,rownum rn from(select * from Corporation order by
+		cid)a where rownum&lt;=#{page}*#{rows}) where rn &gt;(#{page}-1)*#{rows}
+	</select>
+
+	<insert id="insertcor" parameterType="Corporation">
+		insert into corporation
+		values(corporation_cid.nextval,#{cname},#{logo},#{teacher},#{head},#{tel},#{email},#{cintroduce})
+	</insert>
+
+	<delete id="deletecor" parameterType="string">
+		delete from corporation where cid in
+		<foreach collection="array" item="cid" open="(" close=")"
+			separator=",">
+			#{cid}
+		</foreach>
+	</delete>
+
+	<update id="updatecor" parameterType="Corporation">
+		update Corporation set
+		cname=#{cname},logo=#{logo},teacher=#{teacher},head=#{head},
+		tel=#{tel},email=#{email},cintroduce=#{cintroduce} where cid =#{cid}
+	</update>
+
 </mapper>

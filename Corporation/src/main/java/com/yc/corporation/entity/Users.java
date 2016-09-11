@@ -12,7 +12,6 @@ public class Users {
 	private String phone;
 	private String pic;
 
-	
 	public Users(String username, String password) {
 		this.username = username;
 		this.password = password;
