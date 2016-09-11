@@ -1,20 +1,9 @@
 package com.yc.corporation.web.handler;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.google.gson.Gson;
 import com.yc.corporation.entity.Admins;
-import com.yc.corporation.entity.Corporation;
 import com.yc.corporation.serivce.AdminService;
 
 @Controller
@@ -34,19 +23,4 @@ public class Adminhandler {
 		}
 		return "forward:/back/manager/main.jsp";
 	}	
-	
-	@ModelAttribute
-	public void modelmap(ModelMap map){
-		map.put("admins",new ArrayList<Admins>());
-	}
-	@RequestMapping(value="/findAll",method=RequestMethod.POST)
-	public void findAll(HttpServletRequest request,PrintWriter out,ModelMap map){
-		List<Admins> admins= adminService.findAll();
-		Gson gs = new Gson();
-		String cops = gs.toJson(admins);
-		System.out.println(cops);
-		out.println(cops);
-		out.flush();
-		out.close();
-	}
 }

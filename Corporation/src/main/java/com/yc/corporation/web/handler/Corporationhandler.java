@@ -41,14 +41,17 @@ public class Corporationhandler {
 	}
 	
 	@RequestMapping(value="/findcorbypage",method=RequestMethod.POST)
-	public void findcorbypage(String page, String rows,HttpServletRequest request,PrintWriter out){
+	public void findcorbypage(String page, String rows,HttpServletRequest request,PrintWriter out,ModelMap map){
 		page=request.getParameter("page");
 		rows=request.getParameter("rows");
 		System.out.println(page);
 		System.out.println(rows);
 		List<Corporation> corporations= corporationService.findcorbypage(Integer.valueOf(page), Integer.valueOf(rows));
 		Gson gs = new Gson();
-		String cops = gs.toJson(corporations);
+		int tt=corporationService.findAll().size();
+		map.put("rows", corporations);
+		map.put("total", tt);
+		String cops = gs.toJson(map);
 		out.println(cops);
 		out.flush();
 		out.close();
