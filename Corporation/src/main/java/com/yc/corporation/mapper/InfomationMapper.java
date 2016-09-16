@@ -2,6 +2,7 @@ package com.yc.corporation.mapper;
 
 import java.util.List;
 
+import com.yc.corporation.entity.Baoming;
 import com.yc.corporation.entity.Infomation;
 
 public interface InfomationMapper {
@@ -12,4 +13,6 @@ public interface InfomationMapper {
 	List<Infomation> findglory();
 	List<Infomation> finddiscuss();
 	List<Infomation> findboutique();
+	Boolean addbaoming(Baoming bm);
+	int addcount(String aname);
 }

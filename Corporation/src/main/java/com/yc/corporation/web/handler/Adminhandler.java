@@ -34,10 +34,7 @@ public class Adminhandler {
 		return "forward:/back/manager/main.jsp";
 	}	
 
-	@ModelAttribute
-	public void modelmap(ModelMap map){
-		map.put("admins",new ArrayList<Admins>());
-	}
+	
 	@RequestMapping(value="/findAll",method=RequestMethod.POST)
 	public void findAll(HttpServletRequest request,PrintWriter out,ModelMap map){
 		List<Admins> admins= adminService.findAll();

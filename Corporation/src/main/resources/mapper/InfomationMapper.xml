@@ -9,8 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 根据id查找活动预告内容 -->
 	<select id="findactivebyid" parameterType="int" resultType="Infomation">
-		select * from infomation where infotype='activeannounced' and
-		infoid=#{infoid}
+		select * from infomation where  infoid=#{infoid}
 	</select>
 	<!-- 查找网站公告内容 -->
 	<select id="findwebnotice" resultType="Infomation">
@@ -36,5 +35,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findboutique" resultType="Infomation">
 	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='Boutique' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
-
+	
+    <!-- 查找所以可报名活动的活动名 -->
+    <select id="findallactive" resultType="Active">
+    select * from active
+    </select>
+    
+    <!-- 添加报名者的信息 -->
+    <insert id="addbaoming"  parameterType="Baoming">
+         insert into baoming values(baoming_bid.nextval,#{aname},#{bclass},#{bname},#{tel})
+    </insert>
+    <!-- 报名成功活动人数加1 -->
+    <update id="addcount" parameterType="String">
+    update active set acount=acount+1 where aname=#{aname}
+    </update>     
 </mapper>

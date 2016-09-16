@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yc.corporation.entity.Baoming;
 import com.yc.corporation.entity.Infomation;
 import com.yc.corporation.mapper.InfomationMapper;
 import com.yc.corporation.serivce.InfomatiomSerivce;
@@ -32,26 +33,32 @@ public class InfomatiomSerivceImpl implements InfomatiomSerivce{
 
 	@Override
 	public List<Infomation> finddongtai() {
-		// TODO Auto-generated method stub
 		return infomationMapper.finddongtai();
 	}
 
 	@Override
 	public List<Infomation> findglory() {
-		// TODO Auto-generated method stub
 		return infomationMapper.findglory();
 	}
 
 	@Override
 	public List<Infomation> finddiscuss() {
-		// TODO Auto-generated method stub
 		return infomationMapper.finddiscuss();
 	}
 
 	@Override
 	public List<Infomation> findboutique() {
-		// TODO Auto-generated method stub
 		return infomationMapper.findboutique();
+	}
+
+	@Override
+	public Boolean addbaoming(Baoming bm) {
+		return infomationMapper.addbaoming(bm);
+	}
+
+	@Override
+	public int addcount(String aname) {
+		return infomationMapper.addcount(aname);
 	}
 
 }

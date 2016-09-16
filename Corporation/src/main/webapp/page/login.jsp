@@ -17,6 +17,8 @@
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/jquery.kxbdmarquee.js"></script>
 <script type="text/javascript" src="js/infomation.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+
 <script type="text/javascript" src="js/jquery.roundabout.js"></script>
 <script type="text/javascript" src="js/jquery.roundabout-shapes.js"></script>
 
@@ -36,6 +38,13 @@ function sendemail(){
 	    		alert("邮件发送失败");
 	    	} 
 	     }); 
+}
+
+//退出
+function exit(){
+		$.get("user/exit", function(data) {
+			window.location.href = "page/login.jsp"
+		}, "json")
 }
 </script>
 	<div id="notice">
@@ -105,7 +114,6 @@ function sendemail(){
 			</div>
 
 			<div id="search_box">
-
 				<form id="search_form" method="post" action="#">
 					<input type="text" id="s" value="Search" class="swap_value" /> <input
 						type="image"
@@ -115,7 +123,9 @@ function sendemail(){
 			</div>
 
 			<div class="login" id="login">
-				<c:if test="${user.username != null }">你好,${user.username }<a href=javascript:exit()>退出</a>
+				<c:if test="${user.username != null }">你好,${user.username }
+				<a href="javascript:exit()">退出</a>
+				<img src="images/${user.pic }"/>
 				</c:if>
 				<c:if test="${user.username == null }">
 					<form method="post" id="loginfrom" action="">

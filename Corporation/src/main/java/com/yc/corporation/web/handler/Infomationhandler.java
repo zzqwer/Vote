@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
+import com.yc.corporation.entity.Baoming;
 import com.yc.corporation.entity.Infomation;
 import com.yc.corporation.serivce.InfomatiomSerivce;
 
@@ -43,8 +45,6 @@ public class Infomationhandler {
 		out.flush();
 		out.close();
 	}
-	
-	 
 
 	@RequestMapping(value="/dongtai")
 	public void Getdongtai(PrintWriter out){
@@ -63,7 +63,6 @@ public class Infomationhandler {
 		out.close();
 	}
 
-
 	@RequestMapping(value="/discuss")
 	public void GetDiscuss(PrintWriter out){
 		List<Infomation> wn=is.finddiscuss();
@@ -72,6 +71,7 @@ public class Infomationhandler {
 		out.flush();
 		out.close();
 	}
+	
 	@RequestMapping(value="/boutique")
 	public void GetBoutique(PrintWriter out){
 		List<Infomation> wn=is.findboutique();
@@ -79,5 +79,14 @@ public class Infomationhandler {
 		out.println(gson.toJson(wn));
 		out.flush();
 		out.close();
+	}
+	
+	@RequestMapping(value="/baoming" ,method=RequestMethod.POST)
+	public String ActiveBaoming(PrintWriter out,Baoming bm,ModelMap map){
+		if (is.addbaoming(bm)){
+			is.addcount(bm.getAname());
+			map.put("msg","<script>alert('报名成功');</script>");
+		}
+		return "qingxie";
 	}
 }
