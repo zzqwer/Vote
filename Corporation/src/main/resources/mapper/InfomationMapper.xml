@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
     <!-- 查找所以可报名活动的活动名 -->
     <select id="findallactive" resultType="Active">
-    select * from active
+    select * from ACTIVE where endtime&lt;(select sysdate from dual)
     </select>
     
     <!-- 添加报名者的信息 -->
@@ -48,5 +48,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 报名成功活动人数加1 -->
     <update id="addcount" parameterType="String">
     update active set acount=acount+1 where aname=#{aname}
-    </update>     
+    </update>   
+    
+    <!-- 查看该活动的报名人员 -->
+    <select id="showactiver" parameterType="String" resultType="Baoming">
+    select * from baoming where aname=#{aname}
+    </select>  
 </mapper>

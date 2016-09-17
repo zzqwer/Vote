@@ -5,6 +5,7 @@
   insert into department values(1,1)
   insert into department values(2,2)
   insert into activity values(1,2)
+  select endtime from ACTIVE where endtime<(select sysdate from dual)
 --报名表
 create table baoming(
 bid int primary key,
@@ -31,8 +32,8 @@ create sequence active_aid start with 1 increment by 1
 create sequence baoming_bid start with 1 increment by 1
     update active set acount=acount+1 where aname='2016-10-10野炊'
 
-insert into active values(active_aid.nextval,'2016-10-10野炊','2016-10-10一整天','大家自备材料自己做饭',
-'天上人间',13142359843,0,to_date('2016-8-28','yyyy-MM-dd'))
+insert into active values(active_aid.nextval,'核辐射大幅度','2016-10-10一整天','大家自备材料自己做饭',
+'天上人间',13142359843,0,to_date('2016-9-16','yyyy-MM-dd'))
 select * from corporation;
   --社团表
   create table corporation(

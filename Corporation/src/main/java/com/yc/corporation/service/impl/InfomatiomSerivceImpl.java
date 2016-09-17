@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yc.corporation.entity.Active;
 import com.yc.corporation.entity.Baoming;
 import com.yc.corporation.entity.Infomation;
 import com.yc.corporation.mapper.InfomationMapper;
@@ -59,6 +60,17 @@ public class InfomatiomSerivceImpl implements InfomatiomSerivce{
 	@Override
 	public int addcount(String aname) {
 		return infomationMapper.addcount(aname);
+	}
+
+	@Override
+	public List<Active> findallactive() {
+		return infomationMapper.findallactive();
+	}
+
+	@Override
+	public List<Baoming> showactiver(String aname) {
+		// TODO Auto-generated method stub
+		return infomationMapper.showactiver(aname);
 	}
 
 }

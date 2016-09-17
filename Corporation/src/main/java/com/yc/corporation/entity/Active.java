@@ -6,6 +6,11 @@ public class Active {
 	private int aid;
 	private String aname;
 	private String atime;
+	@Override
+	public String toString() {
+		return "Active [aid=" + aid + ", aname=" + aname + ", atime=" + atime + ", acontent=" + acontent + ", palce="
+				+ palce + ", tel=" + tel + ", acount=" + acount + ", endtime=" + endtime + "]";
+	}
 	private String acontent;
 	private String palce;
 	private String tel;

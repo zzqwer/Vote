@@ -11,10 +11,12 @@
 <link rel="stylesheet" type="text/css" href="css/highslide.css" />
 <script src="js/show&unshow.js" type="text/jscript"></script>
 <script src="js/d7regular.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jq-main.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/active.js"></script>
 
 </head>
 <body>
-
 <div class="top"> 	
  <img class="logopic" src='images/toplogo.png' width="100%" height="100%"/>
 </div>
@@ -1301,7 +1303,7 @@
    <!---------------------------------------------------协会文档---------------------------------------------------------------->  
       
               <div class="clubrightshow" id="d6">
-                  <img src="images/excel.jpg" class="excel"/><a href="#" >1.阿里巴巴首页导航菜单设计制作</a><span class="rightfloat">2016-08-31</span><<br>
+                  <img src="images/excel.jpg" class="excel"/><a href="#" >1.阿里巴巴首页导航菜单设计制作</a><span class="rightfloat">2016-08-31</span><br>
                   <img src="images/excel.jpg" class="excel"/><a href="#" >2.marquee实现图片向上滚动并带停止功能</a><span class="rightfloat">2016-08-31</span><br>
                   <img src="images/excel.jpg" class="excel"/><a href="#" >3.MSN男人栏目幻灯片鼠标划过显示小图列表</a><span class="rightfloat">2016-08-31</span><br>
                   <img src="images/excel.jpg" class="excel"/><a href="#" >4.jquery实现鼠标划过小图变大图(可实现多张)</a><span class="rightfloat">2016-08-31</span><br>
@@ -1338,7 +1340,7 @@
       <div class="clubrightshow" id="d7">
       	<div class="actregister">
         <form method="post" action="infomation/baoming">
-           <select name="bclass" >
+           <select name="bclass">
                 	<option>选择班级</option>
                     <option>计科1301班</option>
                     <option>计科1302班</option>
@@ -1393,59 +1395,16 @@
             </select> <br>
             <input name="bname" type="text" placeholder="请输入姓名"  /><span></span><br>
             <input name="tel" type="text" placeholder="请输入手机号" /><br>
-            <select name="aname">
+            <select name="aname" class="aname"  onchange="showactiver()">
              	<option>请选择活动</option>
-                <option>会员报名</option>
-                <option>干事报名</option>
-                <option>2016-10-10野炊</option>
-                <option>2016-11-01助学募捐</option>
-                <option>2016-11-15毅行报名</option>
-                <option>2016-11-20活动月闭幕式</option>
-                <option>2016-09-10敬老院之行</option>
-                <option>2016-12-30协会换届大会</option>
-                <option>2016-12-30学期总结大会暨表彰大会</option>
+               
             </select><br>
             <input type="submit" value="提交" style="width:100px;margin-left:120px;"/><!--提交样式-->
             <input type="reset" value="重置" style="width:100px;"/><!--重置样式-->
              </form>
              <div class="departmentbottom">
-            	<ul>
-                	<li><h4>已经报名此活动的人员：</h4></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                    <li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
-                	<li><div class="departmentbottommin"><a href="#"><img src="images/chat3.png"/></a></div></li>
+             <h4>已经报名此活动的人员：</h4>
+            	<ul id="activer">
                 </ul>
             </div>
         </div>
@@ -1775,8 +1734,7 @@
     	</div>
 </div>
 
-</body>
-</html>
+
 <script type="text/javascript">
 	hs.graphicsDir = 'images/graphics/';
 	hs.align = 'center';
@@ -1816,3 +1774,5 @@
 		thumbnailId: 'thumb1'
 	}
 </script>
+</body>
+</html>

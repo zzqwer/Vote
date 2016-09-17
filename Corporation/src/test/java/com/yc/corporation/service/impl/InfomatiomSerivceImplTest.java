@@ -24,6 +24,6 @@ public class InfomatiomSerivceImplTest {
 	
 	@Test
 	public void testfindwebnotice() {
-		System.out.println(infomationSerivce.findboutique());
+		System.out.println(infomationSerivce.findallactive());
 	}
 }

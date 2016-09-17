@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
+import com.yc.corporation.entity.Active;
 import com.yc.corporation.entity.Baoming;
 import com.yc.corporation.entity.Infomation;
 import com.yc.corporation.serivce.InfomatiomSerivce;
@@ -88,5 +89,25 @@ public class Infomationhandler {
 			map.put("msg","<script>alert('报名成功');</script>");
 		}
 		return "qingxie";
+	}
+	
+	@RequestMapping(value="/addaname")
+	public void addaname(PrintWriter out){
+		List<Active> ac=is.findallactive();
+		Gson gson=new Gson();
+		out.println(gson.toJson(ac));
+		System.out.println(gson.toJson(ac));
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="/showactiver")
+	public void showactiver(PrintWriter out,String aname){
+		List<Baoming> ac=is.showactiver(aname);
+		Gson gson=new Gson();
+		out.println(gson.toJson(ac));
+		System.out.println(gson.toJson(ac));
+		out.flush();
+		out.close();
 	}
 }
