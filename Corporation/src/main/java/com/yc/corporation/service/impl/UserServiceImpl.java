@@ -19,22 +19,20 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findUserByNP(user);
 	}
 
-	@Override
-	public boolean register(Users user) {
-	
-		try {
-			return userMapper.insertUsers(user)>0;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		return false;
-	}
 
 	@Override
 	public List<Users> findAlls() {
 		
 		return userMapper.findAll();
+	}
+
+
+
+	@Override
+	public boolean insertUsers(Users user, String filename) {
+		// TODO Auto-generated method stub
+		return userMapper.insertUsers(user, filename);
 	}
 
 }

@@ -8,22 +8,75 @@
 <meta charset="utf-8">
 <title>用户注册</title>
 <style type="text/css">
-.re {
-	margin-left: 570px;
-	margin-top: 40px;
-	width: 280px;
-	height: 600px;
-}
-
-#register {
-	padding-top: 30px;
-}
+.re {margin-left: 570px;margin-top: 40px;width: 280px;height: 1000px;}
+#register {padding-top: 30px;}
+#preview{width:260px;height:190px;border:1px solid #000;overflow:hidden;}
+#imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
 </style>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+                //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 260; 
+          var MAXHEIGHT = 180;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead>';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight )
+            {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                 
+                if( rateWidth > rateHeight )
+                {
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else
+                {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+             
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+</script>     
 </head>
 
 <body> 
 	<div class="re"  style="overflow:hidden">
-		<form id="register"  method="post" action="user/register"  enctype=”multipart/form-data>
+		<form id="register"  action="user/register" method="post" enctype="multipart/form-data"> 
 			<h3>用户注册</h3>
 			用户名：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="username" /><br>
 			<br> 密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
@@ -143,10 +196,26 @@
 				name="email" /><br>
 			<br> 联系方式：<input type="text" name="phone" /><br>
 			<br>
-			 用户头像：<input name="pic" type="file"/>
-			<input type="submit" value="注册" /><br><br>
+			     
+         用户头像：<input type="file" id="dofile" name="filename" onchange="previewImage(this)"/><br />  
+        
+	   <div id="preview">
+       <img id="imghead" width=100% height=100% border=0 src='<%=request.getContextPath()%>'/>
+       </div>
+        <input type="submit" id="btnupload" name="btnupload" value="注册">  <br><br>
 		</form>
+		 <input type="submit"  value="开始上传" onclick="loadPhoto()">  <br><br>
+		 <img src="../../photopics/147419476923946998.jpg">
+		 <script type="text/javascript">
+		 	function loadPhoto(){
+		 		var imageData=$("#imghead").attr("src");
+				var base64Data = imageData.substr(22);
+		    	$.post("user/loadphoto",{"photodata":base64Data},function(data){
+		    		alert(data);
+		    	})
 
+		 	}
+		 </script>
 </div>
 </body>
 </html>

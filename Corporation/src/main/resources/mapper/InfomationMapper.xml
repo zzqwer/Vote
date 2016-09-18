@@ -13,27 +13,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 查找网站公告内容 -->
 	<select id="findwebnotice" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='webnotice' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where 
+	infomation.infotype='webnotice' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找社团动态内容 -->
 	<select id="finddongtai" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='shetuandongtai' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where 
+	infomation.infotype='shetuandongtai' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找社团荣誉内容 -->
 	<select id="findglory" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='glory' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where
+	 infomation.infotype='glory' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找对外交流内容 -->
 	<select id="finddiscuss" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='discuss' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where
+	 infomation.infotype='discuss' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找精品活动内容 -->
 	<select id="findboutique" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='Boutique' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where
+	 infomation.infotype='Boutique' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
     <!-- 查找所以可报名活动的活动名 -->
@@ -54,4 +59,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="showactiver" parameterType="String" resultType="Baoming">
     select * from baoming where aname=#{aname}
     </select>  
+    
+    <!-- 根据输入的 字符进行模糊查询-->
+    <select id="search" parameterType="String" resultType="Infomation">
+    select * from infomation a where  a.title like '%#{search}%' or a.content like '%#{search}%'
+    </select>
 </mapper>

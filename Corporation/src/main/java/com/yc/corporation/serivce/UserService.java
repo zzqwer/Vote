@@ -8,7 +8,7 @@ public interface UserService {
 
     Users login(Users user);
     
-    boolean register(Users user);
+    boolean  insertUsers(Users user, String filename);
     
     List<Users> findAlls();
 }

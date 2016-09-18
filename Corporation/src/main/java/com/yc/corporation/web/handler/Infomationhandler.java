@@ -3,6 +3,7 @@ package com.yc.corporation.web.handler;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -109,5 +110,6 @@ public class Infomationhandler {
 		System.out.println(gson.toJson(ac));
 		out.flush();
 		out.close();
+		
 	}
 }
