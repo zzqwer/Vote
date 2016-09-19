@@ -63,7 +63,7 @@ insert into corporation values(corporation_cid.nextval,'计算机协会',null,'�
   )
   drop table department;
   
-  --用户表
+  --用户表   会员表
   create table users(
     usid int primary key,
     username varchar2(50),
@@ -210,5 +210,58 @@ create table admin(
 )
 insert into admin values(admin_aid.nextval,'计信青协','jxqx','1634556914@qq.com','18274716931','1634556914',2);
 insert into admin values(admin_aid.nextval,'tsh','aa','1634556914@qq.com','18274716931','1634556914',2);
+insert into admin values(admin_aid.nextval,'计信职协','jxzx','1634556914@qq.com','18274716931','1634556914',1);
+insert into admin values(admin_aid.nextval,'计信英协','jxyx','1634556914@qq.com','18274716931','1634556914',1);
 select * from admin;
 select * from admin where aname='tsh' and apwd='aa';
+
+--理事会表
+drop table director;
+create table director(
+  did int primary key,   --理事id
+  dname varchar2(20), 	--理事姓名
+  demail varchar2(100),  --邮箱账号
+  dphone varchar2(11),      --手机号/支付宝账号
+  qq varchar2(20), 			--QQ帐号
+  corporation varchar2(40) ,     --所属协会
+  department varchar2(20) ,      --所属部门
+  place varchar2(20)       --部门职位
+);
+create sequence director_did start with 1 increment by 1;
+select * from director;
+insert into director values(director_did.nextval,'谷禄帅1','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','会长团','会长');
+insert into director values(director_did.nextval,'谷禄帅2','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','会长团','副会长');
+insert into director values(director_did.nextval,'谷禄帅3','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','会长团','副会长');
+insert into director values(director_did.nextval,'谷禄帅4','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','会长团','会助');
+insert into director values(director_did.nextval,'谷禄帅5','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','会长团','会助');
+insert into director values(director_did.nextval,'谷禄帅6','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','办公室','主任');
+insert into director values(director_did.nextval,'谷禄帅7','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','办公室','副主任');
+insert into director values(director_did.nextval,'谷禄帅8','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','办公室','副主任');
+insert into director values(director_did.nextval,'谷禄帅9','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','办公室','干事');
+insert into director values(director_did.nextval,'谷禄帅10','1209614483@qq.com','18216021360','1209614483','青年志愿者协会','办公室','干事');
+
+insert into director values(director_did.nextval,'胡明旺1','543919061@qq.com','15674732978','543919061','职业发展与就业创业协会','会长团','会长');
+insert into director values(director_did.nextval,'胡明旺2','543919061@qq.com','15674732978','543919061','职业发展与就业创业协会','会长团','副会长');
+insert into director values(director_did.nextval,'胡明旺3','543919061@qq.com','15674732978','543919061','职业发展与就业创业协会','会长团','副会长');
+insert into director values(director_did.nextval,'胡明旺4','543919061@qq.com','15674732978','543919061','职业发展与就业创业协会','办公室','主任');
+insert into director values(director_did.nextval,'胡明旺5','543919061@qq.com','15674732978','543919061','职业发展与就业创业协会','办公室','副主任');
+insert into director values(director_did.nextval,'胡明旺6','543919061@qq.com','15674732978','543919061','职业发展与就业创业协会','办公室','副主任');
+insert into director values(director_did.nextval,'胡明旺7','543919061@qq.com','15674732978','543919061','职业发展与就业创业协会','办公室','干事');
+
+--会员表
+create table member(
+  mid int primary key,   --会员id
+  mname varchar2(20), 	--会员姓名
+  memail varchar2(100),  --邮箱账号
+  mphone varchar2(11),      --手机号/支付宝账号
+  qq varchar2(20), 			--QQ帐号
+  corporation varchar2(40) ,     --所属协会
+  pay varchar2(20)					--会费交付情况
+);
+create sequence member_mid start with 1 increment by 1;
+drop table member;
+select * from member;
+insert into member values(member_mid.nextval,'谭生辉','1634556914@qq.com','18274716931','1634556914','青年志愿者协会','true');
+insert into member values(member_mid.nextval,'谷禄帅','1634556914@qq.com','18274716931','1634556914','青年志愿者协会','false');
+insert into member values(member_mid.nextval,'周正','1634556914@qq.com','18274716931','1634556914','职业发展与就业创业协会','true');
+insert into member values(member_mid.nextval,'戴欢','1634556914@qq.com','18274716931','1634556914','职业发展与就业创业协会','false');
