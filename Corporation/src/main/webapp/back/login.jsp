@@ -23,18 +23,7 @@
 			.css("left",($(window).width()-$(".container").width())/2);
 		});
 	});
- 	/* 
-	function adminLogin(){
-		var name=$.trim($("#name").val());
-		var pwd=$.trim($("#pwd").val());
-		 if(name==""){
-			alert("您输入的用户名为空,请重新输入!!!");
-		}else if(name!="tsh" || pwd!="aa"){
-			alert("用户名或密码错误...");
-		}else{
-			location.href="manager/main.jsp";
-		}
-	} */
+ 	
 </script>
 </head>
 <body>

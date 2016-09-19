@@ -183,3 +183,4 @@ create table admin(
 insert into admin values(admin_aid.nextval,'计信青协','jxqx','1634556914@qq.com','18274716931','1634556914',2);
 insert into admin values(admin_aid.nextval,'tsh','aa','1634556914@qq.com','18274716931','1634556914',2);
 select * from admin;
+select * from admin where aname='tsh' and apwd='aa';

@@ -19,7 +19,11 @@ import com.yc.corporation.serivce.AdminService;
 @Controller
 @RequestMapping("/admin")
 public class Adminhandler {
-
+	@ModelAttribute
+	public void modelmap(ModelMap map){
+		map.put("admins",new ArrayList<Admins>());
+	}
+	
 	@Autowired
 	private AdminService adminService;
 
@@ -27,17 +31,13 @@ public class Adminhandler {
 	public String login(Admins admin,ModelMap map){
 		admin=adminService.login(admin);
 		System.out.println(admin);
-		if(admin ==null){//错误
+		if(admin ==null){//错误   || admin.getApwd()=="" || admin.getAname()==""
 			map.put("errorMsg", "<script>alert('您的输入有误,请重新输入!!!');</script>");
 			return "forward:/back/login.jsp";
 		}
 		return "forward:/back/manager/main.jsp";
 	}	
 
-	@ModelAttribute
-	public void modelmap(ModelMap map){
-		map.put("admins",new ArrayList<Admins>());
-	}
 	@RequestMapping(value="/findAll",method=RequestMethod.POST)
 	public void findAll(HttpServletRequest request,PrintWriter out,ModelMap map){
 		List<Admins> admins= adminService.findAll();
