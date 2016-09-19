@@ -26,11 +26,4 @@ function login() {
 	 alert("zc:");
 	 $("#re").style.display="block";
  }
- //退出
-function exit(){
-	function exit() {
-		$.get("user/exit", function(data) {
-			window.location.href = "page/login.jsp"
-		}, "json")
-	}
-}
+

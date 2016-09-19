@@ -9,32 +9,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 根据id查找活动预告内容 -->
 	<select id="findactivebyid" parameterType="int" resultType="Infomation">
-		select * from infomation where infotype='activeannounced' and
-		infoid=#{infoid}
+		select * from infomation where  infoid=#{infoid}
 	</select>
 	<!-- 查找网站公告内容 -->
 	<select id="findwebnotice" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='webnotice' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where 
+	infomation.infotype='webnotice' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找社团动态内容 -->
 	<select id="finddongtai" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='shetuandongtai' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where 
+	infomation.infotype='shetuandongtai' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找社团荣誉内容 -->
 	<select id="findglory" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='glory' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where
+	 infomation.infotype='glory' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找对外交流内容 -->
 	<select id="finddiscuss" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='discuss' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where
+	 infomation.infotype='discuss' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找精品活动内容 -->
 	<select id="findboutique" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where infomation.infotype='Boutique' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	select * from (select rownum rn,a.* from(select *from infomation where
+	 infomation.infotype='Boutique' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
-
+	
+    <!-- 查找所以可报名活动的活动名 -->
+    <select id="findallactive" resultType="Active">
+    select * from ACTIVE where endtime&lt;(select sysdate from dual)
+    </select>
+    
+    <!-- 添加报名者的信息 -->
+    <insert id="addbaoming"  parameterType="Baoming">
+         insert into baoming values(baoming_bid.nextval,#{aname},#{bclass},#{bname},#{tel})
+    </insert>
+    <!-- 报名成功活动人数加1 -->
+    <update id="addcount" parameterType="String">
+    update active set acount=acount+1 where aname=#{aname}
+    </update>   
+    
+    <!-- 查看该活动的报名人员 -->
+    <select id="showactiver" parameterType="String" resultType="Baoming">
+    select * from baoming where aname=#{aname}
+    </select>  
+    
+    <!-- 根据输入的 字符进行模糊查询-->
+    <select id="search" parameterType="String" resultType="Infomation">
+    select * from infomation a where  a.title like '%#{search}%' or a.content like '%#{search}%'
+    </select>
 </mapper>

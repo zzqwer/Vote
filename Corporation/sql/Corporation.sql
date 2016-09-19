@@ -5,7 +5,35 @@
   insert into department values(1,1)
   insert into department values(2,2)
   insert into activity values(1,2)
+  select endtime from ACTIVE where endtime<(select sysdate from dual)
+--报名表
+create table baoming(
+bid int primary key,
+aname varchar2(50), --活动名称
+bclass varchar(20),--报名人班级
+bname varchar(10),
+tel number--联系方式
+)
+select * from baoming
+insert into baoming values(baoming_bid.nextval,'2016-10-10野炊','信息1301','周正',13142359843)
+--活动表
+create table active(
+aid int primary key,
+aname varchar2(50),
+atime varchar2(100), --活动时间
+acontent varchar2(1000),--活动内容
+place varchar(30),--活动地点
+tel number,--咨询电话
+acount int, --报名人数
+endtime date--报名截止日期
+)
+select * from active
+create sequence active_aid start with 1 increment by 1
+create sequence baoming_bid start with 1 increment by 1
+    update active set acount=acount+1 where aname='2016-10-10野炊'
 
+insert into active values(active_aid.nextval,'核辐射大幅度','2016-10-10一整天','大家自备材料自己做饭',
+'天上人间',13142359843,0,to_date('2016-9-16','yyyy-MM-dd'))
 select * from corporation;
   --社团表
   create table corporation(

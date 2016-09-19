@@ -87,7 +87,6 @@
 	    						cids+=rows[i].cid+",";
 	    					}
 	    					cids+=rows[i].cid;
-	    					
 	    					//发送请求到数据库删除
 	    					$.post("corporation/deletecor",{uid:cids},function(data){
 	    						if(data>0){

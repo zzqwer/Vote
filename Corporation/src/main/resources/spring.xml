@@ -69,6 +69,9 @@
 		<property name="prefix" value="/page/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+<!-- 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+ -->	
 
 	<!-- 默认静态资源的请求处理 -->
 	<mvc:default-servlet-handler />

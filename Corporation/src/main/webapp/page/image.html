@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>    
+　　<head> 
+　　　　<meta charset="utf-8">
+       <title>实现图片预览并异步上传</title>
+　　　　<!--引入jquery-->
+　　　　<script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
+　　　　<!--引入ajaxfileupload.js文件-->
+			
+　　　　<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+　　　　<!--这是自己随便搞的css样式-->
+　　　　<link rel="stylesheet" type="text/css" href="../css/myCss01.css"/>
+    </head>
+    <body>
+           <div style="padding-bottom: 7px;">
+                <h4>需要更换图片请点击选择文件按钮然后选择相应图片 </h4>
+                <input type="file" name="image_file" id="image_file" onchange="fileSelectHandler()" />
+            </div>
+　　　　　　　<!--这个div当用户选择的不是规定格式图片时显示错误提示消息-->
+            <divclass="error"></div>
+　　　　　　　
+　　　　　　　<!--这个img用来实现选择图片及时预览-->
+            <img id="preview" style="width: 180px; height: 200px;padding-left:40px;" alt="驾驶员图片" />
+
+
+            <div class="step2">
+                <h3>选择图片之后点击上传</h3>
+                <input type="button" value="上传" onclick="fileUpload();"/>
+            </div>
+
+　　　　　　
+<script type="text/javascript">
+　　var userId; //用户id
+　　function fileSelectHandler() {
+    　　　　// 获取选择的文件
+    　　　　var oFile = $('#image_file')[0].files[0];
+    　　　　// 隐藏错误提示信息
+    　　　　$('.error').hide();
+    　　　　// 检查图片格式 (jpg和png格式)
+    　　　　var rFilter = /^(image\/jpeg|image\/png)$/i;
+    　　　　if (! rFilter.test(oFile.type)) {
+        　　　　　　$('.error').html('请选择正确的图片文件(支持jpg和png格式)').show();
+        　　　　　　//格式不符合规范就将上传按钮隐藏起来
+        　　　　　　$('.step2').hide();
+        　　　　　　return;
+    　　　　}
+    　　　　// 检查文件大小
+    　　　　if (oFile.size > 250 * 1024) {
+        　　　　　　$('.error').html('选择的图片文件过大,请重新选择一张小点的图片').show();
+        　　　　　　//图片太大隐藏上传按钮,让他丫的点不了
+        　　　　　　$('.step2').hide();
+        　　　　　　return;
+    　　　　}
+    
+    　　　　// 获取id=preview中的元素
+    　　　　oImage = document.getElementById('preview');
+    　　　　// HTML5创建FileReader实例读取文件,注意:无论读取成功或失败,方法并不会返回读取结果,这一结果存储在result属性中;
+    　　　　var oReader = new FileReader();
+        　　　　oReader.onload = function(e) {
+        　　　　// e.target.result 包含 DataURL 可以用来当图片使用;
+        　　　　oImage.src = e.target.result;
+ 　　　　//       console.log(oImage.src);
+        　　　　oImage.onload = function () { // 加载事件处理函数
+            　　　　// 显示出class=step2的元素
+            　　　　$('.step2').fadeIn(300);
+        　　　　};
+    　　};
+    　　// 将文件读取为DataURL
+    　　oReader.readAsDataURL(oFile);
+   
+}
+function fileUpload(){
+//	　　console.log(userId);
+// 　　 使用ajaxfileupload.js实现图片上传并及时预览
+    　　$.ajaxFileUpload({
+		    　　　　TYPE:"POST",
+		   　　　　url:'<%=basePath%>baseInfo/imgUpload.do?userId='+userId+'', //将图片上传到服务器端的url携带参数userId(为使每个用户有唯一图片)
+		   　　　　secureuri:false,  //是否启用安全提交
+		   　　　　dataType: 'json',  //返回数据类型  一般是json，如果返回的是字符串则使用text
+		   　　　　fileElementId:'image_file', //表示文件域ID，这是他说是取文件域，<input type="file" id="image_file">
+		   　　　　//提交成功后处理函数      html为返回值，status为执行的状态
+		   　　　　success: function(data,status){
+		       　　　　　　console.log(data.upName);
+		       　　　　　　//改变img标签的src为data.upName(此处应根据从数据库中的图像路径字段查询出来的值赋值)
+		       　　　　　　document.getElementById('preview').src="<%=basePath%>upload/"+data.upName;
+		   　　　　},
+		   　　　　//提交失败处理函数
+		   　　　　error: function (status){
+		       　　　　　　console.log(status);
+		   　　　　}
+	　　});
+　　}
+</script>
+     </body>
+</html>
