@@ -39,4 +39,16 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/css/showmain.css</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/%E6%99%93%E5%B8%85QQ%E4%B8%8B%E8%BD%BD/1209614483/FileRecv/showmain(1).css</locationURI>
+		</link>
+		<link>
+			<name>src/main/webapp/page/show.jsp</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/%E6%99%93%E5%B8%85QQ%E4%B8%8B%E8%BD%BD/1209614483/FileRecv/show(1).jsp</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
