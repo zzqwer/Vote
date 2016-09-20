@@ -32,8 +32,7 @@ create sequence active_aid start with 1 increment by 1
 create sequence baoming_bid start with 1 increment by 1
     update active set acount=acount+1 where aname='2016-10-10野炊'
 
-insert into active values(active_aid.nextval,'核辐射大幅度','2016-10-10一整天','大家自备材料自己做饭',
-'天上人间',13142359843,0,to_date('2016-9-16','yyyy-MM-dd'))
+insert into active values(active_aid.nextval,'核辐射大幅度','2016-10-10一整天','大家自备材料自己做饭','天上人间',13142359843,0,to_date('2016-9-16','yyyy-MM-dd'));
 select * from corporation;
   --社团表
   create table corporation(
@@ -90,12 +89,12 @@ insert into corporation values(corporation_cid.nextval,'计算机协会',null,'�
 drop table personal;
 --活动表
 
---信息表
+--信息表    新闻动态
 create table infomation(
    infoid int primary key,
    title varchar2(200),  --信息标题
    infodate date, --日期
-   content varchar2(2000),
+   content varchar2(2000),  --内容
    infotype varchar2(20), --信息的类型
    club varchar2(20) --发布该信息的社团
 )
@@ -178,6 +177,29 @@ insert into infomation values(info_infoid.nextval,'精品活动8',to_date('2016-
 insert into infomation values(info_infoid.nextval,'精品活动9',to_date('2016-8-28','yyyy-MM-dd'),'精品活动9内容','Boutique','qingxie');
 insert into infomation values(info_infoid.nextval,'精品活动10',to_date('2016-8-28','yyyy-MM-dd'),'精品活动10内容','Boutique','qingxie');
 insert into infomation values(info_infoid.nextval,'精品活动11',to_date('2016-8-28','yyyy-MM-dd'),'精品活动11内容','Boutique','qingxie');
+
+insert into infomation values(info_infoid.nextval,'近期活动1',to_date('2016-9-19','yyyy-MM-dd'),'近期活动内容','近期活动','青年志愿者协会');
+insert into infomation values(info_infoid.nextval,'近期活动2',to_date('2016-9-19','yyyy-MM-dd'),'近期活动内容','近期活动','青年志愿者协会');
+insert into infomation values(info_infoid.nextval,'近期活动3',to_date('2016-9-19','yyyy-MM-dd'),'近期活动内容','近期活动','青年志愿者协会');
+insert into infomation values(info_infoid.nextval,'近期活动4',to_date('2016-9-19','yyyy-MM-dd'),'近期活动内容','近期活动','青年志愿者协会');
+insert into infomation values(info_infoid.nextval,'近期活动5',to_date('2016-9-19','yyyy-MM-dd'),'近期活动内容','近期活动','书画协会');
+insert into infomation values(info_infoid.nextval,'近期活动6',to_date('2016-9-19','yyyy-MM-dd'),'近期活动内容','近期活动','书画协会');
+insert into infomation values(info_infoid.nextval,'近期活动7',to_date('2016-9-19','yyyy-MM-dd'),'近期活动内容','近期活动','书画协会');
+
+insert into infomation values(info_infoid.nextval,'媒体报道1',to_date('2016-9-19','yyyy-MM-dd'),'媒体报道内容','媒体报道','青年志愿者协会');
+insert into infomation values(info_infoid.nextval,'媒体报道2',to_date('2016-9-19','yyyy-MM-dd'),'媒体报道内容','媒体报道','青年志愿者协会');
+insert into infomation values(info_infoid.nextval,'媒体报道3',to_date('2016-9-19','yyyy-MM-dd'),'媒体报道内容','媒体报道','青年志愿者协会');
+insert into infomation values(info_infoid.nextval,'媒体报道4',to_date('2016-9-19','yyyy-MM-dd'),'媒体报道内容','媒体报道','书画协会');
+insert into infomation values(info_infoid.nextval,'媒体报道5',to_date('2016-9-19','yyyy-MM-dd'),'媒体报道内容','媒体报道','书画协会');
+insert into infomation values(info_infoid.nextval,'媒体报道6',to_date('2016-9-19','yyyy-MM-dd'),'媒体报道内容','媒体报道','书画协会');
+
+insert into infomation values(info_infoid.nextval,'校园新闻1',to_date('2016-9-19','yyyy-MM-dd'),'校园新闻内容','校园新闻','广播站');
+insert into infomation values(info_infoid.nextval,'校园新闻2',to_date('2016-9-19','yyyy-MM-dd'),'校园新闻内容','校园新闻','广播站');
+insert into infomation values(info_infoid.nextval,'校园新闻3',to_date('2016-9-19','yyyy-MM-dd'),'校园新闻内容','校园新闻','广播站');
+insert into infomation values(info_infoid.nextval,'校园新闻4',to_date('2016-9-19','yyyy-MM-dd'),'校园新闻内容','校园新闻','广播站');
+insert into infomation values(info_infoid.nextval,'校园新闻5',to_date('2016-9-19','yyyy-MM-dd'),'校园新闻内容','校园新闻','广播站');
+insert into infomation values(info_infoid.nextval,'校园新闻6',to_date('2016-9-19','yyyy-MM-dd'),'校园新闻内容','校园新闻','广播站');
+select * from infomation where infotype='近期活动'
   --客服表
   create table customservice(
   csid int primary key,

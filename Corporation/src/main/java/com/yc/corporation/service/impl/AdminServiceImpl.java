@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	@Override
 	public List<Admins> findAll() {
-		System.out.println("AdminServiceImpl进来了...");
+		//System.out.println("AdminServiceImpl进来了...");
 		return adminMapper.findAll();
 	}
 

@@ -3,7 +3,6 @@ package com.yc.corporation.web.handler;
 import java.io.PrintWriter;
 import java.util.List;
 
-import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +20,6 @@ import com.yc.corporation.serivce.InfomatiomSerivce;
 public class Infomationhandler {
 	@Autowired
 	private InfomatiomSerivce is;
-	
 	
 	@RequestMapping("/activeannounced")
 	public void getListAll(PrintWriter out){
@@ -110,6 +108,21 @@ public class Infomationhandler {
 		System.out.println(gson.toJson(ac));
 		out.flush();
 		out.close();
-		
+	}
+	/*@ModelAttribute
+	public void modelmap(ModelMap map){
+		map.put("infomations",new ArrayList<Infomation>());
+	}
+	*/
+	@RequestMapping(value="/findRecently",method=RequestMethod.POST)
+	public void findRecently(PrintWriter out,String infotype){
+		System.out.println("infotype"+infotype);
+		List<Infomation> infomations= is.findRecently(infotype);
+		Gson gs = new Gson();
+		String cops = gs.toJson(infomations);
+		System.out.println(cops);
+		out.println(cops);
+		out.flush();
+		out.close();
 	}
 }

@@ -17,7 +17,6 @@ public class InfomatiomSerivceImpl implements InfomatiomSerivce{
 
 	@Override
 	public List<Infomation> Activeannounced() {
-
 		return infomationMapper.findannounced();
 	}
 
@@ -69,8 +68,12 @@ public class InfomatiomSerivceImpl implements InfomatiomSerivce{
 
 	@Override
 	public List<Baoming> showactiver(String aname) {
-		// TODO Auto-generated method stub
 		return infomationMapper.showactiver(aname);
+	}
+
+	@Override
+	public List<Infomation> findRecently(String infotype) {
+		return infomationMapper.findRecently(infotype);
 	}
 
 }

@@ -20,4 +20,6 @@ public interface InfomationMapper {
 	int addcount(String aname);
 	List<Active>findallactive();
 	List<Baoming>showactiver(@Param("aname")String aname);
+	
+	List<Infomation> findRecently(String infotype);
 }

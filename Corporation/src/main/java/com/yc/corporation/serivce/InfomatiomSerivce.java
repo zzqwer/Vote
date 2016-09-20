@@ -24,5 +24,7 @@ public interface InfomatiomSerivce {
 	List<Active>findallactive();
 	List<Baoming>showactiver(String aname);
 
+	List<Infomation> findRecently(String infotype);
+
 
 }
