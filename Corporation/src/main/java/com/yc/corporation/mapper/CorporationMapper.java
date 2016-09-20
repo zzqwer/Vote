@@ -13,5 +13,7 @@ public interface CorporationMapper {
     int deletecor(String... cid);
     int updatecor(Corporation cor);
     List<Corporation>findcorbypage(@Param("page")int page,@Param("rows")int rows);
+    
+	List<Corporation> findConnectionWay();
 
 }

@@ -11,5 +11,7 @@ public interface CorporationService {
 	int deletecor(String... cid);
 	int updatecor(Corporation cor);
     List<Corporation>findcorbypage(int page,int rows);
+    
+	List<Corporation> findConnectionWay();
 
 }

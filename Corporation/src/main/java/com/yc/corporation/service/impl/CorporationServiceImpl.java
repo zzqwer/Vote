@@ -43,4 +43,9 @@ public class CorporationServiceImpl implements CorporationService {
 		return corporationMapper.findcorbypage(page, rows);
 	}
 
+	@Override
+	public List<Corporation> findConnectionWay() {
+		return corporationMapper.findConnectionWay();
+	}
+
 }

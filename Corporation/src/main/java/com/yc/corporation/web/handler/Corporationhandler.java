@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 import com.yc.corporation.entity.Corporation;
+import com.yc.corporation.entity.Director;
 import com.yc.corporation.serivce.CorporationService;
 
 @Controller
@@ -80,5 +81,17 @@ public class Corporationhandler {
 		out.close();
 	}
 	
+	
+	@RequestMapping(value="/findConnectionWay",method=RequestMethod.POST)
+	public void findConnectionWay(PrintWriter out,ModelMap map){
+		List<Corporation> corporations= corporationService.findConnectionWay();
+		Gson gs = new Gson();
+		String cops = gs.toJson(corporations);
+		System.out.println(cops);
+		out.println(cops);
+		out.flush();
+		out.close();
+		
+	}
 	
 }

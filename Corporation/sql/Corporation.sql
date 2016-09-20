@@ -45,6 +45,7 @@ select * from corporation;
     email varchar2(200),  --官方联系邮箱
     cintroduce clob --社团简介 
   );
+  select cid,cname,head,tel,email from CORPORATION;
 create sequence corporation_cid start with 1 increment by 1;
 insert into corporation values(corporation_cid.nextval,'青年志愿者协会',null,'彭伟','谷禄帅','18216021360','1209614483@qq.com','');
 insert into corporation values(corporation_cid.nextval,'书画协会',null,'彭伟','谷禄帅','18216021360','1209614483@qq.com','');
@@ -287,3 +288,6 @@ insert into member values(member_mid.nextval,'谭生辉','1634556914@qq.com','18
 insert into member values(member_mid.nextval,'谷禄帅','1634556914@qq.com','18274716931','1634556914','青年志愿者协会','false');
 insert into member values(member_mid.nextval,'周正','1634556914@qq.com','18274716931','1634556914','职业发展与就业创业协会','true');
 insert into member values(member_mid.nextval,'戴欢','1634556914@qq.com','18274716931','1634556914','职业发展与就业创业协会','false');
+insert into member values(member_mid.nextval,'张三','1634556914@qq.com','18274716931','1634556914','书画协会','false');
+insert into member values(member_mid.nextval,'王五','1634556914@qq.com','18274716931','1634556914','英语协会','true');
+insert into member values(member_mid.nextval,'赵四','1634556914@qq.com','18274716931','1634556914','计算机协会','false');

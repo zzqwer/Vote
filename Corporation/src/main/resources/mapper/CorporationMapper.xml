@@ -30,4 +30,8 @@
 		tel=#{tel},email=#{email},cintroduce=#{cintroduce} where cid =#{cid}
 	</update>
 
+	
+	<select id="findConnectionWay" resultType="Corporation">
+		select cid,cname,head,tel,email from corporation
+	</select>
 </mapper>
