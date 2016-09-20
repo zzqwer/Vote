@@ -27,7 +27,7 @@
 			<li><a href="page/document.jsp" class="menuclass">文档专区</a></li>
 			<li><a href="page/mediareport.jsp" class="menuclass">媒体报道</a></li>
 			<li><a href="page/clubstar.jsp" class="menuclass">协会名人</a></li>
-			<li><a href="clubgrant.jsp" class="menuclass">赞助合作</a></li>
+			<li><a href="page/clubgrant.jsp" class="menuclass">赞助合作</a></li>
 			<li><a target="blank"
 				href="tencent://message/?uin=623831277&Site=potisoft&Menu=yes"
 				class="menuclass">联系我们</a></li>
