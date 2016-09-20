@@ -5,7 +5,7 @@
 	var editRow=undefined;//记录正在被编辑的行
 	var flag;
 	obj=$('#recently_data').datagrid({
-		url:'infomation/findRecently',//远程服务器请求站点
+		url:'infomation/findNews',//远程服务器请求站点
 		method:'POST',   //请求方式
 		queryParams: { 'infotype': '近期活动' },    //请求参数
 		fitColumns:true,//自动适应columns的大小与grid的高度。防止水平滚动
@@ -15,7 +15,7 @@
 		pageNumber:1,//初始页码
 		pageSize:2,//初始分页大小
 		pageList:[2,5,10,15,20,30],//初始分页大小选择列表 
-		sortName:'did',//定义哪个列可以排序
+		sortName:'infoid',//定义哪个列可以排序
 		remoteSort:false,//是否远程定义列，默认为true，这个一定要写
 		striped:true,//显示条纹所有行
 		columns:[[

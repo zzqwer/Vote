@@ -69,4 +69,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="findRecently" parameterType="String" resultType="Infomation">
     	select * from infomation where infotype=#{infotype}
     </select>
+    
+    <!-- 查找所有活动 -->
+    <select id="findAll" parameterType="Infomation" resultType="Infomation">
+    	select * from infomation 
+    </select>
 </mapper>

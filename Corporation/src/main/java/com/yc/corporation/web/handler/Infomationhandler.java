@@ -114,10 +114,22 @@ public class Infomationhandler {
 		map.put("infomations",new ArrayList<Infomation>());
 	}
 	*/
-	@RequestMapping(value="/findRecently",method=RequestMethod.POST)
+	@RequestMapping(value="/findNews",method=RequestMethod.POST)
 	public void findRecently(PrintWriter out,String infotype){
 		System.out.println("infotype"+infotype);
 		List<Infomation> infomations= is.findRecently(infotype);
+		Gson gs = new Gson();
+		String cops = gs.toJson(infomations);
+		System.out.println(cops);
+		
+		out.println(cops);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="/findAll",method=RequestMethod.POST)
+	public void findAll(PrintWriter out){
+		List<Infomation> infomations= is.findAll();
 		Gson gs = new Gson();
 		String cops = gs.toJson(infomations);
 		System.out.println(cops);

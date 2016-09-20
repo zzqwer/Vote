@@ -19,10 +19,10 @@ import com.yc.corporation.serivce.AdminService;
 @Controller
 @RequestMapping("/admin")
 public class Adminhandler {
-	@ModelAttribute
+	/*@ModelAttribute
 	public void modelmap(ModelMap map){
 		map.put("admins",new ArrayList<Admins>());
-	}
+	}*/
 	
 	@Autowired
 	private AdminService adminService;

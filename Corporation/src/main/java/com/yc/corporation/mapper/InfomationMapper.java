@@ -22,4 +22,5 @@ public interface InfomationMapper {
 	List<Baoming>showactiver(@Param("aname")String aname);
 	
 	List<Infomation> findRecently(String infotype);
+	List<Infomation> findAll();
 }

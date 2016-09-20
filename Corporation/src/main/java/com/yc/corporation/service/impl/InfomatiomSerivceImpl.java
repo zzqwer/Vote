@@ -76,4 +76,9 @@ public class InfomatiomSerivceImpl implements InfomatiomSerivce{
 		return infomationMapper.findRecently(infotype);
 	}
 
+	@Override
+	public List<Infomation> findAll() {
+		return infomationMapper.findAll();
+	}
+
 }

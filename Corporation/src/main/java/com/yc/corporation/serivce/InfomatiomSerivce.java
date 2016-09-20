@@ -26,5 +26,7 @@ public interface InfomatiomSerivce {
 
 	List<Infomation> findRecently(String infotype);
 
+	List<Infomation> findAll();
+
 
 }
