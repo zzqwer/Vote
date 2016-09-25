@@ -8,12 +8,16 @@
 <meta charset="utf-8">
 <title>用户注册</title>
 <style type="text/css">
-.re {margin-left: 570px;margin-top: 40px;width: 280px;height: 1000px;}
+body{
+	background: url(images/922769_13086175718akM.jpg);
+	background-size: cover;}
+.re {margin-left: 570px;margin-top: 40px;width: 280px;height: 1500px;}
 #register {padding-top: 30px;}
 #preview{width:260px;height:190px;border:1px solid #000;overflow:hidden;}
 #imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
 </style>
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript">
                 //图片上传预览    IE是用了滤镜。
         function previewImage(file)
@@ -51,8 +55,7 @@
         }
         function clacImgZoomParam( maxWidth, maxHeight, width, height ){
             var param = {top:0, left:0, width:width, height:height};
-            if( width>maxWidth || height>maxHeight )
-            {
+            if( width>maxWidth || height>maxHeight ){
                 rateWidth = width / maxWidth;
                 rateHeight = height / maxHeight;
                  
@@ -75,8 +78,9 @@
 </head>
 
 <body> 
+<img src="../../upload/logo.gif">
 	<div class="re"  style="overflow:hidden">
-		<form id="register"  action="user/register" method="post" enctype="multipart/form-data"> 
+		<form id="register"  action="" method="post" enctype="multipart/form-data"> 
 			<h3>用户注册</h3>
 			用户名：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="username" /><br>
 			<br> 密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
@@ -197,25 +201,35 @@
 			<br> 联系方式：<input type="text" name="phone" /><br>
 			<br>
 			     
-         用户头像：<input type="file" id="dofile" name="filename" onchange="previewImage(this)"/><br />  
+         用户头像：<input type="file" id="pic" name="pics" multiple="multiple" onchange="previewImage(this)"/><br />  
         
 	   <div id="preview">
        <img id="imghead" width=100% height=100% border=0 src='<%=request.getContextPath()%>'/>
        </div>
-        <input type="submit" id="btnupload" name="btnupload" value="注册">  <br><br>
-		</form>
-		 <input type="submit"  value="开始上传" onclick="loadPhoto()">  <br><br>
-		 <img src="../../photopics/147419476923946998.jpg">
-		 <script type="text/javascript">
-		 	function loadPhoto(){
-		 		var imageData=$("#imghead").attr("src");
-				var base64Data = imageData.substr(22);
-		    	$.post("user/loadphoto",{"photodata":base64Data},function(data){
-		    		alert(data);
-		    	})
-
-		 	}
-		 </script>
+       <a  href="javascript:uploadpics()">注册</a>
+<!-- 		 <input type="submit"  value="开始上传" onclick="loadPhoto()">  <br><br>
+ -->		</form>
+		
+	
 </div>
+<script type="text/javascript">
+function uploadpics(){
+	$.ajaxFileUpload({
+		url:"user/uploadpics?"+$("#register").serialize(),
+		secureuri:false,
+		fileElementId:"pic",
+		dataType:"json",
+		success:function(data,status){
+			if(data){
+				alert("注册成功");
+				location.href="page/login.jsp";
+			}else{
+				alert("头像上传失败");
+			}
+		}
+	})
+}
+</script>
+
 </body>
 </html>

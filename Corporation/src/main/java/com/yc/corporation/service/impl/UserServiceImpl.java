@@ -30,9 +30,9 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public boolean insertUsers(Users user, String filename) {
+	public boolean insertUsers(Users user) {
 		// TODO Auto-generated method stub
-		return userMapper.insertUsers(user, filename);
+		return userMapper.insertUsers(user);
 	}
 
 }

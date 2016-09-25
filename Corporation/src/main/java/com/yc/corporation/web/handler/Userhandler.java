@@ -1,14 +1,11 @@
 package com.yc.corporation.web.handler;
 
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
-
-import java.util.Random;
+import java.io.UnsupportedEncodingException;
 
 import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.yc.corporation.entity.Users;
 import com.yc.corporation.serivce.UserService;
 
-import sun.misc.BASE64Decoder;
 
 
 @Controller
@@ -39,11 +36,6 @@ public class Userhandler {
 	private UserService userService;
 	@Autowired
 	private JavaMailSender mailSender;
-	@Autowired
-	private ServletContext servletContext;
-
-	private String filename;
-
 
 	@RequestMapping(value="/email",method=RequestMethod.POST)
 	public void GetEmail(HttpServletRequest request,String emailcontent,String xiehui,PrintWriter out){
@@ -93,45 +85,46 @@ public class Userhandler {
 	}	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public String register(HttpServletRequest request,PrintWriter out,Users user){
-		if(userService.insertUsers(user, filename)){
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(userService.insertUsers(user)){
 			return "login";
 		}
 		return "register";
 	}
-
-	//上传头像
+     
 	@ResponseBody
-	@RequestMapping(value="/loadphoto",method=RequestMethod.POST)
-	public void setPhoto(@RequestParam("photodata") String file,PrintWriter out,Users user){
-		System.out.println(file);
-		@SuppressWarnings("restriction")
-		BASE64Decoder decoder = new BASE64Decoder();
-		byte[] bytes;
-		try {
-			bytes = decoder.decodeBuffer(file);
-			for (int i = 0; i < bytes.length; ++i) {
-				if (bytes[i] < 0) {
-					bytes[i] += 256;
-				}
+	@RequestMapping(value="uploadpics")
+	public void uploadpics(@RequestParam(value="pics",required=false)MultipartFile[] files,HttpServletRequest request,Users user,PrintWriter out) throws IllegalStateException, IOException	{
+		System.out.println("======="+user);
+		request.setCharacterEncoding("utf-8");
+		System.out.println("sasasasasas"+files[0]);
+		String uploadPath = "";
+		String path=request.getServletContext().getRealPath("/")+"../upload";
+		System.out.println("path"+path);
+		for(int i=0;i<files.length;i++){
+			System.out.println("asasa");
+			String fileName=files[i].getOriginalFilename();
+			File targetFile=new File(path,fileName);
+			if(!targetFile.exists()){
+				targetFile.mkdirs();
+			}try {
+				files[i].transferTo(targetFile);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			 filename=new Date().getTime()+""+new Random().nextInt(100000)+".jpg";
-
-			FileOutputStream photopath = new FileOutputStream("C:\\Users\\CEO\\Desktop\\apache-tomcat-7.0.30\\webapps\\photopics\\"+filename);
-			System.out.println("path:"+photopath);
-			photopath.write(bytes); 
-			photopath.flush();
-			photopath.close();
-			
-			out.println("头像上传成功");
-			out.flush();
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			out.println("头像上传失败");
-			out.flush();
-			out.close();
+			uploadPath+="../../upload/"+fileName+",";
+			user.setPic(uploadPath.substring(0,uploadPath.length()-1));
 		}
-		
+		System.out.println(uploadPath+"sasasasa");
+		System.out.println("++++++"+user);
+		userService.insertUsers(user);
+		out.print(1);
+		out.flush();
+		out.close();
 	}
-
 }

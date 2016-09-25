@@ -125,7 +125,7 @@ function exit(){
 			<div class="login" id="login">
 				<c:if test="${user.username != null }">你好,${user.username }
 				<a href="javascript:exit()">退出</a>
-				<img src="images/${user.pic }"/>
+				<img src="${user.pic}"/>
 				</c:if>
 				<c:if test="${user.username == null }">
 					<form method="post" id="loginfrom" action="">
@@ -142,7 +142,7 @@ function exit(){
 						<button id="btnOK" type="button" onclick="login()">登录</button>
 						<input id="btnRE" type="reset" value="重置">
 						<p id="hre">
-							<a href="javascript:showzc()"> 免费注册</a><a href="#"> 忘记密码</a>
+							<a href="page/register.jsp"> 免费注册</a><a href="#"> 忘记密码</a>
 						</p>
 
 					</form>

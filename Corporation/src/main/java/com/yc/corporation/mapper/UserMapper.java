@@ -8,7 +8,7 @@ import com.yc.corporation.entity.Users;
 
 public interface UserMapper {
      Users findUserByNP(Users user);
-     boolean  insertUsers(Users user,@Param("pic") String pic);
+     boolean  insertUsers(Users user);
      List<Users> findAll();
     
 }

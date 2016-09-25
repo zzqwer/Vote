@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.corporation.mapper.PhotoMapper">
+<!-- 	<select id="findUserByNP" parameterType="Users" resultType="Users">
+	 select * from users where  username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+	</select> -->
+	<select id="findAll"  resultType="Photo" >
+	select * from photo
+	</select>
+	
+<!-- 	<insert id="insertUsers"  parameterType="Users">
+	insert into users values(seq_users_usid.nextval,#{username},#{password},#{email},#{sex},#{age},#{userclass},#{home},#{phone},#{pic})
+	
+	</insert> -->
+	<select id="club"  resultType="Photo" >
+		select cname from corporation
+	</select>
+	<insert id="insertPhoto" parameterType="Photo">
+	insert into photo values(photo_pid.nextval,#{pid},#{pclub},#{pname})
+	</insert>
+</mapper>

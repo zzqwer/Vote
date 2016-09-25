@@ -19,10 +19,16 @@
 
 
 	<!-- 注解方式， 指定bean可能出现的位置 -->
-	<context:component-scan base-package="com.yc.corporation"/>
+	<context:component-scan base-package="com.yc.corporation" />
 
 	<!-- 引入外部属性文件 -->
-	<context:property-placeholder location="classpath:db.properties" />   
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	<!-- <property name="defaultEncoding" value="UTF-8" /> 指定所上传文件的总大小,单位字节。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 
+		<property name="maxUploadSize" value="10240000" /> </bean> -->
 
 	<!-- 配置数据源 -->
 
@@ -35,7 +41,7 @@
 		<property name="minIdle" value="${jdbc.minIdle}" />
 		<property name="maxTotal" value="${jdbc.maxTotal}" />
 	</bean>
-	
+
 	<!-- 配制mybatis框架整合 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" /><!-- 数据源 -->
@@ -65,13 +71,14 @@
 	</bean>
 
 	<!-- 响应处理，视图处理器配制 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/page/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-<!-- 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
- -->	
+
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
+		/> -->
 
 	<!-- 默认静态资源的请求处理 -->
 	<mvc:default-servlet-handler />

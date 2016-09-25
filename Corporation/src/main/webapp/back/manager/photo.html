@@ -1,2 +1,190 @@
+
+
+
 <meta charset="utf-8" />
-留影相册
+<table id="photo_data"></table><!-- 留影相册 -->
+
+
+<div id="add_photo" class="easyui-dialog" title="添加新闻"
+	data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true,fit:true">
+	<br />
+	<form action="" style="float: left; padding-left: 20px" enctype="multipart/form-data" >
+		<label>选择协会:</label>
+		<input type="text" multiple="multiple" id="clubphoto" name="photo"/><br/>
+		<label>选择图片:</label><input
+			type="file" multiple="multiple" id="new_pics" name="pics"
+			onchange="previewMultipleImage(this,'new_pic_show')" /><br /> 
+		
+	<a href="javascript:uploadpics()"class="easyui-linkbutton"
+			data-options="iconCls:'icon-add'">上传</a>
+	</form>
+
+	<div
+		style="float: right; width: 400px; height: 250px; margin-right: 20px;">
+		<fieldset id="new_pic_show">
+			<legend>图片预览</legend>
+		</fieldset>
+
+	</div>
+
+</div>
+
+</div>
+
+<script>
+
+	var obj;
+	var editRow=undefined;//记录正在被编辑的行
+	var currentOp;
+	var flag;
+	obj=$('#photo_data').datagrid({
+		url:'photo/findAll',//远程服务器请求站点
+		method:'POST',   //请求方式
+		fitColumns:true,//自动适应columns的大小与grid的高度。防止水平滚动
+		loadMsg:"数据加载中...",//当从远程服务器加载数据的时候，显示的提示消息
+		pagination:true,//显示一个分页工具栏在datagrid下面
+		fit:true,//分页工具栏显示在最下面
+		pageNumber:1,//初始页码
+		pageSize:2,//初始分页大小
+		pageList:[2,5,10,15,20,30],//初始分页大小选择列表 
+		sortName:'pid',//定义哪个列可以排序
+		remoteSort:false,//是否远程定义列，默认为true，这个一定要写
+		striped:true,//显示条纹所有行
+		columns:[[
+			//加的一行checkbox
+		    {field:'pids',width:100,align:'center',checkbox:true},
+		    {field:'pid',title:'相册编号',width:100,align:'center',sortable:true},
+		    {field:'pname',title:'相册',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
+	 ]], toolbar:[{
+	    	text:"添加",
+	    	iconCls:'icon-add',
+	    	handler:function(){
+	    		$('#add_photo').dialog('open');
+	    	}
+},{
+ 	text:"修改",
+ 	iconCls:"icon-edit",
+ 	handler:function(){
+ 		flag="修改";
+ 		url="photo/updatephoto"
+ 		var rows=obj.datagrid("getChecked")[0];
+ 		if(rows!=undefined){
+ 			if(editRow!=undefined){//说明有行正在被编辑
+	    			obj.datagrid("rejectChanges");//回滚所有的数据
+	    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+	    			editRow=undefined;
+	    		}else{
+	    			//获取用户选中的行的索引
+	    			var index=obj.datagrid("getRowIndex",rows);
+	    			console.info(rows);
+	    			obj.datagrid('updateRow',{index:index,row:rows});
+	    			obj.datagrid("beginEdit",index);
+	    			editRow=index;//记录当前被编辑行的索引
+	    		}
+ 		}else{
+ 			$.messager.show({title:'温馨提示',msg:'请选中您要修改的数据',timeout:2000,showType:'slide'});
+ 		}
+ 	}
+ },{
+ 	text:"删除",
+ 	iconCls:"icon-remove",
+ 	handler:function(){
+ 		//获取选中的行
+ 		var rows=obj.datagrid("getChecked");
+ 		
+ 		if(rows!=undefined){
+ 			$.messager.confirm('信息确认','你确定要删除选定的数据吗',function(rs){
+ 				if(rs){
+ 					var cids="";
+ 					for(var i=0;i<rows.length-1;i++){
+ 						cids+=rows[i].cid+",";
+ 					}
+ 					cids+=rows[i].cid;
+ 					//发送请求到数据库删除
+ 					$.post("photo/deletecor",{uid:cids},function(data){
+ 						if(data>0){
+ 							$.messager.show({title:'成功提示',msg:'社团删除成功',timeout:2000,showType:'slide'});
+ 							rows=null;
+ 							obj.datagrid("reload");//刷新表格
+ 						}else{
+ 							$.messger.alert('失败提示','社团删除失败','error');
+ 						}
+ 					});
+ 				}else{
+ 					return;
+ 				}
+ 			});
+ 		}else{
+ 			$.messager.show({title:'温馨提示',msg:'请选中您要删除的数据',timeout:2000,showType:'slide'});
+ 		}
+ 	}
+ },{
+ 	text:"保存",
+ 	iconCls:"icon-save",
+ 	handler:function(){
+ 		//先关闭编辑
+ 		obj.datagrid("endEdit",editRow);
+ 		
+ 		//要获取正在被编辑的数据
+ 		var rows=obj.datagrid("getChanges")[0];
+ 		
+ 		if(rows==undefined){//说明没有被保存的数据
+ 			obj.datagrid("rejectChanges");//回滚所有的数据
+ 			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+ 			editRow=undefined;
+ 		}else if(rows.tname==""){
+ 			editRow=undefined;
+ 			obj.datagrid("rejectChanges");//回滚所有的数据
+ 		}else{
+ 			//保存到数据库
+ 			$.post(url,rows,function(data){
+ 				if(data>0){
+ 					$.messager.show({
+ 						title:'成功提示',
+ 						msg:'社团信息'+flag+'成功...',
+ 						timeout:2000,
+ 						showType:'slide'
+ 					});
+ 				
+ 					rows=null;
+ 					obj.datagrid("reload");//刷新表格
+ 					editRow=undefined;
+ 					obj.datagrid("rejectChanges");//回滚所有的数据
+ 					obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+ 				}else{
+ 					$.messager.alert('失败提示','社团信息添加失败','error');
+ 				}
+ 			});
+ 		}
+ 	}
+ },{
+ 	text:"撤销",
+ 	iconCls:"icon-redo",
+ 	handler:function(){
+ 		obj.datagrid("rejectChanges");//回滚所有的数据
+			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+			editRow=undefined;
+ 	}
+ }]
+}); 
+
+</script>
+<script type="text/javascript">
+function uploadpics(){
+	$.ajaxFileUpload({
+		url:"photo/uploadpics?"+$("#register").serialize(),
+		secureuri:false,
+		fileElementId:"new_pics",
+		dataType:"json",
+		success:function(data,status){
+			if(data){
+			
+				alert("上传成功");
+				location.href="manager/login";
+			}else{
+				alert("上传失败");
+			}
+		}
+	})
+}
+</script>

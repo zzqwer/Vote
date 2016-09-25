@@ -1,0 +1,312 @@
+<table id="news_data"></table>
+
+<div id="add_news" class="easyui-dialog" title="添加新闻"
+	data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true,fit:true">
+	<br />
+	<form action="" style="float: left; padding-left: 20px" enctype="multipart/form-data" >
+		<label>新闻类型:</label><select id="news_newstype" name="tid"></select><br /><br />
+		<label>新闻标题:</label><input type="text" id="news_title"name="title" required="required" /><br /> <br /> 
+		<label>新闻作者:</label><input type="text" id="news_author" name="author" required="required"value="新闻中国" /><br /> <br />
+		<label>发布日期:</label><input type="text" id="news_date" name="mdate" class="easyui-datebox"required="required" /><br /> <br /> 
+		<label>新闻权重:</label><input type="number" id="news_weight" min="0" name="weight"required="required" value="0" /><br /> <br /> 
+		<label>新闻图片:</label><input
+			type="file" multiple="multiple" id="new_pics" name="pics"
+			onchange="previewMultipleImage(this,'new_pic_show')" /><br /> 
+		<label>新闻内容:</label>
+
+		<div>
+			<script type="text/javascript" id="editor"
+				style="width: 800px; height: 300px"></script>
+		</div>
+
+		<a href="javascript:addNewsInfo()" class="easyui-linkbutton"
+			data-options="iconCls:'icon-add'">添加</a>
+	</form>
+
+	<div
+		style="float: right; width: 400px; height: 250px; margin-right: 20px;">
+		<fieldset id="new_pic_show">
+			<legend>图片预览</legend>
+		</fieldset>
+
+	</div>
+
+
+</div>
+
+
+<div id="find_news" class="easyui-dialog" title="组合查询"
+	data-options="iconCls:'icon-search',resizable:true,modal:true,closed:true,fit:true">
+	<br />
+	<form action="" style="float: left; padding-left: 20px" enctype="multipart/form-data" >
+		<label>新闻类型:</label><select id="newstype" name="tid"></select><br /><br />
+		<label>起止日期:</label><input type="text" id="begintime"name="begintime" class="easyui-datebox" /><br /> <br /> 
+		<label>终止日期:</label><input type="text" id="endtime" name="endtime"  class="easyui-datebox"/><br /> <br />
+		<label>关键字:</label><input type="text" id="keyword" name="keyword"  /><br /> <br /> 
+		<br/><br/><br/>
+		<a href="javascript:findNewsInfo()" class="easyui-linkbutton"
+			data-options="iconCls:'icon-search'">查询</a>
+	</form>
+
+</div>
+
+
+<script type="text/javascript">
+	//实例化编辑器
+	var ue=UE.getEditor('editor');
+
+	var obj;
+	var editRow = undefined;//记录当前正在被编辑的行
+	var currentOp;
+	var flag;
+	obj =$('#news_data').datagrid(
+					{url : '../../NewsServlet',
+					queryParams : {op:'findNewsByPagee'},
+					fitColumns : true,
+					striped : true,
+					loadMsg : "数据加载中...",
+					pagination : true,
+					fit : true,
+					pageNumber : 1,
+					pageSize : 5,
+					pageList : [ 2, 5, 10, 20 ],
+					sortName : 'tid',
+					remoteSort : false,
+					columns : [ [ 
+					              {field : 'tid',title : '',width : 100,align : 'center',checkbox : true},
+					              {field : 'nid',title : '新闻编号',width : 80,align : 'center',sortable : true},
+					              {field : 'title',title : '新闻标题',width : 120,align : 'center',sortable : true},
+					              {field : 'author',title : '新闻作者',width : 100,align: 'center' },
+					              {field : 'mdate',title : '发布日期',width : 160,align: 'center' },
+					              {field : 'tname',title : '新闻类型',width : 80,align: 'center' },
+					              {field : 'weight',title : '新闻权重',width : 60,align: 'center' },
+					              {field : 'views',title : '浏览次数',width : 50,align: 'center' },
+					              {field : 'pics',title : '图片',width : 170,align: 'center',
+					            	  formatter:function(value,rowDate,index){
+					            		  if(value!=null){
+					            			  var str="";
+					            			  var pics=value.split(",");
+					            			  if(pics!=null &&  pics!=""){
+					            			  for(var i=0;i<pics.length;i++){
+					            				  str+="<img src='../../"+pics[i]+"'width='60px' height='60px'/>&nbsp;";
+					            			  }
+					            			  return str;
+					            		  }else{
+					            			  return;
+					            		  }
+					            		  }
+					            	  }}, 
+					             
+					   
+					              {field : '_operate',title : '操作',width : 100,align: 'center',
+					            	  formatter:function(value,rowDate,index){
+					            		  var nid=rowDate.nid;
+					            		  var str="";
+					            		  str="<a href='javascript:findNewsMore("+nid+")'>详情</a>";
+					            		  return str;
+					            	  }}
+					        ] ],
+						toolbar : [{text : "添加",iconCls : "icon-add",
+									handler : function() {
+										$('#add_news').dialog('open');
+										$('#news_date').datebox('setValue',myformatter(new Date()));
+									}
+
+								},{
+									text:"删除",iconCls:"icon-remove",
+									handler:function(){
+										//获取选中的行
+										var rows = obj.datagrid("getChecked");
+										if (rows != undefined) {
+											$.messager.confirm("信息确认","您确定要删除选定的数据吗?",
+															function(rs) {
+																if (rs) {
+																	var nids = "";
+																	for (var i = 0; i < rows.length - 1; i++) {
+																		nids += rows[i].nid + ",";
+																	}
+																	nids += rows[i].nid;
+																	//发送请求到数据库
+																	$.post(
+																					"../../NewsServlet",
+																					{op : "delNewsInfo",nid : nids},
+																					function(data) {
+																						if (data > 0) {$.messager.show({
+																										title : "成功提示",
+																										msg : "新闻信息删除成功....",
+																										timeout : 2000,
+																										showType : "slide",
+																									});
+																							rows = null;
+																							obj.datagrid("reload");
+																						} else {
+																							$.messager.alert("失败提示","新闻信息删除失败...","error");
+																						}
+																					});
+																} else {
+																	return;
+																}
+															});
+										} else {
+											$.messager.show({
+												title : "温馨提示",
+												msg : "请选中要删除的数据",
+												timeout : 2000,
+												showType : "slide",
+											});
+										}
+									}
+								},{
+									text:"修改",iconCls:"icon-edit",
+									handler:function(){
+										
+									}
+								},{text : "组合查询",iconCls : "icon-search",
+									handler : function() {
+										$('#find_news').dialog('open');
+									}
+								}]
+					});
+	
+	function findNewsMore(nid){
+		$.post("../../NewsServlet",{op:"findNewsMore",nid:nid},function(data){
+			if(data){
+				location.href="../../front/shownew.jsp";
+			}
+		});
+	}
+	
+	function myformatter(date){
+		var y=date.getFullYear();
+		var m=date.getMonth()+1;
+		var d=date.getDate();
+		return y+"-"+(m<10?('0'+m):m)+"-"+(d<10?('0'+d):d);
+	}
+	
+	
+	$(function(){
+		$.post('../../NewsTypeServlet',{op : 'findAllNewsType'},function(data){
+			var obj=$("#news_newstype");
+			var opt;
+			$.each(data.rows,function(index,item){
+				opt="<option value='"+item.tid+"'>"+item.tname+"</option>";
+				obj.append($(opt));
+			});
+			},"json");
+	});
+	
+	function addNewsInfo(){
+		var tid=$.trim( $("#news_newstype").val() );
+		var title=$.trim( $("#news_title").val() );
+		var author=$.trim( $("#news_author").val() );
+		var mdate=$.trim( $("#news_date").datebox('getValue')  );
+		var weight=$.trim( $("#news_weight").val() );
+		var content=ue.getContent();
+		
+		$.ajaxFileUpload({
+			url:"../../NewsServlet?op=addNewsInfo",
+			secureuri:false,
+			fileElementId:"new_pics",
+			dataType:"json",
+			data:{tid:tid,title:title,author:author,mdate:mdate,weight:weight,content:content},
+			success:function(data,status){
+				if(data>0){
+					$.messager.show({title:'成功提示',msg:"新闻添加成功...",timeout:2000,showType:'slide'});
+					$("#news_newstype").val("");
+					$("#news_title").val("") ;
+					$("#news_author").val("");
+					$("#news_date").datebox('setValue',"") ;
+					$("#news_weight").val("0");
+					
+					$("#news_pics_show").html("");
+					$('#news_data').datagrid('reload');
+					$('#add_news').dialog('close');
+				}else{
+					$.messager.alert("错误提示","新闻添加失败.../n","error")
+				}
+				
+			},
+			error:function(data,status,e){
+				$.messager.alert("错误提示","新闻添加失败...\n"+e,"error")
+			}
+		});
+		
+		
+	};
+	
+
+	$(function(){
+		$.post('../../NewsTypeServlet',{op : 'findAllNewsType'},function(data){
+			var obj=$("#newstype");
+			var opt;
+			$.each(data.rows,function(index,item){
+				opt="<option value='"+item.tid+"'>"+item.tname+"</option>";
+				obj.append($(opt));
+			});
+			},"json");
+	});
+	
+	function findNewsInfo(){
+		var tid=$.trim( $("#newstype").val() );
+		var begintime=$.trim( $("#begintime").datebox('getValue')  );
+		var endtime=$.trim( $("#endtime").datebox('getValue')  );
+		var keyword=$.trim( $("#keyword").val() );
+
+		$.post("../../NewsServlet",{op:"findNewsInfo",tid:tid,begintime:begintime,endtime:endtime,keyword:keyword},function(data){
+			if(data){
+				$("#newstype").val("");
+				$("#begintime").datebox('setValue',"") ;
+				$("#endtime").datebox('setValue',"") ;
+				$("#keyword").val("");
+				$('#find_news').dialog('close');
+				
+				$('#news_data').datagrid(
+						{url : '../../NewsServlet',
+						queryParams : {op:'findNewsInfo',tid:tid,begintime:begintime,endtime:endtime,keyword:keyword},
+						fitColumns : true,
+						striped : true,
+						loadMsg : "数据加载中...",
+						pagination : true,
+						fit : true,
+						sortName : 'tid',
+						remoteSort : false,
+						columns : [ [ 
+						              {field : 'tid',title : '',width : 100,align : 'center',checkbox : true},
+						              {field : 'nid',title : '新闻编号',width : 80,align : 'center',sortable : true},
+						              {field : 'title',title : '新闻标题',width : 120,align : 'center',sortable : true},
+						              {field : 'author',title : '新闻作者',width : 100,align: 'center' },
+						              {field : 'mdate',title : '发布日期',width : 160,align: 'center' },
+						              {field : 'tname',title : '新闻类型',width : 80,align: 'center' },
+						              {field : 'weight',title : '新闻权重',width : 60,align: 'center' },
+						              {field : 'views',title : '浏览次数',width : 50,align: 'center' },
+						              {field : 'pics',title : '图片',width : 170,align: 'center',
+						            	  formatter:function(value,rowDate,index){
+						            		  if(value!=null){
+						            			  var str="";
+						            			  var pics=value.split(",");
+						            			  if(pics!=null &&  pics!=""){
+						            			  for(var i=0;i<pics.length;i++){
+						            				  str+="<img src='../../"+pics[i]+"'width='60px' height='60px'/>&nbsp;";
+						            			  }
+						            			  return str;
+						            		  }else{
+						            			  return;
+						            		  }
+						            		  }
+						            	  }}, 
+						             
+						   
+						              {field : '_operate',title : '操作',width : 100,align: 'center',
+						            	  formatter:function(value,rowDate,index){
+						            		  return "<a href=''>详情</a>"
+						            	  }}
+						        ] ]
+						});
+			}
+		});
+		
+		
+	};
+	
+
+</script>
