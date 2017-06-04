@@ -12,6 +12,17 @@ function show(text){
 			});
 		}
 	}
+	if(text=="部门管理"){
+		if(tabs.tabs('exists',"部门管理")){
+			tabs.tabs('select',"部门管理");
+		}else{
+			tabs.tabs('add',{
+				title:"部门管理",
+				href:"back/manager/department.html",                        
+				closable:true
+			});
+		}
+	}
 	if(text=="管理员管理"){
 		if(tabs.tabs('exists',"管理员管理")){
 			tabs.tabs('select',"管理员管理");
@@ -45,6 +56,28 @@ function show(text){
 			});
 		}
 	}
+	if(text=="用户管理"){
+		if(tabs.tabs('exists',"用户管理")){
+			tabs.tabs('select',"用户管理");
+		}else{
+			tabs.tabs('add',{
+				title:"用户管理",
+				href:"back/manager/users.html",                        
+				closable:true
+			});
+		}
+	}
+	if(text=="活动管理"){
+		if(tabs.tabs('exists',"活动管理")){
+			tabs.tabs('select',"活动管理");
+		}else{
+			tabs.tabs('add',{
+				title:"活动管理",
+				href:"back/manager/active.html",                        
+				closable:true
+			});
+		}
+	}
 	if(text=="近期活动"){
 		if(tabs.tabs('exists',"近期活动")){
 			tabs.tabs('select',"近期活动");
@@ -62,7 +95,7 @@ function show(text){
 		}else{
 			tabs.tabs('add',{
 				title:"所有活动",
-				href:"back/manager/all.html",                        
+				href:"back/manager/informationAll.html",                        
 				closable:true
 			});
 		}
@@ -140,17 +173,6 @@ function show(text){
 			tabs.tabs('add',{
 				title:"赞助商",
 				href:"back/manager/sponsor.html",                        
-				closable:true
-			});
-		}
-	}
-	if(text=="社团联系方式"){
-		if(tabs.tabs('exists',"社团联系方式")){
-			tabs.tabs('select',"社团联系方式");
-		}else{
-			tabs.tabs('add',{
-				title:"社团联系方式",
-				href:"back/manager/connection.html",                        
 				closable:true
 			});
 		}

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="back/css/login.css">
 <script src="back/js/jquery-1.9.1.js"></script>
 <script src="back/js/bootstrap.min.js"></script>
+
 <script>
 	$(function(){ 
 		$(".container").css("position","fixed").css("top",($(window).height()-$(".container").height())/2)
@@ -23,7 +24,24 @@
 			.css("left",($(window).width()-$(".container").width())/2);
 		});
 	});
- 	
+	function adminLogin(){
+		if($("#aname").val().trim()=="" || $("#apwd").val()==""){
+			alert("用户名或密码不能为空！");
+		}else{
+			debugger;
+			$.post("admin/login",{"aname":$("#aname").val().trim(),"apwd":$("#apwd").val()},function(data){
+				if(data==0){
+					alert("用户名或密码错误！");
+					init();
+				}else if(data==-1){
+					alert("该用户正在使用中！");
+					init();
+				}else{
+					location.href="manager/main.jsp";
+				}
+			},"json");
+		}
+	}
 </script>
 </head>
 <body>
@@ -41,10 +59,10 @@
                             
                             <div class="input-group">
                             	<label for="pwd" class="input-group-addon">密&nbsp;&nbsp;&nbsp;码</label>
-                                <input type="password" class="form-control" name="apwd" id="pwd" required  placeholder="请输入密码"/>
+                                <input type="password" class="form-control"  id="pwd" required  placeholder="请输入密码"/>
                             </div>
                             <div class="input-group">
-                            	<input type="submit" value="登陆" class="btn btn-success mybtn"/>
+                            	<input type="submit" value="登陆" class="btn btn-success mybtn" onclick="adminLogin()"/>
                                 <input type="reset" value="重置" class="btn btn-warning mybtn"/>
                             </div>
                             <br/>

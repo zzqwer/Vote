@@ -1,2 +1,48 @@
-<meta charset="utf-8" />
-社团留言
+<meta charset="utf-8" /><html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>无标题页</title>
+    </head>
+<body>
+    <form id="form1" runat="server">
+    <div>   
+   
+        <select id="select" style="width: 147px">
+        
+        </select>
+        <br />
+        <input id="Button2" type="button" value="添加" onclick="return Button2_onclick()" />
+        <input id="Button3" type="button" value="清空" onclick="return Button3_onclick()" /></div>
+    </form>
+</body>
+</html>
+<script language="javascript" type="text/javascript">
+// <!CDATA[
+function Button2_onclick() {
+//向下拉列表添加值
+    var select=document.getElementById("select");
+    var option = new Option('韩国料理','62');
+    select.options.add(option);
+    select.options.add(new Option('韩国料理','62'));
+   
+}
+//循环获得所有值得
+function dis(v)
+{
+    var dr=document.getElementById("DropDownList2");//获得下拉列表
+    for(var i=0;i<dr.length;i++)//循环隐藏
+    {
+        var trID=dr.options[i].value+"_1";
+        document.getElementByIdx_x(trID).style.display="none";
+    }
+    document.getElementByIdx_x(v).style.display="block";//指定显示
+   
+   
+}
+ 
+function Button3_onclick() {
+//清空
+    var select=document.getElementById("select");
+    select.length=0;
+}
+// ]]>
+</script>

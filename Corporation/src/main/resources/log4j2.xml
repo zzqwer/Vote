@@ -9,8 +9,8 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="com.yc.cinema" level="debug"/>
-        <Root level="debug">
+        <Logger name="com.yc.Corporation" level="debug"/>
+        <Root level="error">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="fileLog"/>
         </Root>

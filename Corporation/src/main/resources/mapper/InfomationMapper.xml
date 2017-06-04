@@ -2,76 +2,123 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yc.corporation.mapper.InfomationMapper">
-	<!-- 查找活动预告信息 -->
-	<select id="findannounced" resultType="Infomation">
-		select * from infomation where infotype='activeannounced'
+<mapper namespace="com.yc.corporation.mapper.InformationMapper">
+
+	<!-- 查询所有信息 -->
+	<select id="findAll" resultType="Information">
+			select *from Information 
 	</select>
+	<!-- 查找活动预告信息 -->
+	<select id="findannounced" resultType="Information">
+		<!--  select * from Information where infotype='activeannounced'-->
+			select * from (select rownum rn,a.* from(select *from Information where 
+	Information.infotype='activeannounced' order by infodate desc )a where rownum  &lt;= 5) where rn>0
+	</select>
+	
+	
+	<!-- 查找近期活动 -->
+	<select id="findAllAnnounced" resultType="Information">
+		select * from Information where infotype='activeannounced'
+	</select>
+	
+	
 	<!-- 根据id查找活动预告内容 -->
-	<select id="findactivebyid" parameterType="int" resultType="Infomation">
-		select * from infomation where  infoid=#{infoid}
+	<select id="findactivebyid" parameterType="int" resultType="Information">
+		select * from Information where  infoid=#{infoid}
 	</select>
 	<!-- 查找网站公告内容 -->
-	<select id="findwebnotice" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where 
-	infomation.infotype='webnotice' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	<select id="findwebnotice" resultType="Information">
+	select * from (select rownum rn,a.* from(select *from Information where 
+	Information.infotype='webnotice' order by infodate desc )a where rownum  &lt;= 15) where rn>0
 	</select>
 	
 	<!-- 查找社团动态内容 -->
-	<select id="finddongtai" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where 
-	infomation.infotype='shetuandongtai' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	<select id="finddongtai" resultType="Information">
+	select * from (select rownum rn,a.* from(select *from Information where 
+	Information.infotype='shetuandongtai' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
 	</select>
 	
 	<!-- 查找社团荣誉内容 -->
-	<select id="findglory" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where
-	 infomation.infotype='glory' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	<select id="findglory" resultType="Information">
+	select * from (select rownum rn,a.* from(select *from Information where
+	 Information.infotype='glory' order by infodate desc )a where rownum  &lt;= 15) where rn>0
 	</select>
 	
 	<!-- 查找对外交流内容 -->
-	<select id="finddiscuss" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where
-	 infomation.infotype='discuss' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	<select id="finddiscuss" resultType="Information">
+	select * from (select rownum rn,a.* from(select *from Information where
+	 Information.infotype='discuss' order by infodate desc )a where rownum  &lt;=15 ) where rn>0
 	</select>
 	
 	<!-- 查找精品活动内容 -->
-	<select id="findboutique" resultType="Infomation">
-	select * from (select rownum rn,a.* from(select *from infomation where
-	 infomation.infotype='Boutique' order by infodate desc )a where rownum  &lt;= 7 ) where rn>0
+	<select id="findboutique" resultType="Information">
+	select * from (select rownum rn,a.* from(select *from Information where
+	 Information.infotype='Boutique' order by infodate desc )a where rownum  &lt;=15) where rn>0
 	</select>
 	
     <!-- 查找所以可报名活动的活动名 -->
     <select id="findallactive" resultType="Active">
-    select * from ACTIVE where endtime&lt;(select sysdate from dual)
+    select * from ACTIVE 
     </select>
-    
+    <insert id="insertActive" parameterType="Active">
+    	insert into active values(active_aid.nextval,#{aname},#{atime},#{acontent},#{place},#{tel},#{acount},#{endtime})
+    </insert>
     <!-- 添加报名者的信息 -->
     <insert id="addbaoming"  parameterType="Baoming">
          insert into baoming values(baoming_bid.nextval,#{aname},#{bclass},#{bname},#{tel})
     </insert>
+    
     <!-- 报名成功活动人数加1 -->
     <update id="addcount" parameterType="String">
     update active set acount=acount+1 where aname=#{aname}
     </update>   
     
-    <!-- 查看该活动的报名人员 -->
+    <!-- 查看该活动的报名人员-->
     <select id="showactiver" parameterType="String" resultType="Baoming">
     select * from baoming where aname=#{aname}
+    </select>
+    
+     <!-- 查看该活动的报名人员
+    <select id="showactiver" parameterType="String" resultType="Users">
+    	select * from Users where username=#{username}
     </select>  
-    
+    -->
     <!-- 根据输入的 字符进行模糊查询-->
-    <select id="search" parameterType="String" resultType="Infomation">
-    select * from infomation a where  a.title like '%#{search}%' or a.content like '%#{search}%'
+    <select id="search" parameterType="String" resultType="Information">
+    select * from Information a where  a.title like '%#{search}%' or a.content like '%#{search}%'
     </select>
     
-    <!-- 查找近期活动 -->
-    <select id="findRecently" parameterType="String" resultType="Infomation">
-    	select * from infomation where infotype=#{infotype}
-    </select>
-    
-    <!-- 查找所有活动 -->
-    <select id="findAll" parameterType="Infomation" resultType="Infomation">
-    	select * from infomation 
-    </select>
+    <!-- 后台查看所有信息 -->
+    <select id="findinfobypage" resultType="Information">
+		select * from (select a.*,rownum rn from(select * from Information order by
+		infoid)a where rownum&lt;=#{page}*#{rows}) where rn &gt;(#{page}-1)*#{rows}
+	</select>
+	
+	<select id="findall" resultType="int">
+		select count(infoid) from Information
+	</select>
+	
+	
+	<insert id="insertinfo" parameterType="Information">
+		insert into Information values(info_infoid.nextval,#{title},#{infodate},#{content},#{infotype},#{club})
+	</insert>
+	<!-- 查媒体报道 -->
+	<select id="finmediaReport" resultType="Information">
+		select * from Information where infotype = 'mediaReport'
+	</select>
+	<!-- 查媒体报道 -->
+	<select id="findSchoolNews" resultType="Information">
+		select * from Information where infotype = 'SchoolNews'
+	</select>
+	<delete id="deleteinfo" parameterType="string">
+		delete from Information where infoid in
+		<foreach collection="array" item="infoid" open="(" close=")"
+			separator=",">
+			#{infoid}
+		</foreach>
+	</delete>
+	<update id="updateinfo" parameterType="Information">
+		update Information set
+		title=#{title},infodate=#{infodate},content=#{content},infotype=#{infotype},club=#{club} where infoid =#{infoid}
+	</update>
 </mapper>

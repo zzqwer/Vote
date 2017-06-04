@@ -13,12 +13,11 @@ function showactiver(){
 	$.post("infomation/showactiver",{aname:aname},function(data){
 		var activer="";
 		for(var i=0;i<data.length;i++){	
-			alert(i);
-			if(i<data.length-1){
-				activer+='<a id="2">'+data[i].bname+',</a>';
-			}else{
-				activer+='<a id="1">'+data[i].bname+'</a>';
-			}
+		
+				activer+='<li><img src="../../'+data[i].pic+'" style="width:50%;height:50%;border-radius:10%"/><p style="font-size:10px">'+data[i].userclass+'</p><p style="font-size:10px">'+data[i].username+'</p></li>';
+
+				//activer+='<a id="1">'+data[i].username+'</a>';
+			
 		}
 		$("#activer").html(activer);
 	},"json")

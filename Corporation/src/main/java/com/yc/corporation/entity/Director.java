@@ -1,29 +1,15 @@
 package com.yc.corporation.entity;
 
 public class Director {
-	private int did ;  //理事id
-	private String dname ; 	//理事姓名
-	private String demail ;  //邮箱账号
-	private String dphone ;     //手机号/支付宝账号
-	private String  qq ; 			//QQ帐号
-	private String corporation ;    //所属协会
-	private String department ;      //所属部门
-	private String place ;      //部门职位
-	
-	public Director() {
-	}
 
-	public Director(int did, String dname, String demail, String dphone, String qq, String corporation,
-			String department, String place) {
-		this.did = did;
-		this.dname = dname;
-		this.demail = demail;
-		this.dphone = dphone;
-		this.qq = qq;
-		this.corporation = corporation;
-		this.department = department;
-		this.place = place;
-	}
+	private int did; // 理事id
+	private String dname; // 理事姓名
+	private String demail; // 邮箱账号
+	private String dphone; // 手机号/支付宝账号
+	private String qq; // --QQ帐号
+	private String corporation; // 所属协会
+	private String department; // 所属部门
+	private String place; // 部门职位
 
 	public int getDid() {
 		return did;
@@ -91,9 +77,23 @@ public class Director {
 
 	@Override
 	public String toString() {
-		return "\n\tDirector [did=" + did + ", dname=" + dname + ", demail=" + demail + ", dphone=" + dphone + ", qq=" + qq
+		return "Director [did=" + did + ", dname=" + dname + ", demail=" + demail + ", dphone=" + dphone + ", qq=" + qq
 				+ ", corporation=" + corporation + ", department=" + department + ", place=" + place + "]";
 	}
-	
-	
+
+	public Director() {
+	}
+
+	public Director(int did, String dname, String demail, String dphone, String qq, String corporation,
+			String department, String place) {
+		this.did = did;
+		this.dname = dname;
+		this.demail = demail;
+		this.dphone = dphone;
+		this.qq = qq;
+		this.corporation = corporation;
+		this.department = department;
+		this.place = place;
+	}
+
 }

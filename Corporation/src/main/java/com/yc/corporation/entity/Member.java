@@ -1,25 +1,18 @@
 package com.yc.corporation.entity;
 
 public class Member {
-	private int mid ;  //理事id
-	private String mname ; 	//理事姓名
-	private String memail ;  //邮箱账号
-	private String mphone ;     //手机号/支付宝账号
-	private String qq ; 			//QQ帐号
-	private String corporation ;    //所属协会
-	private String pay ;      //会费交付
-	
-	public Member() {
-	}
+	private int mid;
+	private String mname;
+	private String memail;
+	private String mphone;
+	private String qq;
+	private String corporation;
+	private String pay;
 
-	public Member(int mid, String mname, String memail, String mphone, String qq, String corporation, String pay) {
-		this.mid = mid;
-		this.mname = mname;
-		this.memail = memail;
-		this.mphone = mphone;
-		this.qq = qq;
-		this.corporation = corporation;
-		this.pay = pay;
+	@Override
+	public String toString() {
+		return "Member [mid=" + mid + ", mname=" + mname + ", memail=" + memail + ", mphone=" + mphone + ", qq=" + qq
+				+ ", corporation=" + corporation + ", pay=" + pay + "]";
 	}
 
 	public int getMid() {
@@ -78,11 +71,20 @@ public class Member {
 		this.pay = pay;
 	}
 
-	@Override
-	public String toString() {
-		return "\n\tMember [mid=" + mid + ", mname=" + mname + ", memail=" + memail + ", mphone=" + mphone + ", qq=" + qq
-				+ ", corporation=" + corporation + ", pay=" + pay + "]";
+	public Member(int mid, String mname, String memail, String mphone, String qq, String corporation, String pay) {
+		super();
+		this.mid = mid;
+		this.mname = mname;
+		this.memail = memail;
+		this.mphone = mphone;
+		this.qq = qq;
+		this.corporation = corporation;
+		this.pay = pay;
 	}
-	
-	
+
+	public Member() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }

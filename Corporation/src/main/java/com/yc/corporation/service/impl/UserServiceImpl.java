@@ -11,28 +11,36 @@ import com.yc.corporation.serivce.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
-   @Autowired
-   private UserMapper userMapper;
+	@Autowired
+	private UserMapper userMapper;
 
 	@Override
 	public Users login(Users user) {
 		return userMapper.findUserByNP(user);
 	}
 
-
-
 	@Override
 	public List<Users> findAlls() {
-		
+
 		return userMapper.findAll();
 	}
-
-
 
 	@Override
 	public boolean insertUsers(Users user) {
 		// TODO Auto-generated method stub
 		return userMapper.insertUsers(user);
+	}
+
+	@Override
+	public List<Users> findAll() {
+		// TODO Auto-generated method stub
+		return userMapper.findAll();
+	}
+
+	@Override
+	public Users showHclass(String username) {
+		// TODO Auto-generated method stub
+		return userMapper.showHcalss(username);
 	}
 
 }

@@ -1,2 +1,86 @@
 <meta charset="utf-8" />
-文档专区
+<table id="fileUpload_data"></table>
+<!-- 查看所有信息 -->
+
+<div  id="add_file_upload"class="easyui-dialog" title="添加信息" data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true">
+	<br/>
+		<form action="wordFile/onefile" method="post" style="float:left;padding-left:20px"  enctype="multipart/form-data" target="id_iframe">
+			<iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe> 
+			<label>文档名：</label><input type="file" id="add_file" name="file" required="required" /><br><br>
+			<input type="submit" value="确定上 传"/> 
+		</form><br>
+		<label>社团名：</label><input type="text" id="add_corporation" name="corporation" required="required"/><br/><br/>
+		<label>发布人：</label><input type="text" id="add_cname" name="cname" required="required"/><br/><br/>
+		<input type="submit" value="上 传" onclick="addWord()"/> 
+
+</div>
+<script>
+	var obj;
+	var editRow=undefined;//记录正在被编辑的行
+	var currentOp;
+	var url;
+	var flag;
+	obj=$('#fileUpload_data').datagrid({
+		url:'wordFile/findAll',//远程服务器请求站点findinfobypage
+		method:'POST',   //请求方式
+		fitColumns:true,//自动适应columns的大小与grid的高度。防止水平滚动
+		loadMsg:"数据加载中...",//当从远程服务器加载数据的时候，显示的提示消息
+		pagination:true,//显示一个分页工具栏在datagrid下面
+		fit:true,//分页工具栏显示在最下面
+		pageNumber:1,//初始页码
+		pageSize:5,//初始分页大小
+		pageList:[5,10,15,20,30],//初始分页大小选择列表 
+		sortName:'wid',//定义哪个列可以排序
+		remoteSort:false,//是否远程定义列，默认为true，这个一定要写
+//		striped:true,//显示条纹所有行
+		columns:[[
+			//加的一行checkbox
+		    {field:'wids',width:100,align:'center',checkbox:true},
+		    {field:'wid',title:'文件编号',width:100,align:'center',sortable:true},
+			{field:'wpath',title:'文件名',width:100,align:'left',editor:{type:"text",options:{requires:true}}},
+			{field:'corporation',title:'发布社团',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
+			{field:'cname',title:'发布人',width:100,align:'center',editor:{type:"text",options:{requires:true}}}
+		 ]],
+		 toolbar:[{
+		    	text:"添加",
+		    	iconCls:'icon-add',
+		    	handler:function(){
+		    		$('#add_file_upload').dialog('open');
+		    	}
+       }]
+	}); 
+	function addWord(){
+		debugger;
+		var wpath=$.trim($("#add_file").val());
+		var corporation=$.trim($("#add_corporation").val());
+		var cname=$.trim($("#add_cname").val());
+		$.ajaxFileUpload({
+			url:"wordFile/insertWor",
+			secureuri:false,
+			dataType:"json",
+			data:{wpath:wpath,corporation:corporation,cname:cname},
+			success:function(data,status){
+				if(data>0){
+					if(wpath==null){
+						return;
+					}else{
+						$.messager.show({title:'成功提示',msg:"添加成功...",timeout:2000,showType:'slide'});
+						$("#add_file").val("");
+						$("#add_corporation").val("");
+						$("#add_cname").val("");
+						$('#fileUpload_data').datagrid('reload');
+						$('#add_file_upload').dialog('close');
+					}
+				}else{
+					$.messager.alert("错误提示","信息添加失败...\n","error");
+				}
+			},
+			error:function(data,status,e){
+				$.messager.alert("错误提示","添加失败...\n"+e,"error");
+			}
+		});
+	}
+	
+	
+	
+</script>

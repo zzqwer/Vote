@@ -14,13 +14,13 @@ import com.yc.corporation.serivce.CorporationService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring.xml")
 public class CorporationServiceImplTest {
-	
+
 	@Autowired
-	private CorporationService corService; 
-	
+	private CorporationService corService;
+
 	@Test
 	public void testFindAll() {
-		List<Corporation> co=corService.findAll();
+		List<Corporation> co = corService.findAll();
 		System.out.println(co.size());
 	}
 

@@ -1,181 +1,175 @@
-<table id="news_data"></table>
+<div >
+	<label>ĞÂÎÅÀàĞÍ:</label><select id="select_newstype" name="searchid" ><option value=""></option></select>&nbsp;
+	<label>ĞÂÎÅ±êÌâ:</label><input type="text" id="select_title" name="searchtitle" />
+	<label>¿ªÊ¼ÈÕÆÚ:</label><input type="text" id="starttime" name="searchmdate" class="easyui-datebox" />
+	<label>½áÊøÈÕÆÚ£º</label><input type="text" id="endtime" name="searchmdate2" class="easyui-datebox"  />
+	<a href="javascript:select()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">²éÑ¯</a>
+</div>
 
-<div id="add_news" class="easyui-dialog" title="æ·»åŠ æ–°é—»"
-	data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true,fit:true">
-	<br />
-	<form action="" style="float: left; padding-left: 20px" enctype="multipart/form-data" >
-		<label>æ–°é—»ç±»å‹:</label><select id="news_newstype" name="tid"></select><br /><br />
-		<label>æ–°é—»æ ‡é¢˜:</label><input type="text" id="news_title"name="title" required="required" /><br /> <br /> 
-		<label>æ–°é—»ä½œè€…:</label><input type="text" id="news_author" name="author" required="required"value="æ–°é—»ä¸­å›½" /><br /> <br />
-		<label>å‘å¸ƒæ—¥æœŸ:</label><input type="text" id="news_date" name="mdate" class="easyui-datebox"required="required" /><br /> <br /> 
-		<label>æ–°é—»æƒé‡:</label><input type="number" id="news_weight" min="0" name="weight"required="required" value="0" /><br /> <br /> 
-		<label>æ–°é—»å›¾ç‰‡:</label><input
-			type="file" multiple="multiple" id="new_pics" name="pics"
-			onchange="previewMultipleImage(this,'new_pic_show')" /><br /> 
-		<label>æ–°é—»å†…å®¹:</label>
+<div style="height: 460px"><table id="news_data"></table></div>
 
+<div id="add_news" class="easyui-dialog" title="Ìí¼ÓĞÂÎÅ" data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true,fit:true">
+	<br/>
+	<form action="" style="float:left;padding-left:20px">
+		<label>ĞÂÎÅÀàĞÍ£º</label><select id="news_newstype" name="tid"></select><br/><br/>
+		<label>ĞÂÎÅ±êÌâ£º</label><input type="text" id="news_title" name="title" required="required"/><br><br>
+		<label>ĞÂÎÅ×÷Õß£º</label><input type="text" id="news_author" name="author" required="required" /><br><br>
+		<label>ĞÂÎÅÈÕÆÚ£º</label><input type="text" id="news_date" name="mdate" class="easyui-datebox" required="required"/><br><br>
+		<label>ĞÂÎÅÈ¨ÖØ£º</label><input type="number" id="news_weight" min="0" name=weight required="required" value="0"/><br><br>
+		<label>ĞÂÎÅÍ¼Æ¬£º</label><input type="file" id="news_pics" name="pics" multiple="multiple" onchange="previewMultipleImage(this,'news_pic_show')"/><br><br>
+		<label>ĞÂÎÅÄÚÈİ£º</label>
+		
 		<div>
-			<script type="text/javascript" id="editor"
-				style="width: 800px; height: 300px"></script>
+			<script type="text/plain" id="editor" style="width:800px;height:300px;"></script>
 		</div>
-
-		<a href="javascript:addNewsInfo()" class="easyui-linkbutton"
-			data-options="iconCls:'icon-add'">æ·»åŠ </a>
+		<a href="javascript:addNewsInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Ìí¼Ó</a>
 	</form>
-
-	<div
-		style="float: right; width: 400px; height: 250px; margin-right: 20px;">
-		<fieldset id="new_pic_show">
-			<legend>å›¾ç‰‡é¢„è§ˆ</legend>
+	<div style="float:right;width:360px;margin-right:20px;">
+		<fieldset id="news_pic_show">
+			<legend>Í¼Æ¬Ô¤ÀÀ</legend>
 		</fieldset>
-
 	</div>
-
-
 </div>
-
-
-<div id="find_news" class="easyui-dialog" title="ç»„åˆæŸ¥è¯¢"
-	data-options="iconCls:'icon-search',resizable:true,modal:true,closed:true,fit:true">
-	<br />
-	<form action="" style="float: left; padding-left: 20px" enctype="multipart/form-data" >
-		<label>æ–°é—»ç±»å‹:</label><select id="newstype" name="tid"></select><br /><br />
-		<label>èµ·æ­¢æ—¥æœŸ:</label><input type="text" id="begintime"name="begintime" class="easyui-datebox" /><br /> <br /> 
-		<label>ç»ˆæ­¢æ—¥æœŸ:</label><input type="text" id="endtime" name="endtime"  class="easyui-datebox"/><br /> <br />
-		<label>å…³é”®å­—:</label><input type="text" id="keyword" name="keyword"  /><br /> <br /> 
-		<br/><br/><br/>
-		<a href="javascript:findNewsInfo()" class="easyui-linkbutton"
-			data-options="iconCls:'icon-search'">æŸ¥è¯¢</a>
+<div id="update_news" class="easyui-dialog" title="ĞŞ¸ÄĞÂÎÅ" data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true,fit:true">
+	<br/>
+	<form action="" style="float:left;padding-left:20px">
+		<label>ĞÂÎÅ±àºÅ£º</label><input type="text" id="news_nids" name="nid" required="required"/><br><br>
+		<label>ĞÂÎÅÀàĞÍ£º</label><select id="news_newstypes" name="tid"></select><br/><br/>
+		<label>ĞÂÎÅ±êÌâ£º</label><input type="text" id="news_titles" name="title" required="required"/><br><br>
+		<label>ĞÂÎÅ×÷Õß£º</label><input type="text" id="news_authors" name="author" required="required" /><br><br>
+		<label>ĞÂÎÅÈÕÆÚ£º</label><input type="text" id="news_dates" name="mdate" class="easyui-datebox" required="required"/><br><br>
+		<label>ĞÂÎÅÈ¨ÖØ£º</label><input type="number" id="news_weights" min="0" name=weight required="required" value="0"/><br><br>
+		<label>ĞÂÎÅÍ¼Æ¬£º</label><input type="file" id="news_picss" name="pics" multiple="multiple" onchange="previewMultipleImage(this,'news_pics_shows')"/><br><br>
+		<label>ĞÂÎÅÄÚÈİ£º</label>
+		
+		<div>
+			<script type="text/plain" id="editors" style="width:800px;height:300px;"></script>
+		</div>
+		<a href="javascript:updateNewsInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Ìí¼Ó</a>
 	</form>
-
+	<div style="float:right;width:360px;margin-right:20px;">
+		<fieldset id="news_pics_shows">
+			<legend>Í¼Æ¬Ô¤ÀÀ</legend>
+		</fieldset>
+	</div>
 </div>
 
+<script>
 
-<script type="text/javascript">
-	//å®ä¾‹åŒ–ç¼–è¾‘å™¨
+	//ÊµÀı»¯±à¼­Æ÷
 	var ue=UE.getEditor('editor');
-
+	var ue1=UE.getEditor('editors');
 	var obj;
-	var editRow = undefined;//è®°å½•å½“å‰æ­£åœ¨è¢«ç¼–è¾‘çš„è¡Œ
-	var currentOp;
-	var flag;
-	obj =$('#news_data').datagrid(
-					{url : '../../NewsServlet',
-					queryParams : {op:'findNewsByPagee'},
-					fitColumns : true,
-					striped : true,
-					loadMsg : "æ•°æ®åŠ è½½ä¸­...",
-					pagination : true,
-					fit : true,
-					pageNumber : 1,
-					pageSize : 5,
-					pageList : [ 2, 5, 10, 20 ],
-					sortName : 'tid',
-					remoteSort : false,
-					columns : [ [ 
-					              {field : 'tid',title : '',width : 100,align : 'center',checkbox : true},
-					              {field : 'nid',title : 'æ–°é—»ç¼–å·',width : 80,align : 'center',sortable : true},
-					              {field : 'title',title : 'æ–°é—»æ ‡é¢˜',width : 120,align : 'center',sortable : true},
-					              {field : 'author',title : 'æ–°é—»ä½œè€…',width : 100,align: 'center' },
-					              {field : 'mdate',title : 'å‘å¸ƒæ—¥æœŸ',width : 160,align: 'center' },
-					              {field : 'tname',title : 'æ–°é—»ç±»å‹',width : 80,align: 'center' },
-					              {field : 'weight',title : 'æ–°é—»æƒé‡',width : 60,align: 'center' },
-					              {field : 'views',title : 'æµè§ˆæ¬¡æ•°',width : 50,align: 'center' },
-					              {field : 'pics',title : 'å›¾ç‰‡',width : 170,align: 'center',
-					            	  formatter:function(value,rowDate,index){
-					            		  if(value!=null){
-					            			  var str="";
-					            			  var pics=value.split(",");
-					            			  if(pics!=null &&  pics!=""){
-					            			  for(var i=0;i<pics.length;i++){
-					            				  str+="<img src='../../"+pics[i]+"'width='60px' height='60px'/>&nbsp;";
-					            			  }
-					            			  return str;
-					            		  }else{
-					            			  return;
-					            		  }
-					            		  }
-					            	  }}, 
-					             
-					   
-					              {field : '_operate',title : 'æ“ä½œ',width : 100,align: 'center',
-					            	  formatter:function(value,rowDate,index){
-					            		  var nid=rowDate.nid;
-					            		  var str="";
-					            		  str="<a href='javascript:findNewsMore("+nid+")'>è¯¦æƒ…</a>";
-					            		  return str;
-					            	  }}
-					        ] ],
-						toolbar : [{text : "æ·»åŠ ",iconCls : "icon-add",
-									handler : function() {
-										$('#add_news').dialog('open');
-										$('#news_date').datebox('setValue',myformatter(new Date()));
-									}
+	var editRow=undefined;//¼ÇÂ¼ÕıÔÚ±»±à¼­µÄĞĞ
 
-								},{
-									text:"åˆ é™¤",iconCls:"icon-remove",
-									handler:function(){
-										//è·å–é€‰ä¸­çš„è¡Œ
-										var rows = obj.datagrid("getChecked");
-										if (rows != undefined) {
-											$.messager.confirm("ä¿¡æ¯ç¡®è®¤","æ‚¨ç¡®å®šè¦åˆ é™¤é€‰å®šçš„æ•°æ®å—?",
-															function(rs) {
-																if (rs) {
-																	var nids = "";
-																	for (var i = 0; i < rows.length - 1; i++) {
-																		nids += rows[i].nid + ",";
-																	}
-																	nids += rows[i].nid;
-																	//å‘é€è¯·æ±‚åˆ°æ•°æ®åº“
-																	$.post(
-																					"../../NewsServlet",
-																					{op : "delNewsInfo",nid : nids},
-																					function(data) {
-																						if (data > 0) {$.messager.show({
-																										title : "æˆåŠŸæç¤º",
-																										msg : "æ–°é—»ä¿¡æ¯åˆ é™¤æˆåŠŸ....",
-																										timeout : 2000,
-																										showType : "slide",
-																									});
-																							rows = null;
-																							obj.datagrid("reload");
-																						} else {
-																							$.messager.alert("å¤±è´¥æç¤º","æ–°é—»ä¿¡æ¯åˆ é™¤å¤±è´¥...","error");
-																						}
-																					});
-																} else {
-																	return;
-																}
-															});
-										} else {
-											$.messager.show({
-												title : "æ¸©é¦¨æç¤º",
-												msg : "è¯·é€‰ä¸­è¦åˆ é™¤çš„æ•°æ®",
-												timeout : 2000,
-												showType : "slide",
-											});
-										}
-									}
-								},{
-									text:"ä¿®æ”¹",iconCls:"icon-edit",
-									handler:function(){
-										
-									}
-								},{text : "ç»„åˆæŸ¥è¯¢",iconCls : "icon-search",
-									handler : function() {
-										$('#find_news').dialog('open');
-									}
-								}]
-					});
-	
-	function findNewsMore(nid){
-		$.post("../../NewsServlet",{op:"findNewsMore",nid:nid},function(data){
-			if(data){
-				location.href="../../front/shownew.jsp";
+	obj=$('#news_data').datagrid({
+		url:'../../newsServlet',
+		queryParams:{op:'findNewsByPage'},
+		fitColumns:true,
+		loadMsg:"Êı¾İ¼ÓÔØÖĞ...",
+		pagination:true,
+		fit:true,
+		pageNumber:1,
+		pageSize:5,
+		pageList:[5,10,15,20],
+		sortName:'tid',
+		remoteSort:false,
+		columns:[[
+			{field:'tid',title:'',width:60,align:'center',checkbox:true},    
+			{field:'nid',title:'ĞÂÎÅ±àºÅ',width:60,align:'center',sortable:true},
+			{field:'title',title:'ĞÂÎÅ±êÌâ',width:60,align:'center'},
+			{field:'author',title:'ĞÂÎÅ×÷Õß',width:60,align:'center'},
+			{field:'mdate',title:'·¢²¼ÈÕÆÚ',width:60,align:'center'},
+			{field:'tname',title:'ĞÂÎÅÀàĞÍ',width:60,align:'center'},
+			{field:'weight',title:'ĞÂÎÅÈ¨ÖØ',width:60,align:'center',
+				formatter:function(value,rowData,index){
+					return value+"&nbsp;<a href='javascript:upNews("+rowData.nid+")'>ÉÏÒÆ</a>"+"&nbsp;<a href='javascript:topNews("+rowData.nid+")'>ÖÃ¶¥</a>"
+				}	
+			},
+			{field:'views',title:'ä¯ÀÀ´ÎÊı',width:60,align:'center'},
+			{field:'pics',title:'Í¼Æ¬',width:400,align:'center',
+				formatter:function(value,rowData,index){
+					if(value!=null && value !=""){
+						var str="";
+						var pics=value.split(",");
+						for(var i=0;i<pics.length;i++){
+							str+="<img src='../../"+pics[i]+"'width=60px height='60px'/>&nbsp;";
+						}
+						return str;
+					}else{
+						return;
+					}
+				}},
+			{field:'_operate',title:'²Ù×÷',width:100,align:'center',
+				formatter:function(value,rowData,index){
+					return "<a href='javascript:showNews("+rowData.nid+")'>ÏêÏ¸</a>";
+				}}
+		]],
+		toolbar:[{
+			text:"Ìí¼Ó",
+			iconCls:"icon-add",
+			handler:function(){
+				$('#add_news').dialog('open');
+				$("#news_date").datebox('setValue',myformatter(new Date()));
 			}
-		});
-	}
-	
+		},{
+			text:"ĞŞ¸Ä",
+			iconCls:"icon-edit",
+			handler:function(){
+				var rows=obj.datagrid("getChecked");
+				if(rows!=undefined){
+					$('#news_nids').val(rows[0].nid);
+					$('#update_news').dialog('open');
+					$('#news_newstypes').val(rows[0].tid);
+					$('#news_titles').val(rows[0].title);
+					$('#news_authors').val(rows[0].author);
+					$('#news_dates').datebox('setValue',rows[0].mdate);
+					$('#news_weights').val(rows[0].weight);
+					$('#news_picss').val(rows[0].pics);
+					
+				}else{
+					$.messager.show({title:'ÎÂÜ°ÌáÊ¾',msg:'ÇëÑ¡ÖĞÒªĞŞ¸ÄµÄÊı¾İ...',timeout:2000,showType:'slide'});
+				}
+			}
+		},{
+			text:"É¾³ı",
+			iconCls:"icon-remove",
+			handler:function(){
+				var rows=obj.datagrid("getChecked");
+				if(rows!=undefined){
+					$.
+					messager.confirm('ĞÅÏ¢È·ÈÏ','ÄúÈ·¶¨ÒªÉ¾³ıÑ¡¶¨µÄÊı¾İÂğ?',function(rs){
+						if(rs){
+							var usids="";
+							for(var i=0;i<rows.length-1;i++){
+								usids+=rows[i].nid+",";
+							}
+							usids+=rows[i].nid;
+							//·¢ËÍÇëÇóµ½Êı¾İ¿â½øĞĞÉ¾³ı
+							$.post("../../newsServlet",{op:"delNews",nid:usids},function(data){
+								if(data>0){
+									$.messager.show({
+										title:'³É¹¦ÌáÊ¾',
+										msg:'É¾³ı³É¹¦...',
+										timeout:2000,
+										showType:'slide'
+									});
+									rows=null;
+									obj.datagrid("reload");//Ë¢ĞÂ±í¸ñ
+								}else{
+									$.messager.alert('Ê§°ÜÌáÊ¾','É¾³ıÊ§°Ü...','error');
+								}
+							});
+						}else{
+							return;
+						}
+					});
+				}else{
+					$.messager.show({title:'ÎÂÜ°ÌáÊ¾',msg:'ÇëÑ¡ÖĞÒªÉ¾³ıµÄÊı¾İ...',timeout:2000,showType:'slide'});
+				}
+			}
+		}]
+	});
 	function myformatter(date){
 		var y=date.getFullYear();
 		var m=date.getMonth()+1;
@@ -183,130 +177,170 @@
 		return y+"-"+(m<10?('0'+m):m)+"-"+(d<10?('0'+d):d);
 	}
 	
-	
 	$(function(){
-		$.post('../../NewsTypeServlet',{op : 'findAllNewsType'},function(data){
+		$.post("../../newsTypeServlet",{op:"findAllNewsType"},function(data){
 			var obj=$("#news_newstype");
+			var pbj=$("#news_newstypes");
+			var ubj=$("#select_newstype");
 			var opt;
 			$.each(data.rows,function(index,item){
 				opt="<option value='"+item.tid+"'>"+item.tname+"</option>";
 				obj.append($(opt));
+				pbj.append($(opt));
+				ubj.append($(opt));
 			});
-			},"json");
+		},"json");
 	});
 	
-	function addNewsInfo(){
-		var tid=$.trim( $("#news_newstype").val() );
-		var title=$.trim( $("#news_title").val() );
-		var author=$.trim( $("#news_author").val() );
-		var mdate=$.trim( $("#news_date").datebox('getValue')  );
-		var weight=$.trim( $("#news_weight").val() );
+	function addNewsInfo(){	
+		var tid=$.trim($("#news_newstype").val());
+		var title=$.trim($("#news_title").val());
+		var author=$.trim($("#news_author").val());
+		var mdate=$.trim($("#news_date").datebox('getValue'));
+		var weight=$.trim($("#news_weight").val());
 		var content=ue.getContent();
 		
 		$.ajaxFileUpload({
-			url:"../../NewsServlet?op=addNewsInfo",
+			url:"../../newsServlet?op=addNewsInfo",
 			secureuri:false,
-			fileElementId:"new_pics",
+			fileElementId:"news_pics",
 			dataType:"json",
 			data:{tid:tid,title:title,author:author,mdate:mdate,weight:weight,content:content},
 			success:function(data,status){
 				if(data>0){
-					$.messager.show({title:'æˆåŠŸæç¤º',msg:"æ–°é—»æ·»åŠ æˆåŠŸ...",timeout:2000,showType:'slide'});
+					$.messager.show({title:'³É¹¦ÌáÊ¾',msg:"ĞÂÎÅĞÅÏ¢Ìí¼Ó³É¹¦...",timeout:2000,showType:'slide'});
 					$("#news_newstype").val("");
-					$("#news_title").val("") ;
+					$("#news_title").val("");
 					$("#news_author").val("");
-					$("#news_date").datebox('setValue',"") ;
+					$("#news_date").datebox('setValue',"");
 					$("#news_weight").val("0");
-					
-					$("#news_pics_show").html("");
-					$('#news_data').datagrid('reload');
-					$('#add_news').dialog('close');
+					ue.setContent("");
+					$("#news_pic_show").html("");
+					$("#news_data").datagrid("reload");
+					$("#add_news").dialog('close');
 				}else{
-					$.messager.alert("é”™è¯¯æç¤º","æ–°é—»æ·»åŠ å¤±è´¥.../n","error")
+					$.messager.alert("´íÎóÌáÊ¾","ĞÂÎÅĞÅÏ¢Ìí¼ÓÊ§°Ü...\n","error");
 				}
-				
 			},
 			error:function(data,status,e){
-				$.messager.alert("é”™è¯¯æç¤º","æ–°é—»æ·»åŠ å¤±è´¥...\n"+e,"error")
+				$.messager.alert("´íÎóÌáÊ¾","ĞÂÎÅĞÅÏ¢Ìí¼ÓÊ§°Ü...\n"+e,"error");
 			}
 		});
-		
-		
-	};
+	}
 	
-
-	$(function(){
-		$.post('../../NewsTypeServlet',{op : 'findAllNewsType'},function(data){
-			var obj=$("#newstype");
-			var opt;
-			$.each(data.rows,function(index,item){
-				opt="<option value='"+item.tid+"'>"+item.tname+"</option>";
-				obj.append($(opt));
-			});
-			},"json");
-	});
-	
-	function findNewsInfo(){
-		var tid=$.trim( $("#newstype").val() );
-		var begintime=$.trim( $("#begintime").datebox('getValue')  );
-		var endtime=$.trim( $("#endtime").datebox('getValue')  );
-		var keyword=$.trim( $("#keyword").val() );
-
-		$.post("../../NewsServlet",{op:"findNewsInfo",tid:tid,begintime:begintime,endtime:endtime,keyword:keyword},function(data){
-			if(data){
-				$("#newstype").val("");
-				$("#begintime").datebox('setValue',"") ;
-				$("#endtime").datebox('setValue',"") ;
-				$("#keyword").val("");
-				$('#find_news').dialog('close');
-				
-				$('#news_data').datagrid(
-						{url : '../../NewsServlet',
-						queryParams : {op:'findNewsInfo',tid:tid,begintime:begintime,endtime:endtime,keyword:keyword},
-						fitColumns : true,
-						striped : true,
-						loadMsg : "æ•°æ®åŠ è½½ä¸­...",
-						pagination : true,
-						fit : true,
-						sortName : 'tid',
-						remoteSort : false,
-						columns : [ [ 
-						              {field : 'tid',title : '',width : 100,align : 'center',checkbox : true},
-						              {field : 'nid',title : 'æ–°é—»ç¼–å·',width : 80,align : 'center',sortable : true},
-						              {field : 'title',title : 'æ–°é—»æ ‡é¢˜',width : 120,align : 'center',sortable : true},
-						              {field : 'author',title : 'æ–°é—»ä½œè€…',width : 100,align: 'center' },
-						              {field : 'mdate',title : 'å‘å¸ƒæ—¥æœŸ',width : 160,align: 'center' },
-						              {field : 'tname',title : 'æ–°é—»ç±»å‹',width : 80,align: 'center' },
-						              {field : 'weight',title : 'æ–°é—»æƒé‡',width : 60,align: 'center' },
-						              {field : 'views',title : 'æµè§ˆæ¬¡æ•°',width : 50,align: 'center' },
-						              {field : 'pics',title : 'å›¾ç‰‡',width : 170,align: 'center',
-						            	  formatter:function(value,rowDate,index){
-						            		  if(value!=null){
-						            			  var str="";
-						            			  var pics=value.split(",");
-						            			  if(pics!=null &&  pics!=""){
-						            			  for(var i=0;i<pics.length;i++){
-						            				  str+="<img src='../../"+pics[i]+"'width='60px' height='60px'/>&nbsp;";
-						            			  }
-						            			  return str;
-						            		  }else{
-						            			  return;
-						            		  }
-						            		  }
-						            	  }}, 
-						             
-						   
-						              {field : '_operate',title : 'æ“ä½œ',width : 100,align: 'center',
-						            	  formatter:function(value,rowDate,index){
-						            		  return "<a href=''>è¯¦æƒ…</a>"
-						            	  }}
-						        ] ]
-						});
+	function updateNewsInfo(){
+		var tid=$.trim($("#news_newstypes").val());
+		var nids=$.trim($("#news_nids").val());
+		var title=$.trim($("#news_titles").val());
+		var author=$.trim($("#news_authors").val());
+		var mdate=$.trim($("#news_dates").datebox('getValue'));
+		var weight=$.trim($("#news_weights").val());
+		var content=ue1.getContent();
+		
+		$.ajaxFileUpload({
+			url:"../../newsServlet?op=updateNewsInfo",
+			secureuri:false,
+			fileElementId:"news_picss",
+			dataType:"json",
+			data:{tid:tid,title:title,author:author,mdate:mdate,weight:weight,content:content,nidss:nids},
+		
+			success:function(data,status){
+				console.info(nids+"aaaa");
+				if(data>0){
+					$.messager.show({title:'³É¹¦ÌáÊ¾',msg:"ĞÂÎÅĞÅÏ¢Ìí¼Ó³É¹¦...",timeout:2000,showType:'slide'});
+					$("#news_newstypes").val("");
+					$("#news_titles").val("");
+					$("#news_authors").val("");
+					$("#news_dates").datebox('setValue',"");
+					$("#news_weights").val("0");
+					ue.setContent("");
+					$("#news_pics_shows").html("");
+					$("#news_data").datagrid("reload");
+					$("#update_news").dialog('close');
+				}else{
+					$.messager.alert("´íÎóÌáÊ¾","ĞÂÎÅĞÅÏ¢Ìí¼ÓÊ§°Ü...\n","error");
+				}
+			},
+			error:function(data,status,e){
+				$.messager.alert("´íÎóÌáÊ¾","ĞÂÎÅĞÅÏ¢Ìí¼ÓÊ§°Ü...\n"+e,"error");
 			}
 		});
-		
-		
-	};
+	}
 	
-
+	function select(){
+		var tid=$("#select_newstype").val();
+		var title=$("#select_title").val();
+	
+		var sDate=$.trim($("#starttime").datebox('getValue'));
+		var eDate=$.trim($("#endtime").datebox('getValue'));	
+		
+		$('#news_data').datagrid({
+			url:'../../newsServlet',
+			queryParams:{op:'findNewsByLike',tid:tid,title:title,sDate:sDate,eDate:eDate},
+			fitColumns:true,
+			loadMsg:"Êı¾İ¼ÓÔØÖĞ...",
+			pagination:true,
+			fit:true,
+			pageNumber:1,
+			pageSize:5,
+			pageList:[5,10,15,20],
+			sortName:'tid',
+			remoteSort:false,
+			columns:[[  
+						 {field:'tid',title:'',width:100,align:'center',checkbox:true},  
+					     {field:'nid',title:'ĞÂÎÅ±àºÅ',width:100,align:'center',sortable:true},  
+					     {field:'title',title:'ĞÂÎÅ±êÌâ',width:100,align:'center'}, 
+					     {field:'author',title:'ĞÂÎÅ×÷Õß',width:100,align:'center'}, 
+					     {field:'mdate',title:'¿ªÊ¼ÈÕÆÚ',width:100,align:'center'}, 
+					     {field:'tname',title:'ĞÂÎÅÀàĞÍ',width:100,align:'center'}, 
+					     {field:'weight',title:'ĞÂÎÅÈ¨ÖØ',width:100,align:'center',
+								formatter:function(value,rowData,index){
+									return value+"&nbsp;<a href='javascript:upNews("+rowData.nid+")'>ÉÏÒÆ</a>"+"&nbsp;<a href='javascript:topNews("+rowData.nid+")'>ÖÃ¶¥</a>"
+								}	
+					     }, 
+					     {field:'views',title:'ä¯ÀÀ´ÎÊı',width:100,align:'center'},
+					     {field:'pics',title:'Í¼Æ¬',width:100,align:'center',
+					    	 formatter:function(value,rowData,index){
+					    		 if(value!=null && value!=""){
+					    			 var str="";
+					    			 var pics=value.split(",");
+					    			 for(var i=0;i<pics.length;i++){
+					    				 str+="<img src='../../"+pics[i]+"' width=60px' height='60px'/>&nbsp;";
+					    			 }
+					    			 return str;
+					    		 }else{
+					    			 return;
+					    		 }
+					    	 }}, 
+					     {field:'_operate',title:'²Ù×÷',width:100,align:'center',
+					    	 formatter:function(value,rowData,index){
+					    		 return "<a href='../../newsServlet?op=findNewsByTitle&nid="+rowData.nid+"'>ÏêÏ¸</a>";
+					    	 }}
+					]]
+		});
+	}
+	
+	function upNews(nid){
+		$.post("../../newsServlet",{op:"upNews",nid:nid},function(data){
+			if(data>0){
+				$("#news_data").datagrid("reload");		
+			}
+		});
+	}
+	function topNews(nid){
+		$.post("../../newsServlet",{op:"topNews",nid:nid},function(data){
+			if(data>0){
+				$("#news_data").datagrid("reload");		
+			}
+		});
+	}
+	
+	function showNews(nid){
+		$.post("../../newsServlet",{op:"findNewsByTitle",nid:nid},function(data){
+			if(data>0){
+				window.open("../front/shownews.jsp");
+			}
+		});
+	}
+	
 </script>

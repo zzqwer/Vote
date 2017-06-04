@@ -1,6 +1,7 @@
 <meta charset="utf-8" />
-<table id="director_data"></table><!-- 查看所有理事会成员 -->
+<table id="director_data"></table><!-- 理事会成员 -->
 <script>
+//debugger;
 	var obj;
 	var editRow=undefined;//记录正在被编辑的行
 	var currentOp;
@@ -29,6 +30,128 @@
 		    {field:'corporation',title:'协会',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'department',title:'部门',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'place',title:'职位',width:100,align:'center',editor:{type:"text",options:{requires:true}}}
-		 ]]
+		 ]],
+		 toolbar:[{
+		    	text:"添加",
+		    	iconCls:'icon-add',
+		    	handler:function(){
+		    		flag="添加";
+		    		url="director/insertdir";
+		    		if(editRow!=undefined){//˵���������ڱ��༭
+		    			obj.datagrid("rejectChanges");//�ع����е����
+		    			obj.datagrid("endEdit",editRow);//�ر����ڱ��༭����
+		    			editRow=undefined;
+		    		}else{
+		    			obj.datagrid('insertRow',{index:0,row:{}});
+		    			obj.datagrid("beginEdit",0);
+		    			editRow=0;//��¼��ǰ���༭�е�����
+		    		}
+		    	}
+ },{
+	    	text:"修改",
+	    	iconCls:"icon-edit",
+	    	handler:function(){
+	    		flag="修改";
+	    		url="director/updatedir"
+	    		var rows=obj.datagrid("getChecked")[0];
+	    		if(rows!=undefined){
+	    			if(editRow!=undefined){//说明有行正在被编辑
+		    			obj.datagrid("rejectChanges");//回滚所有的数据
+		    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+		    			editRow=undefined;
+		    		}else{
+		    			//获取用户选中的行的索引
+		    			var index=obj.datagrid("getRowIndex",rows);
+		    			console.info(rows);
+		    			obj.datagrid('updateRow',{index:index,row:rows});
+		    			obj.datagrid("beginEdit",index);
+		    			editRow=index;//记录当前被编辑行的索引
+		    		}
+	    		}else{
+	    			$.messager.show({title:'温馨提示',msg:'请选中您要修改的数据',timeout:2000,showType:'slide'});
+	    		}
+	    	}
+	    },{
+	    	text:"删除",
+	    	iconCls:"icon-remove",
+	    	handler:function(){
+	    		//获取选中的行
+	    		var rows=obj.datagrid("getChecked");
+	    		
+	    		if(rows!=undefined){
+	    			$.messager.confirm('信息确认','你确定要删除选定的数据吗',function(rs){
+	    				if(rs){
+	    					var dids="";
+	    					for(var i=0;i<rows.length-1;i++){
+	    						dids+=rows[i].did+",";
+	    					}
+	    					dids+=rows[i].did;
+	    					//debugger;
+	    					//发送请求到数据库删除
+	    					$.post("director/deletedir",{uid:dids},function(data){
+	    						if(data>0){
+	    							$.messager.show({title:'成功提示',msg:'删除成功',timeout:2000,showType:'slide'});
+	    							rows=null;
+	    							obj.datagrid("reload");//刷新表格
+	    						}else{
+	    							$.messger.alert('失败提示','删除失败','error');
+	    						}
+	    					});
+	    				}else{
+	    					return;
+	    				}
+	    			});
+	    		}else{
+	    			$.messager.show({title:'温馨提示',msg:'请选中您要删除的数据',timeout:2000,showType:'slide'});
+	    		}
+	    	}
+	    },{
+	    	text:"保存",
+	    	iconCls:"icon-save",
+	    	handler:function(){
+	    		//先关闭编辑
+	    		obj.datagrid("endEdit",editRow);
+	    		
+	    		//要获取正在被编辑的数据
+	    		var rows=obj.datagrid("getChanges")[0];
+	    		
+	    		if(rows==undefined){//说明没有被保存的数据
+	    			obj.datagrid("rejectChanges");//回滚所有的数据
+	    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+	    			editRow=undefined;
+	    		}else if(rows.tname==""){
+	    			editRow=undefined;
+	    			obj.datagrid("rejectChanges");//回滚所有的数据
+	    		}else{
+	    			//保存到数据库
+	    			$.post(url,rows,function(data){
+	    				if(data>0){
+	    					$.messager.show({
+	    						title:'成功提示',
+	    						msg:flag+'成功...',
+	    						timeout:2000,
+	    						showType:'slide'
+	    					});
+	    				
+	    					rows=null;
+	    					obj.datagrid("reload");//刷新表格
+	    					editRow=undefined;
+	    					obj.datagrid("rejectChanges");//回滚所有的数据
+	    					obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+	    				}else{
+	    					$.messager.alert('失败提示','添加失败','error');
+	    				}
+	    			});
+	    		}
+	    	}
+	    },{
+	    	text:"撤销",
+	    	iconCls:"icon-redo",
+	    	handler:function(){
+	    		obj.datagrid("rejectChanges");//回滚所有的数据
+			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+			editRow=undefined;
+	    	}
+	    }]
 	}); 
 </script>

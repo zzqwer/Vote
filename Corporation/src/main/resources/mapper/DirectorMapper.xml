@@ -2,9 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.corporation.mapper.DirectorMapper">
-	
-	<!-- 后台查询所有理事会界面显示 -->
+
+	<!-- 后台查询所有理事会成员显示 -->
 	<select id="findAll" parameterType="Director" resultType="Director">
-		select * from director 
+		select * from Director 
 	</select>
+	<insert id="insertdir" parameterType="Director">
+		insert into director
+		values(director_did.nextval,#{dname},#{demail},#{dphone},#{qq},#{corporation},#{department},#{place})
+	</insert>
+
+	<delete id="deletedir" parameterType="string">
+		delete from director where did in
+		<foreach collection="array" item="did" open="(" close=")"
+			separator=",">
+			#{did}
+		</foreach>
+	</delete>
+
+	<update id="updatedir" parameterType="Director">
+		update director set
+		dname=#{dname},demail=#{demail},dphone=#{dphone},qq=#{qq},corporation=#{corporation},department=#{department},place=#{place} where did =#{did}
+	</update>
 </mapper>

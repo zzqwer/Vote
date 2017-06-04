@@ -1,33 +1,268 @@
-<meta charset="utf-8" />
-<table id="member_data"></table><!-- 查看所有社团 -->
+<table id="member_data"></table>
+
+<div  id="add_user"class="easyui-dialog" title="添加会员信息" data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true">
+	<br/>
+	<form action="" style="float:left;padding-left:20px">
+		<label>会员名称:</label><input type="text" id="mname" name="name" required="required"/><br/><br/>
+		<label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</label><input type="text" id="memail" name="memail" required="required"/><br/><br/>
+		<label>手&nbsp;机&nbsp;号:</label><input type="text" id="mphone" name="mphone" required="required"/><br/><br/>
+		<label>QQ账号:</label><input type="text" id="qq" name="qq" required="required"/><br/><br/>
+		<label>协&nbsp;&nbsp;&nbsp;&nbsp;会:</label><select id="corporation" name="corporation" onclick="getChange()" style="width:130px;"></select><br/><br/>
+		<label>部&nbsp;&nbsp;&nbsp;&nbsp;门:</label><select id="pay" name="pay" style="width:130px;"></select><br/><br/>
+		<!-- <input type="text" id="pay" name="pay"/><br/><br/> 
+		-->
+		
+		<a href="javascript:addUserInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</a>
+	</form>
+</div>
+
+<div  id="update_user" class="easyui-dialog" title="修改会员信息" data-options="iconCls:'icon-edit',resizable:true,modal:true,closed:true">
+	<br/>
+	<form action="" style="float:left;padding-left:20px">
+		<label>会员名称:</label><input type="text" id="update_mname" name="name" required="required"/><br/><br/>
+		<label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</label><input type="text" id="update_memail" name="pwd" required="required"/><br/><br/>
+		<label>手&nbsp;机&nbsp;号:</label><input type="text" id="update_mphone" name="email" required="required"/><br/><br/>
+		<label>QQ账号:</label><input type="text" id="update_qq" name="qq" required="required"/><br/><br/>
+<label>协&nbsp;&nbsp;&nbsp;&nbsp;会:</label><select id="update_corporation" name="corporation" onclick="getChangeUpdate()" style="width:130px;"></select><br/><br/>
+		<label>部&nbsp;&nbsp;&nbsp;&nbsp;门:</label><select id="update_pay" name="pay" style="width:130px;"></select><br/><br/>
+		
+		<a href="javascript:updateUserInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+	</form>
+</div>
+
 <script>
-	var obj;
-	var editRow=undefined;//记录正在被编辑的行
-	var currentOp;
-	var flag;
-	obj=$('#member_data').datagrid({
-		url:'member/findAll',//远程服务器请求站点
-		method:'POST',   //请求方式
-		fitColumns:true,//自动适应columns的大小与grid的高度。防止水平滚动
-		loadMsg:"数据加载中...",//当从远程服务器加载数据的时候，显示的提示消息
-		pagination:true,//显示一个分页工具栏在datagrid下面
-		fit:true,//分页工具栏显示在最下面
-		pageNumber:1,//初始页码
-		pageSize:2,//初始分页大小
-		pageList:[2,5,10,15,20,30],//初始分页大小选择列表 
-		sortName:'mid',//定义哪个列可以排序
-		remoteSort:false,//是否远程定义列，默认为true，这个一定要写
-		striped:true,//显示条纹所有行
-		columns:[[
-			//加的一行checkbox
-		    {field:'mids',width:100,align:'center',checkbox:true},
+var obj;
+var editRow=undefined;//记录当前正在被编辑的行
+var currentOp;
+var flag;
+
+obj=$('#member_data').datagrid({  
+    url:'member/findAll', 
+    fitColumns:true,
+    striped:true,
+    loadMsg:"数据加载中...",
+    pagination:true,
+    fit:true,
+    pageNumber:1,
+    pageSize:2,
+    pageList:[10,15,20,30],
+    sortName:'mid',
+    remoteSort:false,
+    columns:[[  
+		{field:'mids',width:100,align:'center',checkbox:true},
 		    {field:'mid',title:'编号',width:100,align:'center',sortable:true},
 		    {field:'mname',title:'姓名',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'memail',title:'邮箱',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'mphone',title:'手机号',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'qq',title:'QQ账号',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'corporation',title:'协会',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
-		    {field:'pay',title:'会费交付',width:100,align:'center',editor:{type:"text",options:{requires:true}}}
-		 ]]
-	}); 
+		    {field:'pay',title:'部门',width:100,align:'center',editor:{type:"text",options:{requires:true}}}     
+    ]],
+   toolbar:[{
+    	text:"添加",
+    	iconCls:"icon-add",
+    	handler:function(){
+    		$('#add_user').dialog({  
+    	        left:"450px",
+    	        top:"100px",
+    	        width: 400,    
+    	        height: 350,                
+    	        cache: false,
+    	        shadow:false  
+    	    });
+    		$("#add_user").dialog('open');
+    		 var select=document.getElementById("corporation");
+			    select.length=0;
+    		$.post("corporation/findAll",function(data){
+    			var corporation=$("#corporation");
+    			for(var i=0;i<data.length;i++){
+    				opt="<option value='"+data[i].cname+"'>"+data[i].cname+"</option>";
+    				corporation.append($(opt));
+    			};
+    		},"json"); 
+    		
+    	}
+    },{
+    	text:"删除",
+    	iconCls:"icon-remove",
+    	handler:function(){
+    		//获取选中的行
+    		var rows=obj.datagrid("getChecked");
+    		if(rows!=undefined){
+    			$.messager.confirm('信息确认', '您确定要删除选中的数据吗?', function(rs){
+    				if (rs){
+    					var mids="";
+    					for(var i=0;i<rows.length-1;i++){
+    						mids+=rows[i].mid+",";
+    					}
+    					mids+=rows[i].mid;
+    					
+    					//发请求到数据库删除
+	    					$.post("member/deleteme",{uid:mids},function(data){
+    						if(data>0){
+    							$.messager.show({
+    								title:'成功提示',
+    								msg:'会员信息删除成功...',
+    								timeout:2000,
+    								showType:'slide'
+    							});
+    							rows=null;
+    							obj.datagrid("reload");//刷新表格
+    						}else{
+    							$.messager.alert('失败提示','删除失败...','error');
+    						}
+    					});
+    				}else{
+    					return;
+    				}
+    			});
+    		}else{
+    			$.messager.show({
+					title:'温馨提示',
+					msg:'请选中您要删除的数据...',
+					timeout:2000,
+					showType:'slide'
+				});
+    		}
+    	}
+    },{
+    	text:"修改",
+    	iconCls:"icon-edit",
+    	handler:function(){
+    		flag="修改";
+    		var rows=obj.datagrid("getChecked");
+    		if(rows.length>1 || rows.length<=0){
+    			$.messager.show({
+					title:'温馨提示',msg:'请选择一行进行修改...',timeout:2000,showType:'slide'});
+    		}else{
+    			var mid=rows[0].mid;
+    			$('#update_user').dialog({  
+        	        left:"450px",
+        	        top:"100px",
+        	        width: 400,    
+        	        height: 350,                
+        	        cache: false,
+        	        shadow:false  
+        	    });	
+    			$("#update_mname").val(rows[0].mname) ;
+    			$("#update_memail").val(rows[0].memail);
+    			$("#update_mphone").val(rows[0].mphone);
+    			$("#update_qq").val(rows[0].qq) ;
+    			$("#update_corporation").val(rows[0].corporation);
+    			$("#update_pay").val(rows[0].pay);	
+    			$("#update_user").dialog('open');
+    			 var select=document.getElementById("update_corporation");
+    			    select.length=0;
+    			$.post("corporation/findAll",function(data){
+        			var corporation=$("#update_corporation");
+        			for(var i=0;i<data.length;i++){
+        				opt="<option value='"+data[i].cname+"'>"+data[i].cname+"</option>";
+        				corporation.append($(opt));
+        			};
+        		},"json"); 
+    		}	   		
+    	}
+    }]
+});  
+
+function getChange(){
+	 var pay=$("#pay");
+	    var select=document.getElementById("pay");
+	    select.length=0;
+	 var cname=$.trim( $("#corporation").val() );
+		$.post("member/showDepart",{cname:cname},function(data){		
+			for(var i=0;i<data.length;i++){
+				opt="<option value='"+data[i].dname+"'>"+data[i].dname+"</option>";
+				pay.append($(opt));
+			};
+		},"json"); 
+ }
+
+function getChangeUpdate(){
+	 var pay=$("#update_pay");
+	    var select=document.getElementById("update_pay");
+	    select.length=0;
+	 var cname=$.trim( $("#update_corporation").val() );
+		$.post("member/showDepart",{cname:cname},function(data){
+			
+			for(var i=0;i<data.length;i++){
+				opt="<option value='"+data[i].dname+"'>"+data[i].dname+"</option>";
+				pay.append($(opt));
+			};
+		},"json"); 
+}
+ 
+function addUserInfo(){
+
+	var mname=$.trim( $("#mname").val() );
+	var memail=$.trim( $("#memail").val() );
+	var mphone=$.trim( $("#mphone").val() );
+	var qq=$.trim( $("#qq").val() );
+	var corporation=$.trim( $("#corporation").val() );
+	var pay=$.trim( $("#pay").val() );
+	$.ajaxFileUpload({
+		url:"member/insertme",
+		secureuri:false,
+		fileElementId:"user_pics",
+		dataType:"json",
+		data:{mname:mname,memail:memail,mphone:mphone,qq:qq,corporation:corporation,pay:pay},
+		success:function(data,status){
+			if(data>0){
+				$.messager.show({title:'成功提示',msg:"会员信息添加成功...",timeout:2000,showType:'slide'});
+				
+				$("#mname").val("");
+				$("#memail").val("");
+				$("#mphone").val("");
+				$("#qq").val("");
+				$("#corporation").val("");
+				$("#pay").val("");
+				$('#member_data').datagrid('reload');
+				$('#add_user').dialog('close');
+			}else{
+				$.messager.alert("错误提示","会员信息添加失败...\n","error");
+			}
+		},
+		error:function(data,status,e){
+			$.messager.alert("错误提示","会员信息添加失败...\n","error");
+		}	
+	});
+}
+
+function updateUserInfo(){
+	var rows=obj.datagrid("getChecked");
+	var mid=rows[0].mid;
+	var mname=$.trim( $("#update_mname").val() );
+	var memail=$.trim( $("#update_memail").val() );
+	var mphone=$.trim( $("#update_mphone").val() );
+	var qq=$.trim( $("#update_qq").val() );
+	var corporation=$.trim( $("#update_corporation").val() );
+	var pay=$.trim( $("#update_pay").val() );
+
+	$.ajaxFileUpload({
+		url:'member/updateme',
+		secureuri:false,
+		dataType:"json",
+		data:{mname:mname,memail:memail,mphone:mphone,qq:qq,corporation:corporation,pay:pay,mid:mid},
+		success:function(data,status){
+			if(data>0){
+				$.messager.show({title:'成功提示',msg:"会员信息修改成功...",timeout:2000,showType:'slide'});
+				$("#mname").val("");
+				$("#memail").val("");
+				$("#mphone").val("");
+				$("#qq").val("");
+				$("#corporation").val("");
+				$("#pay").val("");
+				$('#member_data').datagrid('reload');
+				$("#update_user").dialog('close');
+			}else{
+				$.messager.alert("错误提示","修改失败...\n","error");
+			}
+		},
+		error:function(data,status,e){
+			$.messager.alert("错误提示","会员信息修改失败...\n","error");
+		}	
+	});
+}
+
+
 </script>

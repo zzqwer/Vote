@@ -9,8 +9,20 @@
 	select * from users
 	</select>
 	
-	<insert id="insertUsers"  parameterType="Users">
+	<insert id="insertUsers"  parameterType="Users" >
 	insert into users values(seq_users_usid.nextval,#{username},#{password},#{email},#{sex},#{age},#{userclass},#{home},#{phone},#{pic})
 	
 	</insert>
+	
+	<select id="listUsers" parameterType="java.util.List" resultType="Users">
+		select * from users where username in (
+		<foreach collection="list" item="item" separator=",">
+			#{item}
+		</foreach>
+		)
+	</select>
+	
+	<select id="showHcalss" parameterType="String" resultType="Users">
+    	select *  from Users where username=#{username}
+    </select>
 </mapper>

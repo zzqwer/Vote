@@ -1,32 +1,157 @@
 <meta charset="utf-8" />
-<table id="report_data"></table><!-- 查看媒体报道 -->
+<table id="report_data"></table><!-- 查看所有信息 -->
 <script>
 	var obj;
 	var editRow=undefined;//记录正在被编辑的行
+	var currentOp;
+	var url;
 	var flag;
 	obj=$('#report_data').datagrid({
-		url:'infomation/findNews',//远程服务器请求站点
+		url:'infomation/mediaReport',//远程服务器请求站点findinfobypage
 		method:'POST',   //请求方式
-		queryParams: { 'infotype': '媒体报道' },    //请求参数
 		fitColumns:true,//自动适应columns的大小与grid的高度。防止水平滚动
 		loadMsg:"数据加载中...",//当从远程服务器加载数据的时候，显示的提示消息
 		pagination:true,//显示一个分页工具栏在datagrid下面
 		fit:true,//分页工具栏显示在最下面
 		pageNumber:1,//初始页码
-		pageSize:2,//初始分页大小
-		pageList:[2,5,10,15,20,30],//初始分页大小选择列表 
+		pageSize:5,//初始分页大小
+		pageList:[5,10,15,20,30],//初始分页大小选择列表 
 		sortName:'infoid',//定义哪个列可以排序
 		remoteSort:false,//是否远程定义列，默认为true，这个一定要写
-		striped:true,//显示条纹所有行
+//		striped:true,//显示条纹所有行
 		columns:[[
 			//加的一行checkbox
 		    {field:'infoids',width:100,align:'center',checkbox:true},
-		    {field:'infoid',title:'编号',width:100,align:'center',sortable:true},
-		    {field:'title',title:'新闻标题',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
-		    {field:'infodate',title:'发布日期',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
-		    {field:'content',title:'新闻内容',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
-		    {field:'infotype',title:'新闻类型',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
-		    {field:'club',title:'发布方',width:100,align:'center',editor:{type:"text",options:{requires:true}}}
-		 ]]
+		    {field:'infoid',title:'信息编号',width:100,align:'center',sortable:true},
+		    {field:'title',title:'信息标题',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
+		    {field:'infodate',title:'日期',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
+		    {field:'content',title:'信息内容',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
+		    {field:'infotype',title:'信息类型',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
+			{field:'club',title:'发布社团',width:100,align:'center',editor:{type:"text",options:{requires:true}}
+		    }
+		 ]],
+		 toolbar:[{
+		    	text:"添加",
+		    	iconCls:'icon-add',
+		    	handler:function(){
+		    		flag="添加";
+		    		url="infomation/insertinfo";
+		    		if(editRow!=undefined){//˵���������ڱ��༭
+		    			obj.datagrid("rejectChanges");//�ع����е����
+		    			obj.datagrid("endEdit",editRow);//�ر����ڱ��༭����
+		    			editRow=undefined;
+		    		}else{
+		    			obj.datagrid('insertRow',{index:0,row:{"infotype":"activeannounced"}});
+		    			
+		    			obj.datagrid("beginEdit",0);
+		    			editRow=0;//��¼��ǰ���༭�е�����
+		    		}
+		    	}
+       },{
+	    	text:"修改",
+	    	iconCls:"icon-edit",
+	    	handler:function(){
+	    		flag="修改";
+	    		url="infomation/updateinfo"
+	    		var rows=obj.datagrid("getChecked")[0];
+	    		if(rows!=undefined){
+	    			if(editRow!=undefined){//说明有行正在被编辑
+		    			obj.datagrid("rejectChanges");//回滚所有的数据
+		    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+		    			editRow=undefined;
+		    		}else{
+		    			//获取用户选中的行的索引
+		    			var index=obj.datagrid("getRowIndex",rows);
+		    			console.info(rows);
+		    			obj.datagrid('updateRow',{index:index,row:rows});
+		    			obj.datagrid("beginEdit",index);
+		    			editRow=index;//记录当前被编辑行的索引
+		    		}
+	    		}else{
+	    			$.messager.show({title:'温馨提示',msg:'请选中您要修改的数据',timeout:2000,showType:'slide'});
+	    		}
+	    	}
+	    },{
+	    	text:"删除",
+	    	iconCls:"icon-remove",
+	    	handler:function(){
+	    		//获取选中的行
+	    		var rows=obj.datagrid("getChecked");
+	    		
+	    		if(rows!=undefined){
+	    			$.messager.confirm('信息确认','你确定要删除选定的数据吗',function(rs){
+	    				if(rs){
+	    					var infoiss="";
+	    					for(var i=0;i<rows.length-1;i++){
+	    						infoids+=rows[i].infoid+",";
+	    					}
+	    					cids+=rows[i].cid;
+	    					//发送请求到数据库删除
+	    					$.post("infomation/deleteinfo",{infoids:infoids},function(data){
+	    						if(data>0){
+	    							$.messager.show({title:'成功提示',msg:'信息删除成功',timeout:2000,showType:'slide'});
+	    							rows=null;
+	    							obj.datagrid("reload");//刷新表格
+	    						}else{
+	    							$.messger.alert('失败提示','信息删除失败','error');
+	    						}
+	    					});
+	    				}else{
+	    					return;
+	    				}
+	    			});
+	    		}else{
+	    			$.messager.show({title:'温馨提示',msg:'请选中您要删除的数据',timeout:2000,showType:'slide'});
+	    		}
+	    	}
+	    },{
+	    	text:"保存",
+	    	iconCls:"icon-save",
+	    	handler:function(){
+	    		//先关闭编辑
+	    		obj.datagrid("endEdit",editRow);
+	    		
+	    		//要获取正在被编辑的数据
+	    		var rows=obj.datagrid("getChanges")[0];
+	    		
+	    		if(rows==undefined){//说明没有被保存的数据
+	    			obj.datagrid("rejectChanges");//回滚所有的数据
+	    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+	    			editRow=undefined;
+	    		}else if(rows.tname==""){
+	    			editRow=undefined;
+	    			obj.datagrid("rejectChanges");//回滚所有的数据
+	    		}else{
+	    			//保存到数据库
+	    			$.post(url,rows,function(data){
+	    				if(data>0){
+	    					$.messager.show({
+	    						title:'成功提示',
+	    						msg:'信息'+flag+'成功...',
+	    						timeout:2000,
+	    						showType:'slide'
+	    					});
+	    				
+	    					rows=null;
+	    					obj.datagrid("reload");//刷新表格
+	    					editRow=undefined;
+	    					obj.datagrid("rejectChanges");//回滚所有的数据
+	    					obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+	    				}else{
+	    					$.messager.alert('失败提示','信息添加失败','error');
+	    				}
+	    			});
+	    		}
+	    	}
+	    },{
+	    	text:"撤销",
+	    	iconCls:"icon-redo",
+	    	handler:function(){
+	    		obj.datagrid("rejectChanges");//回滚所有的数据
+    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
+    			editRow=undefined;
+	    	}
+	    }]
 	}); 
+
 </script>

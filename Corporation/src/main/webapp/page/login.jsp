@@ -70,16 +70,15 @@ function exit(){
 
 	<div class="menu">
 		<ul id="MenuBar1" class="Menu">
-			<li><a href="page/login.jsp" class="menuclass">协会首页</a></li>
+			<li><a href="#" class="menuclass">协会首页</a></li>
 			<li><a href="page/clubmain.html" class="menuclass">协会概况</a></li>
-			<li><a href="page/clubset.jsp" class="menuclass">协会架构</a></li>
-			<li><a href="page/nearactive.jsp" class="menuclass">近期活动</a></li>
-			<li><a href="page/document.jsp" class="menuclass">文档专区</a></li>
-			<li><a href="page/mediareport.jsp" class="menuclass">媒体报道</a></li>
-			<li><a href="page/clubstar.jsp" class="menuclass">协会名人</a></li>
-			<li><a href="page/clubgrant.jsp" class="menuclass">赞助合作</a></li>
-			<li><a target="blank"
-				href="tencent://message/?uin=623831277&Site=potisoft&Menu=yes"
+			<li><a href="#" class="menuclass">协会架构</a></li>
+			<li><a href="#" class="menuclass">近期活动</a></li>
+			<li><a href="#" class="menuclass">文档专区</a></li>
+			<li><a href="#" class="menuclass">媒体报道</a></li>
+			<li><a href="#" class="menuclass">协会名人</a></li>
+			<li><a href="#" class="menuclass">赞助合作</a></li>
+			<li><a href="tencent://message/?uin=839624474&Site=potisoft&Menu=yes"
 				class="menuclass">联系我们</a></li>
 		</ul>
 	</div>
@@ -113,19 +112,24 @@ function exit(){
 				</ul>
 			</div>
 
-			<div id="search_box">
+			<div>
+			<!--
 				<form id="search_form" method="post" action="#">
 					<input type="text" id="s" value="Search" class="swap_value" /> <input
 						type="image"
 						src="http://files.jb51.net/demoimg/200912/btn_search_box.gif"
 						width="27" height="24" id="go" alt="Search" title="Search" />
 				</form>
+			  -->
 			</div>
 
 			<div class="login" id="login">
-				<c:if test="${user.username != null }">你好,${user.username }
-				<a href="javascript:exit()">退出</a>
-				<img src="${user.pic}"/>
+			<br><br>
+				<c:if test="${user.username != null }">你好,${user.username}
+				<br>
+				<img src="../../${user.pic}" style="border-radius:50%"/><br><br>
+				<input type="button" value="退出" onclick="exit()"/>
+				
 				</c:if>
 				<c:if test="${user.username == null }">
 					<form method="post" id="loginfrom" action="">
@@ -280,32 +284,24 @@ function exit(){
 					<div class="chatleft">
 						<ul>
 							<li><img src="images/chat5.png" width="20px" height="20px" /><a
-								target="blank"
 								href="tencent://message/?uin=840191596&Site=potisoft&Menu=yes">计信学院团学老师</a></li>
 							<li><img src="images/chat5.png" width="20px" height="20px" /><a
-								target="blank"
 								href="tencent://message/?uin=1542376969&Site=potisoft&Menu=yes">青年志愿者协会</a></li>
 							<li><img src="images/chat4.png" width="20px" height="20px" /><a
-								target="blank"
 								href="tencent://message/?uin=635809507&Site=potisoft&Menu=yes">计算机协会</a></li>
 							<li><img src="images/chat4.png" width="20px" height="20px" /><a
-								target="blank"
 								href="tencent://message/?uin=543919061&Site=potisoft&Menu=yes">职业发展与创业就业协会</a></li>
 						</ul>
 					</div>
 					<div class="chatright">
 						<ul>
 							<li><img src="images/chat4.png" width="20px" height="20px" /><a
-								target="blank"
 								href="tencent://message/?uin=596430360&Site=potisoft&Menu=yes">文艺爱好者协会</a></li>
 							<li><img src="images/chat4.png" width="20px" height="20px" /><a
-								target="blank"
 								href="tencent://message/?uin=1371963209&Site=potisoft&Menu=yes">英语协会</a></li>
 							<li><img src="images/chat4.png" width="20px" height="20px" /><a
-								target="blank"
 								href="tencent://message/?uin=1096130987&Site=potisoft&Menu=yes">体育爱好者协会</a></li>
 							<li><img src="images/chat4.png" width="20px" height="20px" /><a
-								target="blank"
 								href="tencent://message/?uin=396411601&Site=potisoft&Menu=yes">书画协会</a></li>
 						</ul>
 					</div>

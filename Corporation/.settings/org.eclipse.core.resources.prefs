@@ -1,7 +1,11 @@
 eclipse.preferences.version=1
-encoding//sql/Corporation.sql=gbk
 encoding//src/main/java=utf-8
 encoding//src/main/resources=utf-8
+encoding//src/main/resources/db.properties=UTF-8
 encoding//src/main/webapp/back/images/from.png=ISO-8859-1
+encoding//src/main/webapp/back/manager=utf-8
+encoding//src/main/webapp/back/manager/admin.html=UTF-8
+encoding//src/main/webapp/back/manager/file.html=UTF-8
+encoding//src/main/webapp/page/register1.jsp=UTF-8
 encoding//src/test/java=utf-8
 encoding/<project>=utf-8

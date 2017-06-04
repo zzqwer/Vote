@@ -2,9 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.corporation.mapper.MemberMapper">
-	
-	<!-- 后台查询所有理事会界面显示 -->
+
+
+	<!-- 后台查询所有管理员界面显示 -->
 	<select id="findAll" parameterType="Member" resultType="Member">
-		select * from member 
+		select * from Member 
 	</select>
+	
+	<select id="findAllDe" parameterType="Department" resultType="Department">
+		select * from department
+		<!--select d.did,c.cname,d.dname,d.dintroduce from CORPORATION c,DEPARTMENT d where c.cid=d.cid
+		  --> 
+	</select>
+	<insert id="insertme" parameterType="Member">
+		insert into Member
+		values(member_mid.nextval,#{mname},#{memail},#{mphone},#{qq},#{corporation},#{pay})
+	</insert>
+
+	<delete id="deleteme" parameterType="string">
+		delete from Member where mid in
+		<foreach collection="array" item="mid" open="(" close=")"
+			separator=",">
+			#{mid}
+		</foreach>
+	</delete>
+
+	<update id="updateme" parameterType="Member">
+		update Member set
+		mname=#{mname},memail=#{memail},mphone=#{mphone},qq=#{qq},
+		corporation=#{corporation},pay=#{pay} where mid =#{mid}
+	</update>
+	
+	<insert id="insertdepart" parameterType="Department">
+		<!--  insert into Department
+		values(Department_did.nextval,#{cid},#{dname},#{dintroduce}  )
+		-->
+		  insert into DEPARTMENT values(department_did.nextval,#{cid},#{dname},#{dintroduce});
+	</insert>
+	<select id="showDepart" parameterType="String" resultType="Department">
+    	select dname from DEPARTMENT where cname=#{cname}
+    </select>
+	
 </mapper>

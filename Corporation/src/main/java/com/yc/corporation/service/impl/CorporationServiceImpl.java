@@ -11,10 +11,10 @@ import com.yc.corporation.serivce.CorporationService;
 
 @Service("corporationService")
 public class CorporationServiceImpl implements CorporationService {
-	
+
 	@Autowired
 	public CorporationMapper corporationMapper;
-	
+
 	@Override
 	public List<Corporation> findAll() {
 		return corporationMapper.findAll();
@@ -22,19 +22,19 @@ public class CorporationServiceImpl implements CorporationService {
 
 	@Override
 	public int insertcor(Corporation cor) {
-	
+
 		return corporationMapper.insertcor(cor);
 	}
 
 	@Override
 	public int deletecor(String... cid) {
-		
+
 		return corporationMapper.deletecor(cid);
 	}
 
 	@Override
 	public int updatecor(Corporation cor) {
-		
+
 		return corporationMapper.updatecor(cor);
 	}
 
@@ -44,8 +44,11 @@ public class CorporationServiceImpl implements CorporationService {
 	}
 
 	@Override
-	public List<Corporation> findConnectionWay() {
-		return corporationMapper.findConnectionWay();
+	public Corporation findQingXie() {
+		// TODO Auto-generated method stub
+		return corporationMapper.findQingXie();
 	}
+
+
 
 }

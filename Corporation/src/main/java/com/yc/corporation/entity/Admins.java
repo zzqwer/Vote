@@ -2,13 +2,13 @@ package com.yc.corporation.entity;
 
 public class Admins {
 	private int aid;
-	private String  aname;
-	private String  apwd;
-	private String  aemail;  //邮箱账号
-	private String aphone;        //手机号/支付宝账号
-	private String qq;             //qq账号
-	private int root;			//权限    1:普通管理员   2:超级管理员
-	
+	private String aname;
+	private String apwd;
+	private String aemail; // 邮箱账号
+	private String aphone; // 手机号/支付宝账号
+	private String qq; // qq账号
+	private int root; // 权限 1:普通管理员 2:超级管理员
+
 	public Admins() {
 	}
 

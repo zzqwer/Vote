@@ -11,13 +11,31 @@ import com.yc.corporation.serivce.DirectorService;
 
 @Service("directorService")
 public class DirectorServiceImpl implements DirectorService {
+
 	@Autowired
 	private DirectorMapper directorMapper;
-	
+
 	@Override
 	public List<Director> findAll() {
-		System.out.println("DirectorServiceImpl进来了...");
 		return directorMapper.findAll();
+	}
+
+	@Override
+	public int insertdir(Director dir) {
+		// TODO Auto-generated method stub
+		return directorMapper.insertdir(dir);
+	}
+
+	@Override
+	public int deletedir(String... uid) {
+		// TODO Auto-generated method stub
+		return directorMapper.deletedir(uid);
+	}
+
+	@Override
+	public int updatedir(Director dir) {
+		// TODO Auto-generated method stub
+		return directorMapper.updatedir(dir);
 	}
 
 }

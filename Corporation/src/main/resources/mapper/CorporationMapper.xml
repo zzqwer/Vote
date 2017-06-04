@@ -10,7 +10,11 @@
 		select * from (select a.*,rownum rn from(select * from Corporation order by
 		cid)a where rownum&lt;=#{page}*#{rows}) where rn &gt;(#{page}-1)*#{rows}
 	</select>
-
+	
+	<select id="findQingXie" resultType="Corporation">
+		select * from Corporation where cname='电脑协会'
+	</select>
+	
 	<insert id="insertcor" parameterType="Corporation">
 		insert into corporation
 		values(corporation_cid.nextval,#{cname},#{logo},#{teacher},#{head},#{tel},#{email},#{cintroduce})
@@ -30,8 +34,4 @@
 		tel=#{tel},email=#{email},cintroduce=#{cintroduce} where cid =#{cid}
 	</update>
 
-	
-	<select id="findConnectionWay" resultType="Corporation">
-		select cid,cname,head,tel,email from corporation
-	</select>
 </mapper>

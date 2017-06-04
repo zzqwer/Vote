@@ -1,304 +1,357 @@
-  drop table  corporation
-  drop table department
-  drop table activity
-  insert into corporation values(1)
-  insert into department values(1,1)
-  insert into department values(2,2)
-  insert into activity values(1,2)
-  select endtime from ACTIVE where endtime<(select sysdate from dual)
---±¨Ãû±í
-create table baoming(
-bid int primary key,
-aname varchar2(50), --»î¶¯Ãû³Æ
-bclass varchar(20),--±¨ÃûÈË°à¼¶
-bname varchar(10),
-tel number--ÁªÏµ·½Ê½
+drop table  corporation
+drop table department
+drop table activity
+
+select * from ADMIN
+insert into corporation values(1)
+insert into department values(1,1)
+insert into department values(2,2)
+insert into activity values(1,2)
+select endtime from ACTIVE where endtime<(select sysdate from dual)
+
+--  164 JK1401   123456   1209614483@qq.com ç”·    23 è®¡ç§‘1303ç­   å¤©æ´¥å¸‚  18216021360 userPic/149485829246270770.jpg
+
+--åä¼šåäººè¡¨
+create table Hero(
+	hid int primary key,   --åä¼šåäººID
+	hname varchar2(20),		--åä¼šåäººå§“å
+	hclass varchar2(20),	--åä¼šåäººç­çº§
+	hpic varchar2(100),		--åä¼šåäººä¸ªäººç…§
+	hstory clob				--åä¼šåäººäº‹è¿¹
 )
+create sequence hero_hid start with 1 increment by 1
+insert into Hero values(hero_hid.nextval,'JK1401','è®¡ç§‘1303ç­','userPic/149485829246270770.jpg','åƒçš„å¤š');
+select * from Hero;
+DELETE FROM Hero WHERE hname = 'JK1301';
+drop table baoming;
+--æŠ¥åè¡¨
+create table baoming(
+	bid int primary key,
+	aname varchar2(50), --æ´»åŠ¨åç§°
+	bclass varchar(20),--æŠ¥åäººç­çº§
+	bname varchar(10),--æŠ¥åäººå§“å
+	tel number--è”ç³»æ–¹å¼
+)
+create sequence baoming_bid start with 1 increment by 1
 select * from baoming
-insert into baoming values(baoming_bid.nextval,'2016-10-10Ò°´¶','ÐÅÏ¢1301','ÖÜÕý',13142359843)
---»î¶¯±í
+insert into baoming values(baoming_bid.nextval,'2016-10-10é‡Žç‚Š','ä¿¡æ¯1301','å‘¨æ­£',13142359843)
+
+drop table active;
+--æ´»åŠ¨è¡¨
 create table active(
-aid int primary key,
-aname varchar2(50),
-atime varchar2(100), --»î¶¯Ê±¼ä
-acontent varchar2(1000),--»î¶¯ÄÚÈÝ
-place varchar(30),--»î¶¯µØµã
-tel number,--×ÉÑ¯µç»°
-acount int, --±¨ÃûÈËÊý
-endtime date--±¨Ãû½ØÖ¹ÈÕÆÚ
+	aid int primary key,
+	aname varchar2(50),
+	atime varchar2(100), --æ´»åŠ¨æ—¶é—´
+	acontent varchar2(1000),--æ´»åŠ¨å†…å®¹
+	place varchar2(30),--æ´»åŠ¨åœ°ç‚¹
+	tel varchar2(12),--å’¨è¯¢ç”µè¯
+	acount int, --æŠ¥åäººæ•°
+	endtime varchar2(30)--æŠ¥åæˆªæ­¢æ—¥æœŸ
+)
+create sequence active_aid start with 1 increment by 1;
+select * from active;
+update active set acount=acount+1 where aname='2016-10-10é‡Žç‚Š'
+insert into active values(active_aid.nextval,'æ ¸è¾å°„å¤§å¹…åº¦','2016-10-10ä¸€æ•´å¤©','å¤§å®¶è‡ªå¤‡ææ–™è‡ªå·±åšé¥­','å¤©ä¸Šäººé—´','13142359843',0,'2016-9-16');
+select * from ACTIVE where endtime&lt;(select sysdate from dual);
+
+
+drop table corporation;
+--ç¤¾å›¢è¡¨
+create table corporation(
+	cid int primary key,    --ç¤¾å›¢id
+	cname varchar2(100), --ç¤¾å›¢å
+	logo varchar2(2000),   --ç¤¾å›¢logo
+	teacher varchar2(200),  --æŒ‡å¯¼è€å¸ˆ
+	head varchar2(100),    --ç¤¾å›¢è´Ÿè´£äºº/ä¼šé•¿/å¤´å„¿
+	tel varchar2(20),      --å®˜æ–¹è”ç³»ç”µè¯
+	email varchar2(200),  --å®˜æ–¹è”ç³»é‚®ç®±
+	cintroduce clob --ç¤¾å›¢ç®€ä»‹
+);
+create sequence corporation_cid start with 1 increment by 1;
+select * from corporation;
+select * from Corporation where cname='è®¡ç®—æœºåä¼š'
+select * from USERS;
+insert into corporation values(corporation_cid.nextval,'é’å¹´å¿—æ„¿è€…åä¼š',null,'å½­ä¼Ÿ','è°·ç¦„å¸…','18216021360','1209614483@qq.com','');
+insert into corporation values(corporation_cid.nextval,'ä¹¦ç”»åä¼š',null,'å½­ä¼Ÿ','è°·ç¦„å¸…','18216021360','1209614483@qq.com','');
+insert into corporation values(corporation_cid.nextval,'æ–‡è‰ºçˆ±å¥½è€…åä¼š',null,'å½­ä¼Ÿ','è°·ç¦„å¸…','18216021360','1209614483@qq.com','');
+insert into corporation values(corporation_cid.nextval,'è®¡ç®—æœºåä¼š',null,'å½­ä¼Ÿ','è°·ç¦„å¸…','18216021360','1209614483@qq.com','');
+
+
+--éƒ¨é—¨è¡¨
+create table department(
+	did  int primary key,
+	cname varchar2(20),--åä¼šå
+	dname varchar2(50),--éƒ¨é—¨å
+	dintroduce varchar2(2000)--éƒ¨é—¨ç®€ä»‹
+)
+
+create sequence department_did start with 1 increment by 1;
+select d.did,c.cname as d.cid,d.dname,d.dintroduce from CORPORATION c,DEPARTMENT d where c.cid=d.cid
+
+insert into DEPARTMENT values(department_did.nextval,'é’å¹´å¿—æ„¿è€…åä¼š','å¤–è”éƒ¨','æ‹‰èµžåŠ©');
+drop table department;
+select * from DEPARTMENT
+select * from CORPORATION
+select d.did,c.cname,d.dname,d.dintroduce from CORPORATION c,DEPARTMENT d where c.cid=d.cid;
+--ç”¨æˆ·è¡¨   ä¼šå‘˜è¡¨
+create table users(
+	usid int primary key,
+	username varchar2(50),
+	password varchar2(50),
+	email varchar2(100),
+	sex varchar2(20),
+	age int,
+	userclass varchar2(100),
+	home varchar2(20),
+	phone varchar2(100),
+	pic varchar2(30)
+)
+select *from USERS
+select * from baoming where aname='æ ¸è¾å°„å¤§å¹…åº¦'
+--æ´»åŠ¨è¡¨
+drop table active;
+create table active(
+	aid int primary key,
+	aname varchar2(50),
+	atime varchar2(100), --æ´»åŠ¨æ—¶é—´
+	acontent varchar2(1000),--æ´»åŠ¨å†…å®¹
+	place varchar(30),--æ´»åŠ¨åœ°ç‚¹
+	tel number,--å’¨è¯¢ç”µè¯
+	acount int, --æŠ¥åäººæ•°
+	endtime varchar2(20)--æŠ¥åæˆªæ­¢æ—¥æœŸ
 )
 select * from active
-create sequence active_aid start with 1 increment by 1
-create sequence baoming_bid start with 1 increment by 1
-    update active set acount=acount+1 where aname='2016-10-10Ò°´¶'
-
-insert into active values(active_aid.nextval,'ºË·øÉä´ó·ù¶È','2016-10-10Ò»ÕûÌì','´ó¼Ò×Ô±¸²ÄÁÏ×Ô¼º×ö·¹','ÌìÉÏÈË¼ä',13142359843,0,to_date('2016-9-16','yyyy-MM-dd'));
-select * from corporation;
-  --ÉçÍÅ±í
-  create table corporation(
-    cid int primary key,    --ÉçÍÅid
-    cname varchar2(100), --ÉçÍÅÃû
-    logo varchar2(2000),   --ÉçÍÅlogo
-    teacher varchar2(200),  --Ö¸µ¼ÀÏÊ¦
-    head varchar2(100),		--ÉçÍÅ¸ºÔðÈË/»á³¤/Í·¶ù
-    tel varchar2(20),      --¹Ù·½ÁªÏµµç»°
-    email varchar2(200),  --¹Ù·½ÁªÏµÓÊÏä
-    cintroduce clob --ÉçÍÅ¼ò½é 
-  );
-  select cid,cname,head,tel,email from CORPORATION;
-create sequence corporation_cid start with 1 increment by 1;
-insert into corporation values(corporation_cid.nextval,'ÇàÄêÖ¾Ô¸ÕßÐ­»á',null,'ÅíÎ°','¹ÈÂ»Ë§','18216021360','1209614483@qq.com','');
-insert into corporation values(corporation_cid.nextval,'Êé»­Ð­»á',null,'ÅíÎ°','¹ÈÂ»Ë§','18216021360','1209614483@qq.com','');
-insert into corporation values(corporation_cid.nextval,'ÎÄÒÕ°®ºÃÕßÐ­»á',null,'ÅíÎ°','¹ÈÂ»Ë§','18216021360','1209614483@qq.com','');
-insert into corporation values(corporation_cid.nextval,'¼ÆËã»úÐ­»á',null,'ÅíÎ°','¹ÈÂ»Ë§','18216021360','1209614483@qq.com','');
-
-  drop table corporation;
-  
-  --²¿ÃÅ±í
-  create table department(
-  did  int primary key,
-  cid int constraint department_cid references corporation(cid),
-  dname varchar2(50),--²¿ÃÅÃû
-  dintroduce varchar2(2000)--²¿ÃÅ¼ò½é  
-  )
-  drop table department;
-  
-  --ÓÃ»§±í   »áÔ±±í
-  create table users(
-    usid int primary key,
-    username varchar2(50),
-    password varchar2(50),
-  email varchar2(100),
- sex varchar2(20),
- age int,
- userclass varchar2(100),
- home varchar2(20),
- phone varchar2(100),
- pic varchar2(30)
-  )
-  drop table users;
- 
-  select * from users
-  select userenv('language') from dual
-  --¸öÈËÐÅÏ¢±í
-  create table personal(
-  pid int constraint personal_pid references Cuser(usid),
-  pname varchar2(50),--ÐÕÃû
-  pclass varchar2(70),--°à¼¶
-  phone number(20) --ÁªÏµ·½Ê½
-  )
+drop table users;
+insert into users values(1223,'WWmiccke','a','1@qq.com','a',23,'è®¡ç§‘ä¸€ç­','hebei','122','../../img/149424519679686121.jpg');
+select * from users
 
 drop table personal;
---»î¶¯±í
-
---ÐÅÏ¢±í    ÐÂÎÅ¶¯Ì¬
-create table infomation(
-   infoid int primary key,
-   title varchar2(200),  --ÐÅÏ¢±êÌâ
-   infodate date, --ÈÕÆÚ
-   content varchar2(2000),  --ÄÚÈÝ
-   infotype varchar2(20), --ÐÅÏ¢µÄÀàÐÍ
-   club varchar2(20) --·¢²¼¸ÃÐÅÏ¢µÄÉçÍÅ
+--ä¸ªäººä¿¡æ¯è¡¨
+create table personal(
+	pid int constraint personal_pid references Cuser(usid),
+	pname varchar2(50),--å§“å
+	pclass varchar2(70),--ç­çº§
+	phone number(20) --è”ç³»æ–¹å¼
 )
+select * from personal
+
+
+--ä¿¡æ¯è¡¨
+create table information(
+	infoid int primary key,
+	title varchar2(200),  --ä¿¡æ¯æ ‡é¢˜
+	infodate varchar2(15), --æ—¥æœŸ
+	content clob,
+	infotype varchar2(20), --ä¿¡æ¯çš„ç±»åž‹
+	club varchar2(20) --å‘å¸ƒè¯¥ä¿¡æ¯çš„ç¤¾å›¢
+)
+create sequence information_infoid start with 1 increment by 1
+
 commit
-select * from infomation where infotype='activeannounced'
-drop table infomation
-insert into infomation values(info_infoid.nextval,'Êé»­Ð­»áÒ³Ãæ²âÊÔ',to_date('2016-8-28','yyyy-MM-dd'),'²âÊÔ','activeannounced','shuhua');
-
-create sequence info_infoid start with 1 increment by 1
-insert into infomation values(info_infoid.nextval,'ÇàÐ­°ÙÀïÒãÐÐ',to_date('2016-8-28','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','activeannounced','qingxie');
-insert into infomation values(info_infoid.nextval,'Ö°Ð­Éú´æÌôÕ½Èü',to_date('2016-8-26','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','activeannounced','qingxie');
-insert into infomation values(info_infoid.nextval,'ÇàÐ­»»½ì´ó»á',to_date('2016-8-28','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','activeannounced','qingxie');
-insert into infomation values(info_infoid.nextval,'Ö°Ð­»»½ì´ó»á',to_date('2016-8-29','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','activeannounced','qingxie');
-insert into infomation values(info_infoid.nextval,'¼ÆËã»úÐ­»áÒåÎñÐÞµçÄÔ',to_date('2016-8-31','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','activeannounced','qingxie');
-insert into infomation values(info_infoid.nextval,'Ó¢ÓïÐ­»á³¿¶Á»î¶¯',to_date('2016-8-18','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','activeannounced','qingxie');
-insert into infomation values(info_infoid.nextval,'¼ÆËã»úÐ­»áÕÐÐÂ',to_date('2016-8-24','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','activeannounced','qingxie');
-insert into infomation values(info_infoid.nextval,'ÎÄÒÕ°®ºÃÕßÐ­»áÕÐÐÂ',to_date('2016-8-26','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','activeannounced','qingxie');
-insert into infomation values(info_infoid.nextval,'ÎÄÒÕ°¬¹þ×ÅÐ­»áÕÐÐÂ',to_date('2016-8-26','yyyy-MM-dd'),'¼ÆÐÅÇàÐ­½«ÓÚºóÌì¾ÙÐÐ°ÙÀïÒãÐÐ','12345678','qingxie');
-
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ2',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ2ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ3',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ3ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ4',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ4ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ5',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ5ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«6',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ6ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ7',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ7ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ8',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ8ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ9',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ9ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ10',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ10ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'ÍøÕ¾¹«¸æ11',to_date('2016-8-28','yyyy-MM-dd'),'ÍøÕ¾¹«¸æ11ÄÚÈÝ','webnotice','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯1',to_date('2016-8-29','yyyy-MM-dd'),'¾«Æ·»î¶¯1ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯2',to_date('2016-8-30','yyyy-MM-dd'),'¾«Æ·»î¶¯2ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯3',to_date('2016-8-30','yyyy-MM-dd'),'¾«Æ·»î¶¯3ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯4',to_date('2016-8-22','yyyy-MM-dd'),'¾«Æ·»î¶¯4ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯5',to_date('2016-8-24','yyyy-MM-dd'),'¾«Æ·»î¶¯5ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯6',to_date('2016-8-25','yyyy-MM-dd'),'¾«Æ·»î¶¯6ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯7',to_date('2016-8-21','yyyy-MM-dd'),'¾«Æ·»î¶¯7ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯8',to_date('2016-8-15','yyyy-MM-dd'),'¾«Æ·»î¶¯8ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯9',to_date('2016-8-31','yyyy-MM-dd'),'¾«Æ·»î¶¯9ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬1',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬2ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬2',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬2ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬3',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬3ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬4',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬4ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬5',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬5ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬6',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬6ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬7',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬7ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬8',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬8ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬9',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬9ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬10',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬10ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅ¶¯Ì¬11',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅ¶¯Ì¬11ÄÚÈÝ','shetuandongtai','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ1',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ2ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ2',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ2ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ3',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ3ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ4',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ4ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ5',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ5ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ6',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ6ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ7',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ7ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ8',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ8ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ9',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ9ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ10',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ10ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'ÉçÍÅÈÙÓþ11',to_date('2016-8-28','yyyy-MM-dd'),'ÉçÍÅÈÙÓþ11ÄÚÈÝ','glory','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷1',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷2ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷2',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷2ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷3',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷3ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷4',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷4ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷5',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷5ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷6',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷6ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷7',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷7ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷8',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷8ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷9',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷9ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷10',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷10ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¶ÔÍâ½»Á÷11',to_date('2016-8-28','yyyy-MM-dd'),'¶ÔÍâ½»Á÷11ÄÚÈÝ','discuss','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯1',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯2ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯2',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯2ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯3',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯3ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯4',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯4ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯5',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯5ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯6',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯6ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯7',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯7ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯8',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯8ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯9',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯9ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯10',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯10ÄÚÈÝ','Boutique','qingxie');
-insert into infomation values(info_infoid.nextval,'¾«Æ·»î¶¯11',to_date('2016-8-28','yyyy-MM-dd'),'¾«Æ·»î¶¯11ÄÚÈÝ','Boutique','qingxie');
-
-insert into infomation values(info_infoid.nextval,'½üÆÚ»î¶¯1',to_date('2016-9-19','yyyy-MM-dd'),'½üÆÚ»î¶¯ÄÚÈÝ','½üÆÚ»î¶¯','ÇàÄêÖ¾Ô¸ÕßÐ­»á');
-insert into infomation values(info_infoid.nextval,'½üÆÚ»î¶¯2',to_date('2016-9-19','yyyy-MM-dd'),'½üÆÚ»î¶¯ÄÚÈÝ','½üÆÚ»î¶¯','ÇàÄêÖ¾Ô¸ÕßÐ­»á');
-insert into infomation values(info_infoid.nextval,'½üÆÚ»î¶¯3',to_date('2016-9-19','yyyy-MM-dd'),'½üÆÚ»î¶¯ÄÚÈÝ','½üÆÚ»î¶¯','ÇàÄêÖ¾Ô¸ÕßÐ­»á');
-insert into infomation values(info_infoid.nextval,'½üÆÚ»î¶¯4',to_date('2016-9-19','yyyy-MM-dd'),'½üÆÚ»î¶¯ÄÚÈÝ','½üÆÚ»î¶¯','ÇàÄêÖ¾Ô¸ÕßÐ­»á');
-insert into infomation values(info_infoid.nextval,'½üÆÚ»î¶¯5',to_date('2016-9-19','yyyy-MM-dd'),'½üÆÚ»î¶¯ÄÚÈÝ','½üÆÚ»î¶¯','Êé»­Ð­»á');
-insert into infomation values(info_infoid.nextval,'½üÆÚ»î¶¯6',to_date('2016-9-19','yyyy-MM-dd'),'½üÆÚ»î¶¯ÄÚÈÝ','½üÆÚ»î¶¯','Êé»­Ð­»á');
-insert into infomation values(info_infoid.nextval,'½üÆÚ»î¶¯7',to_date('2016-9-19','yyyy-MM-dd'),'½üÆÚ»î¶¯ÄÚÈÝ','½üÆÚ»î¶¯','Êé»­Ð­»á');
-
-insert into infomation values(info_infoid.nextval,'Ã½Ìå±¨µÀ1',to_date('2016-9-19','yyyy-MM-dd'),'Ã½Ìå±¨µÀÄÚÈÝ','Ã½Ìå±¨µÀ','ÇàÄêÖ¾Ô¸ÕßÐ­»á');
-insert into infomation values(info_infoid.nextval,'Ã½Ìå±¨µÀ2',to_date('2016-9-19','yyyy-MM-dd'),'Ã½Ìå±¨µÀÄÚÈÝ','Ã½Ìå±¨µÀ','ÇàÄêÖ¾Ô¸ÕßÐ­»á');
-insert into infomation values(info_infoid.nextval,'Ã½Ìå±¨µÀ3',to_date('2016-9-19','yyyy-MM-dd'),'Ã½Ìå±¨µÀÄÚÈÝ','Ã½Ìå±¨µÀ','ÇàÄêÖ¾Ô¸ÕßÐ­»á');
-insert into infomation values(info_infoid.nextval,'Ã½Ìå±¨µÀ4',to_date('2016-9-19','yyyy-MM-dd'),'Ã½Ìå±¨µÀÄÚÈÝ','Ã½Ìå±¨µÀ','Êé»­Ð­»á');
-insert into infomation values(info_infoid.nextval,'Ã½Ìå±¨µÀ5',to_date('2016-9-19','yyyy-MM-dd'),'Ã½Ìå±¨µÀÄÚÈÝ','Ã½Ìå±¨µÀ','Êé»­Ð­»á');
-insert into infomation values(info_infoid.nextval,'Ã½Ìå±¨µÀ6',to_date('2016-9-19','yyyy-MM-dd'),'Ã½Ìå±¨µÀÄÚÈÝ','Ã½Ìå±¨µÀ','Êé»­Ð­»á');
-
-insert into infomation values(info_infoid.nextval,'Ð£Ô°ÐÂÎÅ1',to_date('2016-9-19','yyyy-MM-dd'),'Ð£Ô°ÐÂÎÅÄÚÈÝ','Ð£Ô°ÐÂÎÅ','¹ã²¥Õ¾');
-insert into infomation values(info_infoid.nextval,'Ð£Ô°ÐÂÎÅ2',to_date('2016-9-19','yyyy-MM-dd'),'Ð£Ô°ÐÂÎÅÄÚÈÝ','Ð£Ô°ÐÂÎÅ','¹ã²¥Õ¾');
-insert into infomation values(info_infoid.nextval,'Ð£Ô°ÐÂÎÅ3',to_date('2016-9-19','yyyy-MM-dd'),'Ð£Ô°ÐÂÎÅÄÚÈÝ','Ð£Ô°ÐÂÎÅ','¹ã²¥Õ¾');
-insert into infomation values(info_infoid.nextval,'Ð£Ô°ÐÂÎÅ4',to_date('2016-9-19','yyyy-MM-dd'),'Ð£Ô°ÐÂÎÅÄÚÈÝ','Ð£Ô°ÐÂÎÅ','¹ã²¥Õ¾');
-insert into infomation values(info_infoid.nextval,'Ð£Ô°ÐÂÎÅ5',to_date('2016-9-19','yyyy-MM-dd'),'Ð£Ô°ÐÂÎÅÄÚÈÝ','Ð£Ô°ÐÂÎÅ','¹ã²¥Õ¾');
-insert into infomation values(info_infoid.nextval,'Ð£Ô°ÐÂÎÅ6',to_date('2016-9-19','yyyy-MM-dd'),'Ð£Ô°ÐÂÎÅÄÚÈÝ','Ð£Ô°ÐÂÎÅ','¹ã²¥Õ¾');
-select * from infomation where infotype='½üÆÚ»î¶¯'
-  --¿Í·þ±í
-  create table customservice(
-  csid int primary key,
-  csname varchar2(50),
-  cssex varchar2(20) 
-  )
-  drop table customservice;
-
-  
---ÁôÑÔ±í
-create table  leaveword(
- lid int primary key,
- message varchar2(1000),
- ldate date
+select * from information where infotype='activeannounced'
+select * from information where infotype='webnotice'
+drop table information
+commit;
+--å®¢æœè¡¨
+create table customservice(
+	csid int primary key,
+	csname varchar2(50),
+	cssex varchar2(20)
 )
-drop table leaveword;
+drop table customservice;
 
---¹ÜÀíÔ±±í
+
+--ç•™è¨€è¡¨
+create table  messageBoard(
+	lid int primary key,
+	lname varchar2(10),
+	lclass varchar2(20),
+	lsex varchar2(5),
+	lpic varchar2(100),
+	lmessage varchar2(1000),
+	ldate varchar2(30)
+)
+drop table messageBoard;
+select * from messageBoard
+create sequence messageBoard_lid start with 1 increment by 1;
+insert into leaveword values(leaveword_lid.nextval,'ç¦å»ºæ±Ÿå¤å­¦é™¢ ç¦å»ºå¸ˆèŒƒå¤§å­¦ ç¦å»ºå•†ä¸šé«˜ç­‰ä¸“é™¢ é—½æ±Ÿå­¦é™¢ ç¦å»ºåŒ»ç§‘å¤§å­¦ èŽ†ç”°å­¦é™¢ ç¦å»ºä¸­åŒ»è¯å¤§å­¦ ç¦å·žå¤§å­¦é˜³å…‰å­¦é™¢ ä»°æ©å¤§å­¦ é›†ç¾Žå¤§å­¦...','2017-06-01');
+--ç®¡ç†å‘˜è¡¨
 drop table admin;
 drop sequence admin_aid ;
-create sequence admin_aid start with 1 increment by 1;
 create table admin(
-  aid int primary key,
-  aname varchar2(20), 
-  apwd varchar2(20),
-  aemail varchar2(100),  --ÓÊÏäÕËºÅ
-  aphone varchar2(11),         --ÊÖ»úºÅ/Ö§¸¶±¦ÕËºÅ
-  qq  varchar2(20),             --qqÕËºÅ
-  root int           --È¨ÏÞ    1:ÆÕÍ¨¹ÜÀíÔ±   2:³¬¼¶¹ÜÀíÔ±
+	aid int primary key,
+	aname varchar2(20),
+	apwd varchar2(20),
+	aemail varchar2(100),  --é‚®ç®±è´¦å·
+	aphone varchar2(11),         --æ‰‹æœºå·/æ”¯ä»˜å®è´¦å·
+	qq  varchar2(20),             --qqè´¦å·
+	root int           --æƒé™    1:æ™®é€šç®¡ç†å‘˜   2:è¶…çº§ç®¡ç†å‘˜
 )
-insert into admin values(admin_aid.nextval,'¼ÆÐÅÇàÐ­','jxqx','1634556914@qq.com','18274716931','1634556914',2);
-insert into admin values(admin_aid.nextval,'tsh','aa','1634556914@qq.com','18274716931','1634556914',2);
-insert into admin values(admin_aid.nextval,'¼ÆÐÅÖ°Ð­','jxzx','1634556914@qq.com','18274716931','1634556914',1);
-insert into admin values(admin_aid.nextval,'¼ÆÐÅÓ¢Ð­','jxyx','1634556914@qq.com','18274716931','1634556914',1);
-select * from admin;
-select * from admin where aname='tsh' and apwd='aa';
+create sequence admin_aid start with 1 increment by 1;
 
---ÀíÊÂ»á±í
+
+select * from admin;
+
+--ç†äº‹ä¼šè¡¨
 drop table director;
 create table director(
-  did int primary key,   --ÀíÊÂid
-  dname varchar2(20), 	--ÀíÊÂÐÕÃû
-  demail varchar2(100),  --ÓÊÏäÕËºÅ
-  dphone varchar2(11),      --ÊÖ»úºÅ/Ö§¸¶±¦ÕËºÅ
-  qq varchar2(20), 			--QQÕÊºÅ
-  corporation varchar2(40) ,     --ËùÊôÐ­»á
-  department varchar2(20) ,      --ËùÊô²¿ÃÅ
-  place varchar2(20)       --²¿ÃÅÖ°Î»
+	did int primary key,   --ç†äº‹id
+	dname varchar2(20),   --ç†äº‹å§“å
+	demail varchar2(100),  --é‚®ç®±è´¦å·
+	dphone varchar2(11),      --æ‰‹æœºå·/æ”¯ä»˜å®è´¦å·
+	qq varchar2(20),       --QQå¸å·
+	corporation varchar2(40) ,     --æ‰€å±žåä¼š
+	department varchar2(20) ,      --æ‰€å±žéƒ¨é—¨
+	place varchar2(20)       --éƒ¨é—¨èŒä½
 );
 create sequence director_did start with 1 increment by 1;
 select * from director;
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§1','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','»á³¤ÍÅ','»á³¤');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§2','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','»á³¤ÍÅ','¸±»á³¤');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§3','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','»á³¤ÍÅ','¸±»á³¤');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§4','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','»á³¤ÍÅ','»áÖú');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§5','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','»á³¤ÍÅ','»áÖú');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§6','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','°ì¹«ÊÒ','Ö÷ÈÎ');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§7','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','°ì¹«ÊÒ','¸±Ö÷ÈÎ');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§8','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','°ì¹«ÊÒ','¸±Ö÷ÈÎ');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§9','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','°ì¹«ÊÒ','¸ÉÊÂ');
-insert into director values(director_did.nextval,'¹ÈÂ»Ë§10','1209614483@qq.com','18216021360','1209614483','ÇàÄêÖ¾Ô¸ÕßÐ­»á','°ì¹«ÊÒ','¸ÉÊÂ');
-
-insert into director values(director_did.nextval,'ºúÃ÷Íú1','543919061@qq.com','15674732978','543919061','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','»á³¤ÍÅ','»á³¤');
-insert into director values(director_did.nextval,'ºúÃ÷Íú2','543919061@qq.com','15674732978','543919061','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','»á³¤ÍÅ','¸±»á³¤');
-insert into director values(director_did.nextval,'ºúÃ÷Íú3','543919061@qq.com','15674732978','543919061','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','»á³¤ÍÅ','¸±»á³¤');
-insert into director values(director_did.nextval,'ºúÃ÷Íú4','543919061@qq.com','15674732978','543919061','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','°ì¹«ÊÒ','Ö÷ÈÎ');
-insert into director values(director_did.nextval,'ºúÃ÷Íú5','543919061@qq.com','15674732978','543919061','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','°ì¹«ÊÒ','¸±Ö÷ÈÎ');
-insert into director values(director_did.nextval,'ºúÃ÷Íú6','543919061@qq.com','15674732978','543919061','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','°ì¹«ÊÒ','¸±Ö÷ÈÎ');
-insert into director values(director_did.nextval,'ºúÃ÷Íú7','543919061@qq.com','15674732978','543919061','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','°ì¹«ÊÒ','¸ÉÊÂ');
-
---»áÔ±±í
+--ä¼šå‘˜è¡¨
+drop table member;
 create table member(
-  mid int primary key,   --»áÔ±id
-  mname varchar2(20), 	--»áÔ±ÐÕÃû
-  memail varchar2(100),  --ÓÊÏäÕËºÅ
-  mphone varchar2(11),      --ÊÖ»úºÅ/Ö§¸¶±¦ÕËºÅ
-  qq varchar2(20), 			--QQÕÊºÅ
-  corporation varchar2(40) ,     --ËùÊôÐ­»á
-  pay varchar2(20)					--»á·Ñ½»¸¶Çé¿ö
+	mid int primary key,   --ä¼šå‘˜id
+	mname varchar2(20),   --ä¼šå‘˜å§“å
+	memail varchar2(100),  --é‚®ç®±è´¦å·
+	mphone varchar2(11),      --æ‰‹æœºå·/æ”¯ä»˜å®è´¦å·
+	qq varchar2(20),       --QQå¸å·
+	corporation varchar2(40) ,     --æ‰€å±žåä¼š
+	pay varchar2(20)          --ä¼šè´¹äº¤ä»˜æƒ…å†µ
 );
 create sequence member_mid start with 1 increment by 1;
-drop table member;
 select * from member;
-insert into member values(member_mid.nextval,'Ì·Éú»Ô','1634556914@qq.com','18274716931','1634556914','ÇàÄêÖ¾Ô¸ÕßÐ­»á','true');
-insert into member values(member_mid.nextval,'¹ÈÂ»Ë§','1634556914@qq.com','18274716931','1634556914','ÇàÄêÖ¾Ô¸ÕßÐ­»á','false');
-insert into member values(member_mid.nextval,'ÖÜÕý','1634556914@qq.com','18274716931','1634556914','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','true');
-insert into member values(member_mid.nextval,'´÷»¶','1634556914@qq.com','18274716931','1634556914','Ö°Òµ·¢Õ¹Óë¾ÍÒµ´´ÒµÐ­»á','false');
-insert into member values(member_mid.nextval,'ÕÅÈý','1634556914@qq.com','18274716931','1634556914','Êé»­Ð­»á','false');
-insert into member values(member_mid.nextval,'ÍõÎå','1634556914@qq.com','18274716931','1634556914','Ó¢ÓïÐ­»á','true');
-insert into member values(member_mid.nextval,'ÕÔËÄ','1634556914@qq.com','18274716931','1634556914','¼ÆËã»úÐ­»á','false');
+--æ–‡æ¡£&å›¾ç‰‡è¡¨
+create table wordfile(
+	wid int primary key,   --id
+	wpath varchar2(200),   --path
+	corporation varchar2(40),      --æ‰€å±žåä¼š
+	cname varchar2(20)
+);
+create sequence wordfile_wid start with 1 increment by 1;
 
-create table photo(
-pid int primary key,
-pclub varchar2(20),
-pname varchar2(100)
-)
-drop table photo;
-create sequence photo_pid start with 1 increment by 1;
-insert into photo values(photo_pid.nextval,'ÇàÄêÖ¾Ô¸ÕßÐ­»á','ÕÔËÄ');
-select * from photo;
+
+
+select * from wordfile;
+delete table wordorpic;
+insert into wordfile values(wordfile_wid.nextval,'è·¯å¾„','é’å¹´å¿—æ„¿è€…åä¼š','å‘¨ä¸¹');
+
+
+
+insert into information values(info_infoid.nextval,'ä¹¦ç”»åä¼šé¡µé¢æµ‹è¯•',to_date('2016-8-28','yyyy-MM-dd'),'æµ‹è¯•','activeannounced','shuhua');
+delete  from information where infotype='webnotice'
+insert into information values(info_infoid.nextval,'é’åç™¾é‡Œæ¯…è¡Œ',to_date('2016-8-28','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','activeannounced','qingxie');
+insert into information values(info_infoid.nextval,'èŒåç”Ÿå­˜æŒ‘æˆ˜èµ›',to_date('2016-8-26','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','activeannounced','qingxie');
+insert into information values(info_infoid.nextval,'é’åæ¢å±Šå¤§ä¼š',to_date('2016-8-28','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','activeannounced','qingxie');
+insert into information values(info_infoid.nextval,'èŒåæ¢å±Šå¤§ä¼š',to_date('2016-8-29','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','activeannounced','qingxie');
+insert into information values(info_infoid.nextval,'è®¡ç®—æœºåä¼šä¹‰åŠ¡ä¿®ç”µè„‘',to_date('2016-8-31','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','activeannounced','qingxie');
+insert into information values(info_infoid.nextval,'è‹±è¯­åä¼šæ™¨è¯»æ´»åŠ¨',to_date('2016-8-18','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','activeannounced','qingxie');
+insert into information values(info_infoid.nextval,'è®¡ç®—æœºåä¼šæ‹›æ–°',to_date('2016-8-24','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','activeannounced','qingxie');
+insert into information values(info_infoid.nextval,'æ–‡è‰ºçˆ±å¥½è€…åä¼šæ‹›æ–°',to_date('2016-8-26','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','activeannounced','qingxie');
+insert into information values(info_infoid.nextval,'æ–‡è‰ºè‰¾å“ˆç€åä¼šæ‹›æ–°',to_date('2016-8-26','yyyy-MM-dd'),'è®¡ä¿¡é’åå°†äºŽåŽå¤©ä¸¾è¡Œç™¾é‡Œæ¯…è¡Œ','12345678','qingxie');
+
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š6',to_date('2016-8-28','yyyy-MM-dd'),'dddddddddddddd','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š3',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š3å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š4',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š4å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š5',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š5å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬6',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š6å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š7',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š7å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š8',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š8å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š9',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š9å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š10',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š10å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç½‘ç«™å…¬å‘Š11',to_date('2016-8-28','yyyy-MM-dd'),'ç½‘ç«™å…¬å‘Š11å†…å®¹','webnotice','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨1',to_date('2016-8-29','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨1å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨2',to_date('2016-8-30','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨2å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨3',to_date('2016-8-30','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨3å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨4',to_date('2016-8-22','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨4å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨5',to_date('2016-8-24','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨5å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨6',to_date('2016-8-25','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨6å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨7',to_date('2016-8-21','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨7å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨8',to_date('2016-8-15','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨8å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨9',to_date('2016-8-31','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨9å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€1',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€2å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€2',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€2å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€3',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€3å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€4',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€4å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€5',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€5å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€6',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€6å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€7',to_date('2016-8-28','yyyy-MM-dd'),'','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€8',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€8å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€9',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€9å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€10',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€10å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢åŠ¨æ€11',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢åŠ¨æ€11å†…å®¹','shetuandongtai','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰1',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰2å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰2',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰2å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰3',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰3å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰4',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰4å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰5',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰5å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰6',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰6å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰7',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰7å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰8',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰8å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰9',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰9å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰10',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰10å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'ç¤¾å›¢è£èª‰11',to_date('2016-8-28','yyyy-MM-dd'),'ç¤¾å›¢è£èª‰11å†…å®¹','glory','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ1',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ2å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ2',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ2å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ3',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ3å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ4',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ4å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ5',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ5å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ6',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ6å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ7',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ7å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ8',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ8å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ9',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ9å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ10',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ10å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'å¯¹å¤–äº¤æµ11',to_date('2016-8-28','yyyy-MM-dd'),'å¯¹å¤–äº¤æµ11å†…å®¹','discuss','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨1',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨2å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨2',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨2å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨3',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨3å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨4',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨4å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨5',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨5å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨6',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨6å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨7',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨7å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨8',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨8å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨9',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨9å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨10',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨10å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'ç²¾å“æ´»åŠ¨11',to_date('2016-8-28','yyyy-MM-dd'),'ç²¾å“æ´»åŠ¨11å†…å®¹','Boutique','qingxie');
+insert into information values(info_infoid.nextval,'åª’ä½“æŠ¥é“1',to_date('2016-8-28','yyyy-MM-dd'),'åª’ä½“æŠ¥é“1å†…å®¹','mediaReport','qingxie');
+insert into information values(info_infoid.nextval,'åª’ä½“æŠ¥é“2',to_date('2016-8-28','yyyy-MM-dd'),'åª’ä½“æŠ¥é“2å†…å®¹','mediaReport','qingxie');
+insert into information values(info_infoid.nextval,'åª’ä½“æŠ¥é“3',to_date('2016-8-28','yyyy-MM-dd'),'åª’ä½“æŠ¥é“3å†…å®¹','mediaReport','qingxie');
+insert into information values(info_infoid.nextval,'åª’ä½“æŠ¥é“4',to_date('2016-8-28','yyyy-MM-dd'),'åª’ä½“æŠ¥é“4å†…å®¹','mediaReport','qingxie');
+insert into information values(info_infoid.nextval,'åª’ä½“æŠ¥é“5',to_date('2016-8-28','yyyy-MM-dd'),'åª’ä½“æŠ¥é“5å†…å®¹','mediaReport','qingxie');
+insert into information values(info_infoid.nextval,'æ ¡å›­æ–°é—»1',to_date('2016-8-28','yyyy-MM-dd'),'æ ¡å›­æ–°é—»1å†…å®¹','SchoolNews','qingxie');
+insert into information values(info_infoid.nextval,'æ ¡å›­æ–°é—»2',to_date('2016-8-28','yyyy-MM-dd'),'æ ¡å›­æ–°é—»2å†…å®¹','SchoolNews','qingxie');
+insert into information values(info_infoid.nextval,'æ ¡å›­æ–°é—»3',to_date('2016-8-28','yyyy-MM-dd'),'æ ¡å›­æ–°é—»3å†…å®¹','SchoolNews','qingxie');
+insert into information values(info_infoid.nextval,'æ ¡å›­æ–°é—»4',to_date('2016-8-28','yyyy-MM-dd'),'æ ¡å›­æ–°é—»4å†…å®¹','SchoolNews','qingxie');
+insert into information values(info_infoid.nextval,'æ ¡å›­æ–°é—»5',to_date('2016-8-28','yyyy-MM-dd'),'æ ¡å›­æ–°é—»5å†…å®¹','SchoolNews','qingxie');
+
+
+
+insert into member values(member_mid.nextval,'è°­ç”Ÿè¾‰','1634556914@qq.com','18274716931','1634556914','é’å¹´å¿—æ„¿è€…åä¼š','true');
+insert into member values(member_mid.nextval,'è°·ç¦„å¸…','1634556914@qq.com','18274716931','1634556914','é’å¹´å¿—æ„¿è€…åä¼š','false');
+insert into member values(member_mid.nextval,'å‘¨æ­£','1634556914@qq.com','18274716931','1634556914','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','true');
+insert into member values(member_mid.nextval,'æˆ´æ¬¢','1634556914@qq.com','18274716931','1634556914','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','false');
+
+
+
+insert into director values(director_did.nextval,'è°·ç¦„å¸…1','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','ä¼šé•¿å›¢','ä¼šé•¿');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…2','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','ä¼šé•¿å›¢','å‰¯ä¼šé•¿');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…3','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','ä¼šé•¿å›¢','å‰¯ä¼šé•¿');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…4','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','ä¼šé•¿å›¢','ä¼šåŠ©');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…5','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','ä¼šé•¿å›¢','ä¼šåŠ©');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…6','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','åŠžå…¬å®¤','ä¸»ä»»');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…7','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','åŠžå…¬å®¤','å‰¯ä¸»ä»»');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…8','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','åŠžå…¬å®¤','å‰¯ä¸»ä»»');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…9','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','åŠžå…¬å®¤','å¹²äº‹');
+insert into director values(director_did.nextval,'è°·ç¦„å¸…10','1209614483@qq.com','18216021360','1209614483','é’å¹´å¿—æ„¿è€…åä¼š','åŠžå…¬å®¤','å¹²äº‹');
+
+insert into director values(director_did.nextval,'å‘¨ä¸¹1','543919061@qq.com','15674732978','543919061','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','ä¼šé•¿å›¢','ä¼šé•¿');
+insert into director values(director_did.nextval,'å‘¨ä¸¹2','543919061@qq.com','15674732978','543919061','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','ä¼šé•¿å›¢','å‰¯ä¼šé•¿');
+insert into director values(director_did.nextval,'å‘¨ä¸¹3','543919061@qq.com','15674732978','543919061','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','ä¼šé•¿å›¢','å‰¯ä¼šé•¿');
+insert into director values(director_did.nextval,'å‘¨ä¸¹4','543919061@qq.com','15674732978','543919061','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','åŠžå…¬å®¤','ä¸»ä»»');
+insert into director values(director_did.nextval,'å‘¨ä¸¹5','543919061@qq.com','15674732978','543919061','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','åŠžå…¬å®¤','å‰¯ä¸»ä»»');
+insert into director values(director_did.nextval,'å‘¨ä¸¹6','543919061@qq.com','15674732978','543919061','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','åŠžå…¬å®¤','å‰¯ä¸»ä»»');
+insert into director values(director_did.nextval,'å‘¨ä¸¹7','543919061@qq.com','15674732978','543919061','èŒä¸šå‘å±•ä¸Žå°±ä¸šåˆ›ä¸šåä¼š','åŠžå…¬å®¤','å¹²äº‹');
+
+
+insert into admin values(admin_aid.nextval,'è®¡ä¿¡é’å','jxqx','1634556914@qq.com','18274716931','1634556914',2);
+insert into admin values(admin_aid.nextval,'tsh','aa','1634556914@qq.com','18274716931','1634556914',2);
+insert into admin values(admin_aid.nextval,'è®¡ä¿¡èŒå','jxzx','1634556914@qq.com','18274716931','1634556914',1);
+insert into admin values(admin_aid.nextval,'è®¡ä¿¡è‹±å','jxyx','1634556914@qq.com','18274716931','1634556914',1);

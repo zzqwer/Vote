@@ -9,11 +9,16 @@ import com.yc.corporation.entity.Corporation;
 public interface CorporationMapper {
 
 	List<Corporation> findAll();
-    int	insertcor(Corporation cor);
-    int deletecor(String... cid);
-    int updatecor(Corporation cor);
-    List<Corporation>findcorbypage(@Param("page")int page,@Param("rows")int rows);
-    
-	List<Corporation> findConnectionWay();
+
+	int insertcor(Corporation cor);
+
+	int deletecor(String... cid);
+
+	int updatecor(Corporation cor);
+
+	List<Corporation> findcorbypage(@Param("page") int page, @Param("rows") int rows);
+
+	Corporation findQingXie();
+
 
 }

@@ -1,2 +1,184 @@
 <meta charset="utf-8" />
-社团名人
+<table id="hero_data"></table>
+
+<div id="add_hero" class="easyui-dialog" title="添加协会名人"
+	data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true,fit:true">
+	<br> <label>姓名：</label><select id="add_hname" name="hname"
+		required="required" onClick="getChange()"></select><br> <br>
+	<label>班级：</label><span id="add"><input type="text"
+		id="add_hclass" name="hclass" required="required" /></span><br> <br>
+	<form action="hero/onefile" method="post"
+		enctype="multipart/form-data" target="id_iframe">
+		<iframe id="id_iframe" name="id_iframe" style="display: none;"></iframe>
+		<label>个人照：</label><input type="file" id="add_hpic" name="hpic"
+			required="required" /> <input type="submit" value="确定上 传" /><br>
+	</form>
+	<br>
+	<div>
+		<br> <label>个人事迹：</label>
+		<script type="text/plain" id="add_hstory"
+			style="width: 500px; height: 200px;"></script>
+	</div>
+	<br> <a href="javascript:addHero()" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add'" style="width: 100px;">添加</a>
+
+</div>
+
+<script>
+	var ue = UE.getEditor('add_hstory');
+	var obj;
+	var editRow = undefined;//记录当前正在被编辑的行
+	var currentOp;
+	var flag;
+
+	obj = $('#hero_data')
+			.datagrid(
+					{
+						url : 'hero/findAll',
+						fitColumns : true,
+						striped : true,
+						loadMsg : "数据加载中...",
+						pagination : true,
+						fit : true,
+						pageNumber : 1,
+						pageSize : 2,
+						pageList : [10, 15, 20, 30 ],
+						sortName : 'hid',
+						remoteSort : false,
+						columns : [ [
+								{
+									field : 'hids',
+									width : 100,
+									align : 'center',
+									checkbox : true
+								},
+								{
+									field : 'hid',
+									title : '编号',
+									width : 100,
+									align : 'center',
+									sortable : true
+								},
+								{
+									field : 'hname',
+									title : '姓名',
+									width : 100,
+									align : 'center',
+									editor : {
+										type : "text",
+										options : {
+											requires : true
+										}
+									}
+								},
+								{
+									field : 'hclass',
+									title : '班级',
+									width : 100,
+									align : 'center',
+									editor : {
+										type : "text",
+										options : {
+											requires : true
+										}
+									}
+								},
+								{
+									field : 'hpic',
+									title : '个人照',
+									align : 'center',
+									width : 100,
+									formatter : function(value, row) {
+										var str = "";
+										// var value="1.jpg";
+										if (value != "" || value != null) {
+											//str = "<img style=\"height: 80px;width: 150px;\" src=\"images/"+value+"\"/>";
+											// debugger;
+											//str = '<img style="height:80px;width:150px" src="d:\apache-tomcat-7.0.30-windows-x86\webapps\img\149423783380950146.jpg"/>';
+											str = '<img style="height: 80px;width: 80px" src="../../'+value+'"/>';
+											return str;
+										}
+									}
+								}, {
+									field : 'hstory',
+									title : '个人事迹',
+									width : 100,
+									align : 'center',
+									editor : {
+										type : "text",
+										options : {
+											requires : true
+										}
+									}
+								},
+
+						] ],
+						toolbar : [
+								{
+									text : "添加",
+									iconCls : "icon-add",
+									handler : function() {
+										$('#add_hero').dialog({
+
+											width : 600,
+											height : 450,
+											cache : false,
+											shadow : false
+										});
+										$("#add_hero").dialog('open');
+										 var select=document.getElementById("add_hname");
+										    select.length=0;
+										$.post("user/findAll",function(data) {
+															var hname = $("#add_hname");
+															for (var i = 0; i < data.length; i++) {
+																opt = "<option value='"+data[i].username+"'>"
+																		+ data[i].username
+																		+ "</option>";
+																hname
+																		.append($(opt));
+															}
+															;
+														}, "json");
+									}
+								}]
+					});
+
+	function getChange() {
+		var username = $.trim($("#add_hname").val());
+		$.post("user/showhclass",{username : username},	function(data) {
+			console.log(data);
+			var opt = '<input type="text" id="add_hclass" name="hclass" required="required" value="'+data.userclass+'" readonly="true"/>';
+			$("#add").html(opt);
+	}, "json");
+	}
+	function addHero(){
+		var hname=$.trim( $("#add_hname").val() );
+		var hclass=$.trim( $("#add_hclass").val() );
+		var hpic=$.trim( $("#add_hpic").val() );
+		var hstory=ue.getContent();
+
+		$.ajaxFileUpload({
+			url:"hero/inserthero",
+			dataType:"json",
+			data:{hname:hname,hclass:hclass,hpic:hpic,hstory:hstory},
+			success:function(data,status){
+				if(data>0){
+					$.messager.show({title:'成功提示',msg:"协会名人添加成功...",timeout:2000,showType:'slide'});		
+					$("#add_hname").val("");
+					$("#add_hclass").val("");
+					$("#add_hpic").val("");
+					ue.setContent("");
+					$('#hero_data').datagrid('reload');
+					$('#add_hero').dialog('close');
+				}else{
+					$.messager.alert("错误提示","协会名人添加失败...\n","error");
+				}
+			},
+			error:function(data,status,e){
+				$.messager.alert("错误提示","协会名人添加失败...\n","error");
+			}	
+		}); 
+	}
+
+
+</script>

@@ -6,16 +6,10 @@ public class Active {
 	private int aid;
 	private String aname;
 	private String atime;
-	@Override
-	public String toString() {
-		return "Active [aid=" + aid + ", aname=" + aname + ", atime=" + atime + ", acontent=" + acontent + ", palce="
-				+ palce + ", tel=" + tel + ", acount=" + acount + ", endtime=" + endtime + "]";
-	}
 	private String acontent;
-	private String palce;
+	private String place;
 	private String tel;
 	private int acount;
-	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private String endtime;
 	public int getAid() {
 		return aid;
@@ -41,11 +35,11 @@ public class Active {
 	public void setAcontent(String acontent) {
 		this.acontent = acontent;
 	}
-	public String getPalce() {
-		return palce;
+	public String getPlace() {
+		return place;
 	}
-	public void setPalce(String palce) {
-		this.palce = palce;
+	public void setPlace(String place) {
+		this.place = place;
 	}
 	public String getTel() {
 		return tel;
@@ -65,20 +59,27 @@ public class Active {
 	public void setEndtime(String endtime) {
 		this.endtime = endtime;
 	}
-	public Active(int aid, String aname, String atime, String acontent, String palce, String tel, int acount,
+	public Active(int aid, String aname, String atime, String acontent, String place, String tel, int acount,
 			String endtime) {
 		super();
 		this.aid = aid;
 		this.aname = aname;
 		this.atime = atime;
 		this.acontent = acontent;
-		this.palce = palce;
+		this.place = place;
 		this.tel = tel;
 		this.acount = acount;
 		this.endtime = endtime;
 	}
 	public Active() {
-		
+		super();
+		// TODO Auto-generated constructor stub
 	}
- 
+	@Override
+	public String toString() {
+		return "Active [aid=" + aid + ", aname=" + aname + ", atime=" + atime + ", acontent=" + acontent + ", place="
+				+ place + ", tel=" + tel + ", acount=" + acount + ", endtime=" + endtime + "]";
+	}
+	
+	
 }

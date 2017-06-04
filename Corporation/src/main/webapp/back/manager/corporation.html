@@ -1,22 +1,69 @@
 <meta charset="utf-8" />
 <table id="corporation_data"></table><!-- 查看所有社团 -->
+<div id="add_cor" class="easyui-dialog" title="添加新闻" data-options="iconCls:'icon-add',resizable:true,modal:true,closed:true,fit:true">
+	<br/>
+		<label>社团名：</label><input type="text" id="add_cname" name="cname" required="required"/><br><br>
+		<form action="file/onefile" method="post" style="float:left;padding-left:20px"  enctype="multipart/form-data" target="id_iframe">
+			<iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe> 
+			<label>社团logo：</label><input type="file" id="add_logo" name="logo" required="required" /><br><br>
+			<input type="submit" value="确定上 传"/> 
+		</form>
+		<br/><br/>
+		<label>指导老师：</label><input type="text" id="add_teacher" name="teacher"  required="required"/><br><br>
+		<label>社团负责人：</label><input type="text" id="add_head"  name=head required="required"/><br><br>
+		<label>官方联系电话：</label><input class="easyui-validatebox" type="text" validType="phoneNum" id="add_tel" name="pics" multiple="multiple"/><br><br>
+		<label>官方联系邮箱：</label><input class="easyui-validatebox" type="text" validType="email" id="add_email" name="email" multiple="multiple"/><br><br>		
+		<label>社团简介：</label>
+		<div>
+			<script type="text/plain" id="add_cintroduce" style="width:400px;height:100px;"></script>
+		</div>
+		<!--  <input type="submit" value="上 传" onclick="addCorInfo()"/> --> 
+		<a href="javascript:addCorInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-add'"style="width:300px;">添加</a>
+		
+</div>
+<div id="update_cor" class="easyui-dialog" title="修改社团" data-options="iconCls:'icon-edit',resizable:true,modal:true,closed:true,fit:true">
+	<br/>
+		<label>社团名：</label><input type="text" id="update_cname" name="cname" required="required"/><br><br>
+		<form action="corporation/onefile" method="post" style="float:left;padding-left:20px"  enctype="multipart/form-data" target="id_iframe">
+			<iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe> 
+			<label>社团logo：</label><input type="file" id="add_logo" name="logo" required="required" /><br><br>
+			<input type="submit" value="确定上 传"/> 
+		</form>
+		<label>指导老师：</label><input type="text" id="update_teacher" name="teacher"  required="required"/><br><br>
+		<label>社团负责人：</label><input type="text" id="update_head"  name=head required="required"/><br><br>
+		<label>官方联系电话：</label><input type="number" id="update_tel" name="pics" multiple="multiple"/><br><br>
+		<label>官方联系邮箱：</label><input type="email" id="update_email" name="email" multiple="multiple"/><br><br>		
+		<label>社团简介：</label>
+		<div>
+			<script type="text/plain" id="update_cintroduce" style="width:500px;height:100px;"></script>
+		</div>
+		<a href="javascript:updateCorInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" style="width:300px;">修改</a>
+		
+		<!--<input type="submit" value="上 传"  onclick="updateCorInfo()"/> 		
+		<a href="javascript:updateCorInfo()" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+		  -->
+</div>
+
 
 <script>
+var ue=UE.getEditor('add_cintroduce');
+var ue1=UE.getEditor('update_cintroduce');
 	var obj;
+	
 	var editRow=undefined;//记录正在被编辑的行
 	var currentOp;
 	var url;
 	var flag;
 	obj=$('#corporation_data').datagrid({
-		url:'corporation/findcorbypage',//远程服务器请求站点
+		url:'corporation/findAll',//远程服务器请求站点
 		method:'POST',   //请求方式
 		fitColumns:true,//自动适应columns的大小与grid的高度。防止水平滚动
 		loadMsg:"数据加载中...",//当从远程服务器加载数据的时候，显示的提示消息
 		pagination:true,//显示一个分页工具栏在datagrid下面
 		fit:true,//分页工具栏显示在最下面
 		pageNumber:1,//初始页码
-		pageSize:2,//初始分页大小
-		pageList:[2,5,10,15,20,30],//初始分页大小选择列表 
+		pageSize:10,//初始分页大小
+		pageList:[10,15,20,30],//初始分页大小选择列表 
 		sortName:'cid',//定义哪个列可以排序
 		remoteSort:false,//是否远程定义列，默认为true，这个一定要写
 //		striped:true,//显示条纹所有行
@@ -25,18 +72,31 @@
 		    {field:'cids',width:100,align:'center',checkbox:true},
 		    {field:'cid',title:'社团编号',width:100,align:'center',sortable:true},
 		    {field:'cname',title:'社团名称',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
-		    {field:'logo',title:'社团图标',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
+		    {field:'logo',title:'社团logo',align : 'center',width : 100,
+		    	formatter:function(value,row){
+		    	     var str = "";
+		    	    // var value="1.jpg";
+		    	     if(value!="" || value!=null){
+		    	 	 //str = "<img style=\"height: 80px;width: 150px;\" src=\"images/"+value+"\"/>";
+		    	 	// debugger;
+		    	 	 //str = '<img style="height:80px;width:150px" src="d:\apache-tomcat-7.0.30-windows-x86\webapps\img\149423783380950146.jpg"/>';
+		    	    str = '<img style="height: 80px;width: 80px" src="../../'+value+'"/>';
+		    	 	 return str;
+		    	     }
+		    	}}, 
 		    {field:'teacher',title:'指导老师',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'head',title:'会长',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'tel',title:'联系方式',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
 		    {field:'email',title:'社团邮箱',width:100,align:'center',editor:{type:"text",options:{requires:true}}},
-		    {field:'cintroduce',title:'社团简介',width:100,align:'center',editor:{type:"text",options:{requires:true}}
+		    {field:'cintroduce',title:'社团简介',width:250,align:'center',editor:{type:"text",options:{requires:true}}
 		    }
-		 ]], toolbar:[{
+		 ]],
+		 toolbar:[{
 		    	text:"添加",
 		    	iconCls:'icon-add',
 		    	handler:function(){
-		    		flag="添加";
+		    		$('#add_cor').dialog('open');
+		    		/* flag="添加";
 		    		url="corporation/insertcor";
 		    		if(editRow!=undefined){//˵���������ڱ��༭
 		    			obj.datagrid("rejectChanges");//�ع����е����
@@ -46,31 +106,26 @@
 		    			obj.datagrid('insertRow',{index:0,row:{}});
 		    			obj.datagrid("beginEdit",0);
 		    			editRow=0;//��¼��ǰ���༭�е�����
-		    		}
+		    		} */
 		    	}
        },{
 	    	text:"修改",
 	    	iconCls:"icon-edit",
 	    	handler:function(){
-	    		flag="修改";
-	    		url="corporation/updatecor"
-	    		var rows=obj.datagrid("getChecked")[0];
-	    		if(rows!=undefined){
-	    			if(editRow!=undefined){//说明有行正在被编辑
-		    			obj.datagrid("rejectChanges");//回滚所有的数据
-		    			obj.datagrid("endEdit",editRow);//关闭正在被编辑的行
-		    			editRow=undefined;
-		    		}else{
-		    			//获取用户选中的行的索引
-		    			var index=obj.datagrid("getRowIndex",rows);
-		    			console.info(rows);
-		    			obj.datagrid('updateRow',{index:index,row:rows});
-		    			obj.datagrid("beginEdit",index);
-		    			editRow=index;//记录当前被编辑行的索引
-		    		}
-	    		}else{
-	    			$.messager.show({title:'温馨提示',msg:'请选中您要修改的数据',timeout:2000,showType:'slide'});
-	    		}
+	    		var rows=obj.datagrid("getChecked");
+				if(rows!=undefined){
+					$('#update_cor').dialog('open');
+					$('#update_cname').val(rows[0].cname);
+					$('#update_logo').val(rows[0].logo);
+					$('#update_teacher').val(rows[0].teacher);
+					$('#update_head').val(rows[0].head);
+					$('#update_tel').val(rows[0].tel);
+					$('#update_email').val(rows[0].email);
+					ue1.setContent(rows[0].cintroduce);
+				}else{
+					$.messager.show({title:'温馨提示',msg:'请选中要修改的数据...',timeout:2000,showType:'slide'});
+				}
+	    		
 	    	}
 	    },{
 	    	text:"删除",
@@ -155,4 +210,90 @@
 	    }]
 	}); 
 
+	
+	
+	function addCorInfo(){
+		var cname=$.trim( $("#add_cname").val() );
+		var logo=$.trim( $("#add_logo").val() );
+		var teacher=$.trim( $("#add_teacher").val() );
+		var head=$.trim( $("#add_head").val() );
+		var tel=$.trim( $("#add_tel").val() );
+		var email=$.trim( $("#add_email").val() );
+		var cintroduce=ue.getContent();
+	
+		/* $.post("corporation/insertcor",{cname:cname,logo:logo,teacher:teacher,head:head,tel:tel,email:email,cintroduce:cintroduce},function(data){
+			alert(data);
+		}) */
+		$.ajaxFileUpload({
+			url:"corporation/insertcor",
+			dataType:"json",
+			data:{cname:cname,logo:logo,teacher:teacher,head:head,tel:tel,email:email,cintroduce:cintroduce},
+			success:function(data,status){
+				alert(data);
+				if(data>0){
+				
+					$.messager.show({title:'成功提示',msg:"社团信息添加成功...",timeout:2000,showType:'slide'});
+					
+					$("#add_cname").val("");
+					$("#add_logo").val("");
+					$("#add_teacher").val("");
+					$("#add_head").val("");
+					$("#add_tel").val("");
+					$("#add_email").val("");
+					ue.setContent("");
+					$('#corporation_data').datagrid('reload');
+					$('#add_cor').dialog('close');
+				}else{
+					$.messager.alert("错误提示","会员信息添加失败...\n","error");
+				}
+			},
+			error:function(data,status,e){
+				$.messager.alert("错误提示","会员信息添加失败...\n","error");
+			}	
+		}); 
+	}
+
+	function updateCorInfo(){
+		var rows=obj.datagrid("getChecked");
+		var cid=rows[0].cid;
+		var cname=$.trim( $("#update_cname").val() );
+		var logo=$.trim( $("#update_logo").val() );
+		var teacher=$.trim( $("#update_teacher").val() );
+		var head=$.trim( $("#update_head").val() );
+		var tel=$.trim( $("#update_tel").val() );
+		var email=$.trim( $("#update_email").val() );
+		debugger;
+		var cintroduce=ue1.getContent();
+		
+		$.ajaxFileUpload({
+			url:"corporation/updatecor",
+			secureuri:false,
+			dataType:"json",
+			data:{cname:cname,logo:logo,teacher:teacher,head:head,tel:tel,email:email,cintroduce:cintroduce,cid:cid},
+
+			success:function(data,status){
+				if(data>0){
+					$.messager.show({title:'成功提示',msg:"社团信息修改成功...",timeout:2000,showType:'slide'});
+					$("#update_cname").val("");
+					$("#update_logo").val("");
+					$("#update_teacher").val("");
+					$("#update_head").val("");
+					$("#update_tel").val("");
+					$("#update_email").val("");
+					ue.setContent();
+					$("#corporation_data").datagrid("reload");
+					$("#update_cor").dialog('close');
+				}else{
+					$("#corporation_data").datagrid("reload");
+					$("#update_cor").dialog('close');				}
+			},
+			error:function(data,status,e){
+				$("#corporation_data").datagrid("reload");
+				$("#update_cor").dialog('close');			}
+		});
+	}
+
+
+	
 </script>
+
